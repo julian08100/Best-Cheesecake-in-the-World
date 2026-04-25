@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="A non-extensive ranking list of the best cheesecakes in the world — according to Marcel and Julian." />
+  <meta property="og:title" content="Best Cheesecake in the World" />
+  <meta property="og:description" content="A curated ranking of the world's finest cheesecakes by Marcel & Julian." />
+  <meta property="og:image" content="https://bestcheesecakeintheworld.com/wp-content/uploads/2025/04/PHOTO-2024-10-19-22-18-09-e1744729488462.jpg" />
+  <title>Best Cheesecake in the World</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="logo">
+        <img src="https://bestcheesecakeintheworld.com/wp-content/uploads/2025/04/cropped-strawberry-cheesecake-6393283.png" alt="Best Cheesecake Logo" class="logo-img" />
+        <div class="logo-text">
+          <span class="logo-title">Best Cheesecake</span>
+          <span class="logo-sub">in the World</span>
+        </div>
+      </div>
+      <nav class="main-nav">
+        <a href="#rankings">Rankings</a>
+        <a href="#about">About</a>
+        <a href="mailto:info@bestcheesecakeintheworld.com" class="nav-cta">Submit a Cheesecake</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+      <p class="hero-eyebrow">The Definitive List</p>
+      <h1 class="hero-title">Best Cheesecake<br /><em>in the World</em></h1>
+      <p class="hero-desc">A non-extensive ranking list of the finest cheesecakes on earth,<br />as discovered by Marcel and Julian on their travels.</p>
+      <a href="#rankings" class="hero-btn">Explore the Rankings</a>
+    </div>
+    <div class="hero-scroll-hint">
+      <span>Scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- Stats Bar -->
+  <section class="stats-bar">
+    <div class="stats-inner">
+      <div class="stat">
+        <span class="stat-number" id="stat-total">22</span>
+        <span class="stat-label">Cheesecakes Reviewed</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat">
+        <span class="stat-number" id="stat-countries">8</span>
+        <span class="stat-label">Countries Visited</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat">
+        <span class="stat-number" id="stat-avg">6.1</span>
+        <span class="stat-label">Average Rating</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat">
+        <span class="stat-number">9.0</span>
+        <span class="stat-label">Highest Score</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Rankings Section -->
+  <section class="rankings-section" id="rankings">
+    <div class="section-header">
+      <h2 class="section-title">The Rankings</h2>
+      <p class="section-subtitle">Every cheesecake tasted, honestly rated.</p>
+    </div>
+
+    <!-- Filters -->
+    <div class="filters-bar">
+      <div class="filters-inner">
+        <div class="filter-group">
+          <label for="sort-select">Sort by</label>
+          <select id="sort-select" class="filter-select">
+            <option value="rank">Rank</option>
+            <option value="rating-desc">Rating (High → Low)</option>
+            <option value="rating-asc">Rating (Low → High)</option>
+            <option value="year-desc">Year (Newest)</option>
+            <option value="name">Name (A–Z)</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <label for="country-select">Country</label>
+          <select id="country-select" class="filter-select">
+            <option value="all">All Countries</option>
+          </select>
+        </div>
+        <div class="filter-group search-group">
+          <input type="search" id="search-input" class="filter-search" placeholder="Search cheesecakes…" />
+        </div>
+        <div class="filter-group">
+          <span class="results-count" id="results-count">22 results</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Top 3 Podium -->
+    <div class="podium-section">
+      <div class="podium-grid" id="podium-grid">
+        <!-- Rendered by JS -->
+      </div>
+    </div>
+
+    <!-- Cards Grid -->
+    <div class="cards-container">
+      <div class="cards-grid" id="cards-grid">
+        <!-- Rendered by JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="about-section" id="about">
+    <div class="about-inner">
+      <div class="about-text">
+        <span class="about-eyebrow">The Story</span>
+        <h2 class="about-title">Who Are We?</h2>
+        <p>We're Marcel and Julian — two cheesecake enthusiasts who decided to rank every cheesecake we encounter on our travels. We're not critics, not chefs, not professionals. We're just two people who love a good cheesecake and believe the world deserves to know where to find the best ones.</p>
+        <p>Every entry on this list has been personally tasted and rated. We assess appearance, texture, taste, and the overall experience. We welcome corrections, suggestions, and especially new submissions.</p>
+        <a href="mailto:info@bestcheesecakeintheworld.com" class="about-cta">Submit Your Discovery →</a>
+      </div>
+      <div class="about-visual">
+        <div class="about-img-wrap">
+          <img src="https://bestcheesecakeintheworld.com/wp-content/uploads/2025/04/PHOTO-2024-10-19-22-18-09-e1744729488462.jpg" alt="Best cheesecake — Bij Jan, Waalwijk" />
+          <div class="about-badge">
+            <span class="badge-score">9.0</span>
+            <span class="badge-label">#1 Ranked</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <img src="https://bestcheesecakeintheworld.com/wp-content/uploads/2025/04/cropped-strawberry-cheesecake-6393283.png" alt="Logo" class="footer-logo" />
+        <span>Best Cheesecake in the World</span>
+      </div>
+      <p class="footer-tagline">A non-extensive ranking list — according to us ; – ) Marcel and Julian</p>
+      <div class="footer-links">
+        <a href="mailto:info@bestcheesecakeintheworld.com">info@bestcheesecakeintheworld.com</a>
+        <span>·</span>
+        <a href="api/cheesecakes.json">API / Data</a>
+      </div>
+      <p class="footer-copy">© 2026 BestCheesecakeInTheWorld.com</p>
+    </div>
+  </footer>
+
+  <!-- Modal -->
+  <div class="modal-overlay" id="modal-overlay" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true">
+      <button class="modal-close" id="modal-close" aria-label="Close">✕</button>
+      <div class="modal-content" id="modal-content">
+        <!-- Rendered by JS -->
+      </div>
+    </div>
+  </div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+{
+  "_comment": "MOCK ENDPOINT — replace with a real backend (Firebase / Supabase / Cloudflare Worker) when the iOS app ships.",
+  "_apiVersion": "1.0",
+  "_endpoints": {
+    "GET /api/cheesecakes.json": "List all approved cheesecakes",
+    "POST /api/assessments": "Submit a new cheesecake assessment (requires auth token)",
+    "PATCH /api/assessments/:id/approve": "Approve a pending assessment — triggers push notification to other assessors",
+    "PATCH /api/assessments/:id/reject": "Reject a pending assessment"
+  },
+  "_pushNotifications": {
+    "provider": "APNs (Apple Push Notification service)",
+    "trigger": "When a new assessment is submitted, all registered assessors receive a push notification to review and vote.",
+    "approval_threshold": "Both assessors (Marcel + Julian) must approve before the cheesecake is published.",
+    "deviceTokenEndpoint": "POST /api/devices — register an APNs device token"
+  },
+  "_assessmentSchema": {
+    "id": "string (UUID)",
+    "venueName": "string",
+    "city": "string",
+    "country": "string",
+    "rating": "number (0.0 – 10.0)",
+    "shortNote": "string (max 120 chars)",
+    "description": "string",
+    "imageBase64": "string (JPEG, max 5MB) OR imageUrl: string",
+    "submittedBy": "string (assessor name)",
+    "submittedAt": "ISO 8601 timestamp",
+    "status": "pending | approved | rejected",
+    "votes": {
+      "Marcel": "approved | rejected | pending",
+      "Julian": "approved | rejected | pending"
+    }
+  }
+}
