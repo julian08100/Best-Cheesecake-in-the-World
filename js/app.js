@@ -110,7 +110,6 @@ function imgTag(c, cls = '') {
   return `<img
     src="${local}"
     alt="${esc(c.name)}"
-    loading="lazy"
     class="${cls}"
     onerror="handleImgError(this)"
   />`;
