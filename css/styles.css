@@ -114,7 +114,7 @@ button{cursor:pointer;font-family:var(--font-sans)}
 .podium-img-wrap{position:relative;aspect-ratio:4/3;overflow:hidden;background:var(--bg-card2)}
 .podium-img-wrap img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
 .podium-card:hover .podium-img-wrap img{transform:scale(1.06)}
-.img-placeholder{display:flex;flex-direction:column;align-items:center;justify-content:center;width:100%;height:100%;gap:12px;background:linear-gradient(135deg,var(--bg-card2),var(--bg-card));position:absolute;top:0;left:0}
+.img-placeholder{display:none;flex-direction:column;align-items:center;justify-content:center;width:100%;height:100%;gap:12px;background:linear-gradient(135deg,var(--bg-card2),var(--bg-card));position:absolute;top:0;left:0}
 .img-placeholder-icon{font-size:36px;opacity:.5}
 .img-placeholder-text{font-size:11px;color:var(--text-dim);text-align:center;padding:0 16px;font-style:italic}
 .podium-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(12,11,9,.92) 0%,transparent 55%)}
