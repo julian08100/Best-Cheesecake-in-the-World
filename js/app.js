@@ -395,7 +395,7 @@ function setupForm(formId, submitId, successId) {
     }
 
     if (success) {
-      form.style.display = 'none';
+      form.querySelectorAll('.form-row, .form-field, .form-footer').forEach(el => el.hidden = true);
       el(successId).hidden = false;
     } else {
       btn.disabled = false;
