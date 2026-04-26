@@ -1,0 +1,13 @@
+{
+  "functions": {
+    "source": "functions",
+    "codebase": "default",
+    "ignore": ["node_modules", ".git"]
+  },
+  "hosting": {
+    "public": ".",
+    "ignore": ["functions/**", "firebase.json", ".firebaserc", "node_modules/**", ".git/**"],
+    "cleanUrls": true,
+    "trailingSlash": false
+  }
+}

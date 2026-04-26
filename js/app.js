@@ -4,8 +4,8 @@
    Form endpoint: configure FORM_ENDPOINT below (Firebase Function or Formspree)
    ============================================================ */
 
-// Configure this once your Firebase Cloud Function is deployed:
-const FORM_ENDPOINT = null; // e.g. 'https://us-central1-YOUR_PROJECT.cloudfunctions.net/handleForm'
+// Firebase Cloud Function — deployed to europe-west1, project: bestcheesecake
+const FORM_ENDPOINT = 'https://europe-west1-bestcheesecake.cloudfunctions.net/handleForm';
 
 const API_URL = 'api/cheesecakes.json';
 
