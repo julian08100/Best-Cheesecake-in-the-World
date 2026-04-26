@@ -1,40 +1,58 @@
 /* ============================================================
-   BEST CHEESECAKE IN THE WORLD — App
+   BEST CHEESECAKE IN THE WORLD — App v2
+   API endpoint for iOS app: /api/cheesecakes.json
+   Form endpoint: configure FORM_ENDPOINT below (Firebase Function or Formspree)
    ============================================================ */
+
+// Configure this once your Firebase Cloud Function is deployed:
+const FORM_ENDPOINT = null; // e.g. 'https://us-central1-YOUR_PROJECT.cloudfunctions.net/handleForm'
 
 const API_URL = 'api/cheesecakes.json';
 
 let allCheesecakes = [];
 let filteredCheesecakes = [];
+let votes = JSON.parse(localStorage.getItem('bcw_votes') || '{}'); // { id: 'up'|'down' }
+let communityVotes = JSON.parse(localStorage.getItem('bcw_community') || '{}'); // { id: { approve, disapprove } }
 
 // ── Bootstrap ────────────────────────────────────────────────
 
 async function init() {
-  const data = await fetch(API_URL).then(r => r.json());
-  allCheesecakes = data.cheesecakes;
-  filteredCheesecakes = [...allCheesecakes];
+  try {
+    const data = await fetch(API_URL).then(r => r.json());
+    allCheesecakes = data.cheesecakes;
+  } catch {
+    console.warn('API unavailable');
+    allCheesecakes = [];
+  }
 
+  // Merge community votes from localStorage into data
+  allCheesecakes = allCheesecakes.map(c => ({
+    ...c,
+    communityVotes: communityVotes[c.id] ?? c.communityVotes ?? { approve: 0, disapprove: 0 }
+  }));
+
+  filteredCheesecakes = [...allCheesecakes];
   populateCountryFilter();
   renderStats();
   renderAll();
   bindEvents();
+  bindForms();
+  bindMobileNav();
 }
 
-// ── Stats Bar ────────────────────────────────────────────────
+// ── Stats ────────────────────────────────────────────────────
 
 function renderStats() {
   const countries = new Set(allCheesecakes.map(c => c.country));
-  const avg = allCheesecakes.reduce((s, c) => s + c.rating, 0) / allCheesecakes.length;
-  document.getElementById('stat-total').textContent = allCheesecakes.length;
-  document.getElementById('stat-countries').textContent = countries.size;
-  document.getElementById('stat-avg').textContent = avg.toFixed(1);
+  el('stat-total').textContent = allCheesecakes.length;
+  el('stat-countries').textContent = countries.size;
 }
 
 // ── Filters ──────────────────────────────────────────────────
 
 function populateCountryFilter() {
   const countries = [...new Set(allCheesecakes.map(c => c.country))].sort();
-  const sel = document.getElementById('country-select');
+  const sel = el('country-select');
   countries.forEach(c => {
     const opt = document.createElement('option');
     opt.value = c;
@@ -45,21 +63,23 @@ function populateCountryFilter() {
 }
 
 function applyFilters() {
-  const sort    = document.getElementById('sort-select').value;
-  const country = document.getElementById('country-select').value;
-  const query   = document.getElementById('search-input').value.toLowerCase().trim();
+  const sort    = el('sort-select').value;
+  const country = el('country-select').value;
+  const query   = el('search-input').value.toLowerCase().trim();
 
   filteredCheesecakes = allCheesecakes.filter(c => {
     const matchCountry = country === 'all' || c.country === country;
-    const matchSearch  = !query ||
+    const matchQuery   = !query ||
       c.name.toLowerCase().includes(query) ||
+      c.venue?.toLowerCase().includes(query) ||
       c.city.toLowerCase().includes(query) ||
       c.country.toLowerCase().includes(query) ||
       c.description.toLowerCase().includes(query);
-    return matchCountry && matchSearch;
+    return matchCountry && matchQuery;
   });
 
-  filteredCheesecakes.sort((a, b) => {
+  const sorted = [...filteredCheesecakes];
+  sorted.sort((a, b) => {
     switch (sort) {
       case 'rating-desc': return b.rating - a.rating;
       case 'rating-asc':  return a.rating - b.rating;
@@ -68,106 +88,171 @@ function applyFilters() {
       default:            return a.rank - b.rank;
     }
   });
+  filteredCheesecakes = sorted;
 
-  document.getElementById('results-count').textContent =
-    `${filteredCheesecakes.length} result${filteredCheesecakes.length !== 1 ? 's' : ''}`;
-
+  el('results-count').textContent = `${filteredCheesecakes.length} result${filteredCheesecakes.length !== 1 ? 's' : ''}`;
   renderAll();
 }
 
 // ── Render ───────────────────────────────────────────────────
 
 function renderAll() {
-  const podium = filteredCheesecakes.slice(0, 3);
-  const rest   = filteredCheesecakes.slice(3);
-  renderPodium(podium);
-  renderCards(rest);
+  renderPodium(filteredCheesecakes.slice(0, 3));
+  renderCards(filteredCheesecakes.slice(3));
 }
 
-function scoreClass(rating) {
-  if (rating >= 7.5) return 'score-high';
-  if (rating >= 5.0) return 'score-mid';
-  return 'score-low';
+function scoreClass(r) {
+  return r >= 7.5 ? 'score-high' : r >= 5.0 ? 'score-mid' : 'score-low';
+}
+
+function imgTag(c, cls = '') {
+  const local = `assets/images/${c.imageFile}`;
+  return `<img
+    src="${local}"
+    alt="${esc(c.name)}"
+    loading="lazy"
+    class="${cls}"
+    onerror="handleImgError(this)"
+  />`;
+}
+
+function votePills(c) {
+  const v = communityVotes[c.id] ?? c.communityVotes ?? { approve: 0, disapprove: 0 };
+  const total = v.approve + v.disapprove;
+  if (total === 0) return '';
+  return `<div class="podium-votes">
+    <span class="vote-pill vote-pill--up">▲ ${v.approve}</span>
+    <span class="vote-pill vote-pill--down">▼ ${v.disapprove}</span>
+  </div>`;
 }
 
 function renderPodium(items) {
-  const grid = document.getElementById('podium-grid');
+  const grid = el('podium-grid');
   if (!items.length) { grid.innerHTML = ''; return; }
 
-  const order = items.length >= 3
-    ? [items[1], items[0], items[2]]  // 2-1-3 podium visual order
-    : items;
+  const order = items.length >= 3 ? [items[1], items[0], items[2]] : items;
+  const rankMap = items.length >= 3 ? [2, 1, 3] : items.map((_, i) => i + 1);
 
   grid.innerHTML = order.map((c, i) => {
-    const displayRank = items.length >= 3
-      ? (i === 0 ? 2 : i === 1 ? 1 : 3)
-      : c.rank;
-    return `
-      <div class="podium-card rank-${displayRank}" data-id="${c.id}" role="button" tabindex="0" aria-label="${c.name}">
-        <div class="podium-img-wrap">
-          <img src="${c.imageUrl}" alt="${c.name}" loading="lazy" />
-          <div class="podium-overlay"></div>
-          <div class="podium-rank-badge">${displayRank}</div>
+    const displayRank = rankMap[i];
+    return `<div class="podium-card rank-${displayRank}" data-id="${c.id}" role="button" tabindex="0" aria-label="${esc(c.name)}">
+      <div class="podium-img-wrap">
+        ${imgTag(c)}
+        <div class="img-placeholder">
+          <span class="img-placeholder-icon">🍰</span>
+          <span class="img-placeholder-text">${esc(c.name)}</span>
         </div>
-        <div class="podium-info">
-          <div class="podium-meta">
-            <span class="podium-flag">${c.countryFlag}</span>
-            <span class="podium-score ${scoreClass(c.rating)}">${c.rating.toFixed(1)}</span>
-          </div>
-          <div class="podium-name">${c.name}</div>
-          <div class="podium-location">${c.city}, ${c.country}</div>
-          <div class="podium-note">"${c.shortNote}"</div>
+        <div class="podium-overlay"></div>
+        <div class="podium-rank-badge">${displayRank}</div>
+      </div>
+      <div class="podium-info">
+        <div class="podium-meta">
+          <span class="podium-flag">${c.countryFlag}</span>
+          <span class="podium-score ${scoreClass(c.rating)}">${c.rating.toFixed(1)}</span>
         </div>
-      </div>`;
+        <div class="podium-name">${esc(c.name)}</div>
+        <div class="podium-location">${esc(c.city)}, ${esc(c.country)}</div>
+        <div class="podium-note">"${esc(c.shortNote)}"</div>
+        ${votePills(c)}
+      </div>
+    </div>`;
   }).join('');
 
   grid.querySelectorAll('.podium-card').forEach(el => {
     el.addEventListener('click', () => openModal(+el.dataset.id));
     el.addEventListener('keydown', e => { if (e.key === 'Enter') openModal(+el.dataset.id); });
   });
+
+  syncImgPlaceholders(grid);
 }
 
 function renderCards(items) {
-  const grid = document.getElementById('cards-grid');
-  if (!items.length) {
-    grid.innerHTML = '';
-    return;
-  }
+  const grid = el('cards-grid');
+  if (!items.length) { grid.innerHTML = ''; return; }
 
-  grid.innerHTML = items.map(c => `
-    <article class="cake-card" data-id="${c.id}" role="button" tabindex="0" aria-label="${c.name}">
+  grid.innerHTML = items.map(c => {
+    const myVote = votes[c.id];
+    const v = communityVotes[c.id] ?? c.communityVotes ?? { approve: 0, disapprove: 0 };
+    return `<article class="cake-card" data-id="${c.id}" role="button" tabindex="0" aria-label="${esc(c.name)}">
       <div class="card-img-wrap">
-        <img src="${c.imageUrl}" alt="${c.name}" loading="lazy" />
+        ${imgTag(c)}
+        <div class="img-placeholder">
+          <span class="img-placeholder-icon" style="font-size:24px">🍰</span>
+        </div>
         <div class="card-rank-badge">#${c.rank}</div>
       </div>
       <div class="card-body">
         <div class="card-header">
-          <div class="card-name">${c.name}</div>
+          <div class="card-name">${esc(c.name)}</div>
           <div class="card-score ${scoreClass(c.rating)}">${c.rating.toFixed(1)}</div>
         </div>
-        <div class="card-location">
-          <span>${c.countryFlag}</span>${c.city}, ${c.country}
-        </div>
-        <div class="card-bar-wrap">
-          <div class="card-bar-bg">
-            <div class="card-bar-fill" style="width: ${c.rating * 10}%"></div>
-          </div>
-        </div>
-        <p class="card-note">"${c.shortNote}"</p>
+        <div class="card-location">${c.countryFlag} ${esc(c.city)}, ${esc(c.country)}</div>
+        <div class="card-bar-bg"><div class="card-bar-fill" style="width:${c.rating * 10}%"></div></div>
+        <p class="card-note">"${esc(c.shortNote)}"</p>
         <div class="card-footer">
           <span class="card-year">${c.year}</span>
-          <span class="card-approved">
-            <span class="approved-dot"></span> Approved
-          </span>
+          <div class="card-votes">
+            <button class="card-vote-btn card-vote-btn--up ${myVote === 'up' ? 'voted' : ''}" data-id="${c.id}" data-dir="up" title="Good cheesecake" onclick="castVote(event,${c.id},'up')">▲ ${v.approve}</button>
+            <button class="card-vote-btn card-vote-btn--down ${myVote === 'down' ? 'voted' : ''}" data-id="${c.id}" data-dir="down" title="Disagree" onclick="castVote(event,${c.id},'down')">▼ ${v.disapprove}</button>
+          </div>
         </div>
       </div>
-    </article>
-  `).join('');
+    </article>`;
+  }).join('');
 
-  grid.querySelectorAll('.cake-card').forEach(el => {
-    el.addEventListener('click', () => openModal(+el.dataset.id));
-    el.addEventListener('keydown', e => { if (e.key === 'Enter') openModal(+el.dataset.id); });
+  grid.querySelectorAll('.cake-card').forEach(card => {
+    card.addEventListener('click', e => {
+      if (e.target.closest('.card-vote-btn')) return;
+      openModal(+card.dataset.id);
+    });
+    card.addEventListener('keydown', e => { if (e.key === 'Enter') openModal(+card.dataset.id); });
   });
+
+  syncImgPlaceholders(grid);
+}
+
+// ── Image fallback ───────────────────────────────────────────
+
+function handleImgError(img) {
+  img.style.display = 'none';
+  const placeholder = img.parentElement.querySelector('.img-placeholder');
+  if (placeholder) placeholder.style.display = 'flex';
+}
+
+function syncImgPlaceholders(container) {
+  container.querySelectorAll('img').forEach(img => {
+    if (!img.complete || img.naturalWidth === 0) {
+      img.addEventListener('error', () => handleImgError(img), { once: true });
+    }
+  });
+}
+
+// ── Community Voting ──────────────────────────────────────────
+
+function castVote(event, id, direction) {
+  event.stopPropagation();
+  const prev = votes[id];
+  if (prev === direction) return; // already voted this way
+
+  // Update community tallies
+  const v = communityVotes[id] ?? { approve: 0, disapprove: 0 };
+  if (prev === 'up')   v.approve   = Math.max(0, v.approve - 1);
+  if (prev === 'down') v.disapprove = Math.max(0, v.disapprove - 1);
+  if (direction === 'up')   v.approve++;
+  if (direction === 'down') v.disapprove++;
+
+  communityVotes[id] = v;
+  votes[id] = direction;
+
+  // Update the master array too
+  const cake = allCheesecakes.find(c => c.id === id);
+  if (cake) cake.communityVotes = { ...v };
+
+  localStorage.setItem('bcw_votes', JSON.stringify(votes));
+  localStorage.setItem('bcw_community', JSON.stringify(communityVotes));
+
+  showToast(direction === 'up' ? '▲ Vote recorded — thank you!' : '▼ Noted — honest feedback appreciated');
+  applyFilters();
 }
 
 // ── Modal ────────────────────────────────────────────────────
@@ -176,36 +261,53 @@ function openModal(id) {
   const c = allCheesecakes.find(x => x.id === id);
   if (!c) return;
 
-  const content = document.getElementById('modal-content');
-  content.innerHTML = `
-    <img class="modal-img" src="${c.imageUrl}" alt="${c.name}" />
-    <div class="modal-body">
-      <div class="modal-rank-row">
-        <span class="modal-rank">Rank #${c.rank}</span>
-        <span class="modal-status">
-          <span class="approved-dot"></span> Approved by Marcel & Julian
-        </span>
+  const v = communityVotes[id] ?? c.communityVotes ?? { approve: 0, disapprove: 0 };
+  const myVote = votes[id];
+  const localSrc = `assets/images/${c.imageFile}`;
+
+  el('modal-content').innerHTML = `
+    <div class="modal-img-wrap">
+      <img class="modal-img" src="${localSrc}" alt="${esc(c.name)}" onerror="this.style.display='none';document.getElementById('modal-img-ph').classList.add('visible')" />
+      <div class="modal-img-placeholder" id="modal-img-ph">
+        <span style="font-size:40px">🍰</span>
+        <span style="font-size:13px;color:var(--text-dim)">${esc(c.name)}</span>
       </div>
-      <h2 class="modal-title">${c.name}</h2>
-      <p class="modal-location">${c.countryFlag} ${c.city}, ${c.country}</p>
+    </div>
+    <div class="modal-body">
+      <div class="modal-top-row">
+        <span class="modal-rank-chip">Rank #${c.rank}</span>
+        <span class="modal-status-chip"><span class="status-dot"></span>Published</span>
+      </div>
+      <h2 class="modal-title">${esc(c.name)}</h2>
+      <div class="modal-venue">${esc(c.venue ?? c.name)}</div>
+      <div class="modal-location">${c.countryFlag} ${esc(c.city)}, ${esc(c.country)}</div>
+      ${c.address && c.address !== c.country ? `<div class="modal-address">${esc(c.address)}</div>` : ''}
 
       <div class="modal-score-row">
         <div class="modal-score-big ${scoreClass(c.rating)}">${c.rating.toFixed(1)}</div>
         <div class="modal-score-meta">
-          <div class="modal-score-label">Score out of 10</div>
+          <div class="modal-score-label">Score / 10</div>
           <div class="modal-score-bar-bg">
-            <div class="modal-score-bar-fill" style="width: ${c.rating * 10}%"></div>
+            <div class="modal-score-bar-fill" style="width:${c.rating * 10}%"></div>
           </div>
         </div>
       </div>
 
-      <p class="modal-desc">${c.description}</p>
-      <div class="modal-quote">"${c.shortNote}"</div>
+      <p class="modal-desc">${esc(c.description)}</p>
+      <div class="modal-quote">"${esc(c.shortNote)}"</div>
+
+      <div class="modal-community">
+        <div class="modal-community-title">Community Response</div>
+        <div class="modal-vote-row">
+          <button class="modal-vote-btn modal-vote-btn--up ${myVote === 'up' ? 'voted' : ''}" onclick="castVote(event,${c.id},'up')">▲ Agree &nbsp;<strong>${v.approve}</strong></button>
+          <button class="modal-vote-btn modal-vote-btn--down ${myVote === 'down' ? 'voted' : ''}" onclick="castVote(event,${c.id},'down')">▼ Disagree &nbsp;<strong>${v.disapprove}</strong></button>
+        </div>
+      </div>
 
       <div class="modal-meta-grid">
         <div class="modal-meta-item">
           <div class="modal-meta-label">Country</div>
-          <div class="modal-meta-value">${c.countryFlag} ${c.country}</div>
+          <div class="modal-meta-value">${c.countryFlag} ${esc(c.country)}</div>
         </div>
         <div class="modal-meta-item">
           <div class="modal-meta-label">Year Visited</div>
@@ -213,55 +315,142 @@ function openModal(id) {
         </div>
         <div class="modal-meta-item">
           <div class="modal-meta-label">Assessors</div>
-          <div class="modal-meta-value">${c.approvedBy.join(' & ')}</div>
+          <div class="modal-meta-value">Marcel & Julian</div>
         </div>
         <div class="modal-meta-item">
-          <div class="modal-meta-label">Status</div>
-          <div class="modal-meta-value" style="color: #7FC47A;">✓ Published</div>
+          <div class="modal-meta-label">Restaurant</div>
+          <div class="modal-meta-value">
+            ${c.websiteUrl
+              ? `<a href="${c.websiteUrl}" target="_blank" rel="noopener">${esc(c.venue ?? c.name)} ↗</a>`
+              : esc(c.venue ?? c.name)}
+          </div>
         </div>
       </div>
 
-      ${c.tags?.length ? `
-      <div class="modal-tags">
-        ${c.tags.map(t => `<span class="modal-tag">#${t}</span>`).join('')}
-      </div>` : ''}
-    </div>
-  `;
+      ${c.tags?.length ? `<div class="modal-tags">${c.tags.map(t => `<span class="modal-tag">#${t}</span>`).join('')}</div>` : ''}
+    </div>`;
 
-  const overlay = document.getElementById('modal-overlay');
+  const overlay = el('modal-overlay');
   overlay.classList.add('open');
   overlay.setAttribute('aria-hidden', 'false');
   document.body.style.overflow = 'hidden';
 }
 
 function closeModal() {
-  const overlay = document.getElementById('modal-overlay');
-  overlay.classList.remove('open');
-  overlay.setAttribute('aria-hidden', 'true');
+  el('modal-overlay').classList.remove('open');
+  el('modal-overlay').setAttribute('aria-hidden', 'true');
   document.body.style.overflow = '';
+}
+
+// ── Forms ─────────────────────────────────────────────────────
+
+function bindForms() {
+  setupForm('submit-form', 'sf-submit', 'sf-success');
+  setupForm('request-form', 'rf-submit', 'rf-success');
+  setupForm('contact-form', 'cf-submit', 'cf-success');
+
+  // Rating slider live value
+  const slider = document.getElementById('sf-rating');
+  const sliderVal = el('sf-rating-val');
+  if (slider) slider.addEventListener('input', () => { sliderVal.textContent = parseFloat(slider.value).toFixed(1); });
+
+  // Note char counter
+  const note = document.getElementById('sf-note');
+  const count = el('sf-note-count');
+  if (note) note.addEventListener('input', () => { count.textContent = `${note.value.length} / 120`; });
+}
+
+function setupForm(formId, submitId, successId) {
+  const form = document.getElementById(formId);
+  if (!form) return;
+
+  form.addEventListener('submit', async e => {
+    e.preventDefault();
+    if (!validateForm(form)) return;
+
+    const btn = el(submitId);
+    btn.disabled = true;
+    btn.textContent = 'Sending…';
+
+    const payload = Object.fromEntries(new FormData(form).entries());
+
+    let success = false;
+
+    if (FORM_ENDPOINT) {
+      try {
+        const res = await fetch(FORM_ENDPOINT, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        success = res.ok;
+      } catch { success = false; }
+    } else {
+      // Fallback: open mail client with data
+      const lines = Object.entries(payload).map(([k, v]) => `${k}: ${v}`).join('\n');
+      const subject = encodeURIComponent(`[BestCheesecake] ${payload.form_type ?? 'Submission'}`);
+      const body = encodeURIComponent(lines);
+      window.open(`mailto:info@bestcheesecakeintheworld.com?subject=${subject}&body=${body}`);
+      success = true;
+    }
+
+    if (success) {
+      form.style.display = 'none';
+      el(successId).hidden = false;
+    } else {
+      btn.disabled = false;
+      btn.textContent = 'Try again';
+      showToast('Something went wrong — please try again.');
+    }
+  });
+}
+
+function validateForm(form) {
+  let valid = true;
+  form.querySelectorAll('[required]').forEach(field => {
+    field.classList.remove('error');
+    if (!field.value.trim()) {
+      field.classList.add('error');
+      valid = false;
+    }
+  });
+  if (!valid) showToast('Please fill in all required fields.');
+  return valid;
 }
 
 // ── Events ───────────────────────────────────────────────────
 
 function bindEvents() {
-  document.getElementById('sort-select').addEventListener('change', applyFilters);
-  document.getElementById('country-select').addEventListener('change', applyFilters);
-  document.getElementById('search-input').addEventListener('input', debounce(applyFilters, 250));
-
-  document.getElementById('modal-close').addEventListener('click', closeModal);
-  document.getElementById('modal-overlay').addEventListener('click', e => {
-    if (e.target === e.currentTarget) closeModal();
-  });
-  document.addEventListener('keydown', e => {
-    if (e.key === 'Escape') closeModal();
-  });
+  el('sort-select').addEventListener('change', applyFilters);
+  el('country-select').addEventListener('change', applyFilters);
+  el('search-input').addEventListener('input', debounce(applyFilters, 240));
+  el('modal-close').addEventListener('click', closeModal);
+  el('modal-overlay').addEventListener('click', e => { if (e.target === e.currentTarget) closeModal(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
 }
 
-function debounce(fn, ms) {
-  let t;
-  return (...args) => { clearTimeout(t); t = setTimeout(() => fn(...args), ms); };
+function bindMobileNav() {
+  const btn  = el('nav-menu-btn');
+  const nav  = el('mobile-nav');
+  if (!btn || !nav) return;
+  btn.addEventListener('click', () => nav.classList.toggle('open'));
+  nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => nav.classList.remove('open')));
 }
+
+// ── Toast ────────────────────────────────────────────────────
+
+function showToast(msg) {
+  const t = el('toast');
+  t.textContent = msg;
+  t.classList.add('visible');
+  setTimeout(() => t.classList.remove('visible'), 3000);
+}
+
+// ── Helpers ──────────────────────────────────────────────────
+
+function el(id) { return document.getElementById(id); }
+function esc(s) { return String(s ?? '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+function debounce(fn, ms) { let t; return (...a) => { clearTimeout(t); t = setTimeout(() => fn(...a), ms); }; }
 
 // ── Start ────────────────────────────────────────────────────
-
-init().catch(console.error);
+init();

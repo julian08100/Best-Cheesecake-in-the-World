@@ -3,10 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="A non-extensive ranking list of the best cheesecakes in the world — according to Marcel and Julian." />
+  <meta name="description" content="A curated ranking of the world's finest cheesecakes, personally assessed by Marcel and Julian on their travels across Europe and beyond." />
   <meta property="og:title" content="Best Cheesecake in the World" />
   <meta property="og:description" content="A curated ranking of the world's finest cheesecakes by Marcel & Julian." />
-  <meta property="og:image" content="https://bestcheesecakeintheworld.com/wp-content/uploads/2025/04/PHOTO-2024-10-19-22-18-09-e1744729488462.jpg" />
   <title>Best Cheesecake in the World</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -16,10 +15,10 @@
 <body>
 
   <!-- Header -->
-  <header class="site-header">
+  <header class="site-header" id="top">
     <div class="header-inner">
       <div class="logo">
-        <img src="https://bestcheesecakeintheworld.com/wp-content/uploads/2025/04/cropped-strawberry-cheesecake-6393283.png" alt="Best Cheesecake Logo" class="logo-img" />
+        <img src="https://bestcheesecakeintheworld.com/wp-content/uploads/2025/04/cropped-strawberry-cheesecake-6393283.png" alt="Best Cheesecake Logo" class="logo-img" onerror="this.style.display='none'" />
         <div class="logo-text">
           <span class="logo-title">Best Cheesecake</span>
           <span class="logo-sub">in the World</span>
@@ -27,11 +26,22 @@
       </div>
       <nav class="main-nav">
         <a href="#rankings">Rankings</a>
+        <a href="#submit">Submit</a>
         <a href="#about">About</a>
-        <a href="mailto:info@bestcheesecakeintheworld.com" class="nav-cta">Submit a Cheesecake</a>
+        <a href="#contact" class="nav-cta">Contact</a>
       </nav>
+      <button class="nav-menu-btn" id="nav-menu-btn" aria-label="Menu">&#9776;</button>
     </div>
   </header>
+
+  <!-- Mobile Nav -->
+  <div class="mobile-nav" id="mobile-nav">
+    <a href="#rankings" class="mobile-nav-link">Rankings</a>
+    <a href="#submit" class="mobile-nav-link">Submit a Cheesecake</a>
+    <a href="#request" class="mobile-nav-link">Request Assessment</a>
+    <a href="#about" class="mobile-nav-link">About</a>
+    <a href="#contact" class="mobile-nav-link">Contact</a>
+  </div>
 
   <!-- Hero -->
   <section class="hero">
@@ -39,8 +49,11 @@
     <div class="hero-content">
       <p class="hero-eyebrow">The Definitive List</p>
       <h1 class="hero-title">Best Cheesecake<br /><em>in the World</em></h1>
-      <p class="hero-desc">A non-extensive ranking list of the finest cheesecakes on earth,<br />as discovered by Marcel and Julian on their travels.</p>
-      <a href="#rankings" class="hero-btn">Explore the Rankings</a>
+      <p class="hero-desc">A curated ranking of the world's finest cheesecakes,<br />personally assessed by Marcel and Julian on their travels.</p>
+      <div class="hero-ctas">
+        <a href="#rankings" class="hero-btn">Explore the Rankings</a>
+        <a href="#submit" class="hero-btn hero-btn--ghost">Submit a Cheesecake</a>
+      </div>
     </div>
     <div class="hero-scroll-hint">
       <span>Scroll</span>
@@ -58,17 +71,17 @@
       <div class="stat-divider"></div>
       <div class="stat">
         <span class="stat-number" id="stat-countries">8</span>
-        <span class="stat-label">Countries Visited</span>
+        <span class="stat-label">Countries on the Map</span>
       </div>
       <div class="stat-divider"></div>
       <div class="stat">
-        <span class="stat-number" id="stat-avg">6.1</span>
-        <span class="stat-label">Average Rating</span>
+        <span class="stat-number">2</span>
+        <span class="stat-label">Dedicated Assessors</span>
       </div>
       <div class="stat-divider"></div>
       <div class="stat">
-        <span class="stat-number">9.0</span>
-        <span class="stat-label">Highest Score</span>
+        <span class="stat-number">2024</span>
+        <span class="stat-label">Journey Began</span>
       </div>
     </div>
   </section>
@@ -77,20 +90,20 @@
   <section class="rankings-section" id="rankings">
     <div class="section-header">
       <h2 class="section-title">The Rankings</h2>
-      <p class="section-subtitle">Every cheesecake tasted, honestly rated.</p>
+      <p class="section-subtitle">Every cheesecake personally tasted and honestly assessed.</p>
     </div>
 
     <!-- Filters -->
     <div class="filters-bar">
       <div class="filters-inner">
         <div class="filter-group">
-          <label for="sort-select">Sort by</label>
+          <label for="sort-select">Sort</label>
           <select id="sort-select" class="filter-select">
-            <option value="rank">Rank</option>
-            <option value="rating-desc">Rating (High → Low)</option>
-            <option value="rating-asc">Rating (Low → High)</option>
-            <option value="year-desc">Year (Newest)</option>
-            <option value="name">Name (A–Z)</option>
+            <option value="rank">By Rank</option>
+            <option value="rating-desc">Rating ↓</option>
+            <option value="rating-asc">Rating ↑</option>
+            <option value="year-desc">Newest First</option>
+            <option value="name">Name A–Z</option>
           </select>
         </div>
         <div class="filter-group">
@@ -100,26 +113,160 @@
           </select>
         </div>
         <div class="filter-group search-group">
-          <input type="search" id="search-input" class="filter-search" placeholder="Search cheesecakes…" />
+          <input type="search" id="search-input" class="filter-search" placeholder="Search venue, city…" />
         </div>
-        <div class="filter-group">
-          <span class="results-count" id="results-count">22 results</span>
-        </div>
+        <span class="results-count" id="results-count">22 results</span>
       </div>
     </div>
 
-    <!-- Top 3 Podium -->
+    <!-- Podium -->
     <div class="podium-section">
-      <div class="podium-grid" id="podium-grid">
-        <!-- Rendered by JS -->
-      </div>
+      <div class="podium-grid" id="podium-grid"></div>
     </div>
 
-    <!-- Cards Grid -->
+    <!-- Cards -->
     <div class="cards-container">
-      <div class="cards-grid" id="cards-grid">
-        <!-- Rendered by JS -->
+      <div class="cards-grid" id="cards-grid"></div>
+    </div>
+  </section>
+
+  <!-- Submit Section -->
+  <section class="form-section" id="submit">
+    <div class="form-section-inner">
+      <div class="form-section-header">
+        <span class="section-eyebrow">Community</span>
+        <h2 class="section-title">Submit a Cheesecake</h2>
+        <p class="section-subtitle">Discovered a great cheesecake? Tell us and we will add it to our assessment list.</p>
       </div>
+      <form class="styled-form" id="submit-form" novalidate>
+        <input type="hidden" name="form_type" value="cheesecake_submission" />
+        <div class="form-row">
+          <div class="form-field">
+            <label for="sf-venue">Venue Name <span class="req">*</span></label>
+            <input type="text" id="sf-venue" name="venue" placeholder="e.g. Restaurant La Placeta" required />
+          </div>
+          <div class="form-field">
+            <label for="sf-city">City <span class="req">*</span></label>
+            <input type="text" id="sf-city" name="city" placeholder="e.g. Tossa de Mar" required />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-field">
+            <label for="sf-country">Country <span class="req">*</span></label>
+            <input type="text" id="sf-country" name="country" placeholder="e.g. Spain" required />
+          </div>
+          <div class="form-field">
+            <label for="sf-website">Restaurant Website</label>
+            <input type="url" id="sf-website" name="websiteUrl" placeholder="https://…" />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-field">
+            <label for="sf-address">Address</label>
+            <input type="text" id="sf-address" name="address" placeholder="Street, postcode, city" />
+          </div>
+          <div class="form-field">
+            <label for="sf-year">Year Visited</label>
+            <input type="number" id="sf-year" name="year" placeholder="2026" min="2000" max="2099" />
+          </div>
+        </div>
+        <div class="form-field">
+          <label for="sf-rating">Your Rating (0–10)</label>
+          <div class="rating-slider-wrap">
+            <input type="range" id="sf-rating" name="rating" min="0" max="10" step="0.1" value="7" class="rating-slider" />
+            <span class="rating-slider-val" id="sf-rating-val">7.0</span>
+          </div>
+        </div>
+        <div class="form-field">
+          <label for="sf-note">Short Note <span class="req">*</span></label>
+          <input type="text" id="sf-note" name="shortNote" placeholder="One sentence impression, max 120 characters" maxlength="120" required />
+          <span class="char-count" id="sf-note-count">0 / 120</span>
+        </div>
+        <div class="form-field">
+          <label for="sf-desc">Description</label>
+          <textarea id="sf-desc" name="description" rows="4" placeholder="Describe the cheesecake in more detail — texture, taste, presentation, context…"></textarea>
+        </div>
+        <div class="form-field">
+          <label for="sf-photo">Photo URL</label>
+          <input type="url" id="sf-photo" name="photoUrl" placeholder="https://… (link to a photo of the cheesecake)" />
+        </div>
+        <div class="form-row">
+          <div class="form-field">
+            <label for="sf-name">Your Name <span class="req">*</span></label>
+            <input type="text" id="sf-name" name="submitterName" placeholder="Your name" required />
+          </div>
+          <div class="form-field">
+            <label for="sf-email">Your Email <span class="req">*</span></label>
+            <input type="email" id="sf-email" name="submitterEmail" placeholder="For follow-up questions" required />
+          </div>
+        </div>
+        <div class="form-footer">
+          <p class="form-note">Submissions are reviewed by our assessors before publication. We may contact you with questions.</p>
+          <button type="submit" class="form-btn" id="sf-submit">Submit for Review</button>
+        </div>
+        <div class="form-success" id="sf-success" hidden>
+          <div class="success-icon">✓</div>
+          <h3>Submission received</h3>
+          <p>Thank you! Our assessors will review your submission and reach out if they need anything.</p>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- Request Assessment Section -->
+  <section class="form-section form-section--alt" id="request">
+    <div class="form-section-inner">
+      <div class="form-section-header">
+        <span class="section-eyebrow">Restaurants</span>
+        <h2 class="section-title">Request an Assessment</h2>
+        <p class="section-subtitle">Are you a restaurant serving an exceptional cheesecake? Invite us to assess it.</p>
+      </div>
+      <form class="styled-form" id="request-form" novalidate>
+        <input type="hidden" name="form_type" value="assessment_request" />
+        <div class="form-row">
+          <div class="form-field">
+            <label for="rf-venue">Restaurant Name <span class="req">*</span></label>
+            <input type="text" id="rf-venue" name="venue" placeholder="Your restaurant's name" required />
+          </div>
+          <div class="form-field">
+            <label for="rf-address">Address <span class="req">*</span></label>
+            <input type="text" id="rf-address" name="address" placeholder="Full address including city and country" required />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-field">
+            <label for="rf-website">Website <span class="req">*</span></label>
+            <input type="url" id="rf-website" name="websiteUrl" placeholder="https://…" required />
+          </div>
+          <div class="form-field">
+            <label for="rf-contact">Contact Person <span class="req">*</span></label>
+            <input type="text" id="rf-contact" name="contactPerson" placeholder="Name of the person we should contact" required />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-field">
+            <label for="rf-email">Email Address <span class="req">*</span></label>
+            <input type="email" id="rf-email" name="email" placeholder="Your business email" required />
+          </div>
+          <div class="form-field">
+            <label for="rf-phone">Phone Number</label>
+            <input type="tel" id="rf-phone" name="phone" placeholder="+31…" />
+          </div>
+        </div>
+        <div class="form-field">
+          <label for="rf-message">Tell Us About Your Cheesecake</label>
+          <textarea id="rf-message" name="message" rows="4" placeholder="What makes your cheesecake special? Any context you'd like us to know before we visit…"></textarea>
+        </div>
+        <div class="form-footer">
+          <p class="form-note">We assess cheesecakes independently and at our own discretion. Requesting an assessment does not guarantee inclusion on the list.</p>
+          <button type="submit" class="form-btn" id="rf-submit">Send Request</button>
+        </div>
+        <div class="form-success" id="rf-success" hidden>
+          <div class="success-icon">✓</div>
+          <h3>Request received</h3>
+          <p>Thank you for reaching out. We will review your request and get in touch.</p>
+        </div>
+      </form>
     </div>
   </section>
 
@@ -128,20 +275,71 @@
     <div class="about-inner">
       <div class="about-text">
         <span class="about-eyebrow">The Story</span>
-        <h2 class="about-title">Who Are We?</h2>
-        <p>We're Marcel and Julian — two cheesecake enthusiasts who decided to rank every cheesecake we encounter on our travels. We're not critics, not chefs, not professionals. We're just two people who love a good cheesecake and believe the world deserves to know where to find the best ones.</p>
-        <p>Every entry on this list has been personally tasted and rated. We assess appearance, texture, taste, and the overall experience. We welcome corrections, suggestions, and especially new submissions.</p>
-        <a href="mailto:info@bestcheesecakeintheworld.com" class="about-cta">Submit Your Discovery →</a>
+        <h2 class="about-title">Marcel & Julian</h2>
+        <p>We are two cheesecake enthusiasts who decided to rank every cheesecake we encounter on our travels. Not critics, not professional food writers — simply two people with a genuine passion for a well-made cheesecake and a belief that the world deserves to know where the best ones are.</p>
+        <p>Every entry on this list has been personally assessed. We evaluate appearance, texture, flavour, and the overall experience. Our assessments go through a review process before publication to maintain consistency and quality.</p>
+        <p>Travelling across Europe and beyond, we continue to discover and document. The list grows with every trip.</p>
       </div>
       <div class="about-visual">
         <div class="about-img-wrap">
-          <img src="https://bestcheesecakeintheworld.com/wp-content/uploads/2025/04/PHOTO-2024-10-19-22-18-09-e1744729488462.jpg" alt="Best cheesecake — Bij Jan, Waalwijk" />
+          <div class="about-img-placeholder" id="about-img-container">
+            <img
+              src="assets/images/bij-jan.jpg"
+              onerror="this.parentElement.classList.add('img-failed')"
+              alt="Bij Jan — Rank #1 with 9.0"
+              class="about-img"
+            />
+            <div class="about-img-fallback">
+              <span class="fallback-icon">🏆</span>
+              <span>Bij Jan, Waalwijk</span>
+            </div>
+          </div>
           <div class="about-badge">
             <span class="badge-score">9.0</span>
-            <span class="badge-label">#1 Ranked</span>
+            <span class="badge-label">Rank #1</span>
           </div>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="form-section" id="contact">
+    <div class="form-section-inner form-section-inner--narrow">
+      <div class="form-section-header">
+        <span class="section-eyebrow">Get in Touch</span>
+        <h2 class="section-title">Contact</h2>
+        <p class="section-subtitle">Questions, corrections, or just want to say hello?</p>
+      </div>
+      <form class="styled-form" id="contact-form" novalidate>
+        <input type="hidden" name="form_type" value="contact" />
+        <div class="form-row">
+          <div class="form-field">
+            <label for="cf-name">Name <span class="req">*</span></label>
+            <input type="text" id="cf-name" name="name" placeholder="Your name" required />
+          </div>
+          <div class="form-field">
+            <label for="cf-email">Email <span class="req">*</span></label>
+            <input type="email" id="cf-email" name="email" placeholder="Your email address" required />
+          </div>
+        </div>
+        <div class="form-field">
+          <label for="cf-subject">Subject</label>
+          <input type="text" id="cf-subject" name="subject" placeholder="What is this about?" />
+        </div>
+        <div class="form-field">
+          <label for="cf-message">Message <span class="req">*</span></label>
+          <textarea id="cf-message" name="message" rows="5" placeholder="Your message…" required></textarea>
+        </div>
+        <div class="form-footer">
+          <button type="submit" class="form-btn" id="cf-submit">Send Message</button>
+        </div>
+        <div class="form-success" id="cf-success" hidden>
+          <div class="success-icon">✓</div>
+          <h3>Message sent</h3>
+          <p>Thank you for getting in touch. We will respond as soon as possible.</p>
+        </div>
+      </form>
     </div>
   </section>
 
@@ -149,28 +347,35 @@
   <footer class="site-footer">
     <div class="footer-inner">
       <div class="footer-brand">
-        <img src="https://bestcheesecakeintheworld.com/wp-content/uploads/2025/04/cropped-strawberry-cheesecake-6393283.png" alt="Logo" class="footer-logo" />
+        <img src="https://bestcheesecakeintheworld.com/wp-content/uploads/2025/04/cropped-strawberry-cheesecake-6393283.png" alt="Logo" class="footer-logo" onerror="this.style.display='none'" />
         <span>Best Cheesecake in the World</span>
       </div>
-      <p class="footer-tagline">A non-extensive ranking list — according to us ; – ) Marcel and Julian</p>
+      <p class="footer-tagline">Personally assessed by Marcel and Julian since 2024.</p>
       <div class="footer-links">
-        <a href="mailto:info@bestcheesecakeintheworld.com">info@bestcheesecakeintheworld.com</a>
+        <a href="#rankings">Rankings</a>
         <span>·</span>
-        <a href="api/cheesecakes.json">API / Data</a>
+        <a href="#submit">Submit</a>
+        <span>·</span>
+        <a href="#request">Request Assessment</a>
+        <span>·</span>
+        <a href="#contact">Contact</a>
+        <span>·</span>
+        <a href="api/cheesecakes.json">API</a>
       </div>
       <p class="footer-copy">© 2026 BestCheesecakeInTheWorld.com</p>
     </div>
   </footer>
 
-  <!-- Modal -->
+  <!-- Cheesecake Detail Modal -->
   <div class="modal-overlay" id="modal-overlay" aria-hidden="true">
     <div class="modal" role="dialog" aria-modal="true">
       <button class="modal-close" id="modal-close" aria-label="Close">✕</button>
-      <div class="modal-content" id="modal-content">
-        <!-- Rendered by JS -->
-      </div>
+      <div class="modal-content" id="modal-content"></div>
     </div>
   </div>
+
+  <!-- Toast -->
+  <div class="toast" id="toast" aria-live="polite"></div>
 
   <script src="js/app.js"></script>
 </body>
