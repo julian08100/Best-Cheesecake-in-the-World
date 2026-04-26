@@ -369,6 +369,7 @@ function setupForm(formId, submitId, successId) {
     if (!validateForm(form)) return;
 
     const btn = el(submitId);
+    const originalLabel = btn.textContent;
     btn.disabled = true;
     btn.textContent = 'Sending…';
 
@@ -386,12 +387,11 @@ function setupForm(formId, submitId, successId) {
         success = res.ok;
       } catch { success = false; }
     } else {
-      // Fallback: open mail client with data
-      const lines = Object.entries(payload).map(([k, v]) => `${k}: ${v}`).join('\n');
-      const subject = encodeURIComponent(`[BestCheesecake] ${payload.form_type ?? 'Submission'}`);
-      const body = encodeURIComponent(lines);
-      window.open(`mailto:info@bestcheesecakeintheworld.com?subject=${subject}&body=${body}`);
-      success = true;
+      // No endpoint configured yet — show a clear unavailable message
+      btn.disabled = false;
+      btn.textContent = originalLabel;
+      showToast('Our inbox is being set up — please check back soon.');
+      return;
     }
 
     if (success) {

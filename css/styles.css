@@ -38,6 +38,7 @@ button{cursor:pointer;font-family:var(--font-sans)}
 .section-eyebrow{display:block;font-size:11px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:16px}
 .section-title{font-family:var(--font-serif);font-size:clamp(32px,5vw,60px);font-weight:700;color:var(--cream);margin-bottom:14px;line-height:1.1}
 .section-subtitle{font-size:17px;color:var(--text-muted);line-height:1.6}
+.section-community-note{margin-top:18px;font-size:14px;color:var(--text-dim);line-height:1.7;max-width:540px;margin-left:auto;margin-right:auto;border-left:2px solid var(--gold-dark);padding-left:14px;font-style:italic}
 
 /* ── Header ─────────────────────────────────────────────────── */
 .site-header{position:fixed;top:0;left:0;right:0;z-index:100;padding:0 40px;background:rgba(12,11,9,.88);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}

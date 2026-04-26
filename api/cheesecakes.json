@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "lastUpdated": "2026-04-26",
+  "lastUpdated": "2026-04-25",
   "assessors": ["Marcel", "Julian"],
   "approvalSystem": {
     "type": "single-admin",
@@ -289,13 +289,13 @@
       "rank": 13,
       "name": "Ristorante Gran Italia",
       "venue": "Ristorante Gran Italia",
-      "address": "Italy",
-      "city": "Italy",
-      "country": "Italy",
-      "countryCode": "it",
-      "countryFlag": "🇮🇹",
+      "address": "Meloneras, Gran Canaria",
+      "city": "Meloneras, Gran Canaria",
+      "country": "Spain",
+      "countryCode": "es",
+      "countryFlag": "🇪🇸",
       "rating": 6.0,
-      "description": "A proper classic Italian cheesecake — light, airy, and faithful to the traditional style. Exactly what you would hope for in Italy.",
+      "description": "A classic cheesecake with an Italian soul, served in the sunny resort of Meloneras on Gran Canaria. Light and pleasant, though not the most memorable on the island.",
       "shortNote": "classic Italian cheesecake",
       "year": 2025,
       "imageFile": "ristorante-gran-italia.jpg",
@@ -304,8 +304,8 @@
       "status": "approved",
       "adminApproval": "approved",
       "communityVotes": { "approve": 0, "disapprove": 0 },
-      "tags": ["italian", "classic"],
-      "coordinates": { "lat": 41.9028, "lng": 12.4964 }
+      "tags": ["italian", "classic", "gran-canaria"],
+      "coordinates": { "lat": 27.7377, "lng": -15.5768 }
     },
     {
       "id": 14,
