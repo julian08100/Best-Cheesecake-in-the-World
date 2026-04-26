@@ -1,7 +1,7 @@
 {
   "version": "2.0",
   "lastUpdated": "2026-04-25",
-  "assessors": ["Marcel", "Julian"],
+  "assessors": ["Connoisseur 1", "Connoisseur 2"],
   "approvalSystem": {
     "type": "single-admin",
     "description": "One admin approval publishes. Admin disapproval returns to pending. Community votes are displayed but do not affect publication.",

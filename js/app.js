@@ -35,6 +35,7 @@ async function init() {
   populateCountryFilter();
   renderStats();
   renderAll();
+  renderMap();
   bindEvents();
   bindForms();
   bindMobileNav();
@@ -314,7 +315,7 @@ function openModal(id) {
         </div>
         <div class="modal-meta-item">
           <div class="modal-meta-label">Assessors</div>
-          <div class="modal-meta-value">Marcel & Julian</div>
+          <div class="modal-meta-value">Our Connoisseurs</div>
         </div>
         <div class="modal-meta-item">
           <div class="modal-meta-label">Restaurant</div>
@@ -450,6 +451,59 @@ function showToast(msg) {
 function el(id) { return document.getElementById(id); }
 function esc(s) { return String(s ?? '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
 function debounce(fn, ms) { let t; return (...a) => { clearTimeout(t); t = setTimeout(() => fn(...a), ms); }; }
+
+// ── Map ──────────────────────────────────────────────────────
+
+function renderMap() {
+  const mapEl = document.getElementById('cheesecake-map');
+  if (!mapEl || typeof L === 'undefined') return;
+
+  const points = allCheesecakes.filter(c => c.coordinates);
+  if (!points.length) return;
+
+  const map = L.map('cheesecake-map', { zoomControl: true, scrollWheelZoom: false });
+
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+    maxZoom: 18
+  }).addTo(map);
+
+  const bounds = [];
+
+  points.forEach(c => {
+    const { lat, lng } = c.coordinates;
+    bounds.push([lat, lng]);
+
+    const icon = L.divIcon({
+      className: '',
+      html: `<div style="
+        width:32px;height:32px;border-radius:50%;
+        background:var(--gold);color:#0C0B09;
+        font-family:var(--font-sans);font-size:11px;font-weight:700;
+        display:flex;align-items:center;justify-content:center;
+        box-shadow:0 2px 8px rgba(0,0,0,.5);
+        border:2px solid rgba(255,255,255,.15);
+        cursor:pointer;
+      ">#${c.rank}</div>`,
+      iconSize: [32, 32],
+      iconAnchor: [16, 16],
+      popupAnchor: [0, -18]
+    });
+
+    const popup = `
+      <div class="map-popup-rank">Rank #${c.rank}</div>
+      <div class="map-popup-name">${esc(c.name)}</div>
+      <div class="map-popup-location">${esc(c.city)}, ${esc(c.country)}</div>
+      <span class="map-popup-score">${c.rating.toFixed(1)}</span>
+    `;
+
+    L.marker([lat, lng], { icon })
+      .addTo(map)
+      .bindPopup(popup, { maxWidth: 200 });
+  });
+
+  map.fitBounds(bounds, { padding: [40, 40] });
+}
 
 // ── Start ────────────────────────────────────────────────────
 init();
