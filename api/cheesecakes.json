@@ -1,7 +1,10 @@
 {
   "version": "2.0",
   "lastUpdated": "2026-04-25",
-  "assessors": ["Connoisseur 1", "Connoisseur 2"],
+  "assessors": [
+    "Connoisseur 1",
+    "Connoisseur 2"
+  ],
   "approvalSystem": {
     "type": "single-admin",
     "description": "One admin approval publishes. Admin disapproval returns to pending. Community votes are displayed but do not affect publication.",
@@ -23,13 +26,22 @@
       "shortNote": "best look",
       "year": 2024,
       "imageFile": "bij-jan.jpg",
-      "imageUrl": "https://bestcheesecakeintheworld.com/wp-content/uploads/2025/04/PHOTO-2024-10-19-22-18-09-e1744729488462.jpg",
+      "imageUrl": "https://bestcheesecakeintheworld.com/assets/images/bij-jan.jpg",
       "websiteUrl": "https://janwaalwijk.nl/",
       "status": "approved",
       "adminApproval": "approved",
-      "communityVotes": { "approve": 0, "disapprove": 0 },
-      "tags": ["best-look", "top-rated"],
-      "coordinates": { "lat": 51.6881, "lng": 5.0650 }
+      "communityVotes": {
+        "approve": 0,
+        "disapprove": 0
+      },
+      "tags": [
+        "best-look",
+        "top-rated"
+      ],
+      "coordinates": {
+        "lat": 51.6881,
+        "lng": 5.065
+      }
     },
     {
       "id": 2,
@@ -46,13 +58,23 @@
       "shortNote": "Really good cheesecake; the chocolate should be less strong",
       "year": 2025,
       "imageFile": "restaurant-placeta.jpg",
-      "imageUrl": "https://bestcheesecakeintheworld.com/wp-content/uploads/2025/07/IMG_2721-scaled-e1751663730991.jpg",
+      "imageUrl": "https://bestcheesecakeintheworld.com/assets/images/restaurant-placeta.jpg",
       "websiteUrl": "https://www.restaurantplaceta.com/",
       "status": "approved",
       "adminApproval": "approved",
-      "communityVotes": { "approve": 0, "disapprove": 0 },
-      "tags": ["chocolate", "top-rated", "costa-brava"],
-      "coordinates": { "lat": 41.7220, "lng": 2.9330 }
+      "communityVotes": {
+        "approve": 0,
+        "disapprove": 0
+      },
+      "tags": [
+        "chocolate",
+        "top-rated",
+        "costa-brava"
+      ],
+      "coordinates": {
+        "lat": 41.722,
+        "lng": 2.933
+      }
     },
     {
       "id": 3,
@@ -69,13 +91,23 @@
       "shortNote": "Really good cheesecake, sorbet ice was a negative combination",
       "year": 2026,
       "imageFile": "praemontan.jpg",
-      "imageUrl": "https://bestcheesecakeintheworld.com/wp-content/uploads/2026/01/IMG_3590-Julian-De-Haas-1-scaled.jpg",
+      "imageUrl": "https://bestcheesecakeintheworld.com/assets/images/praemontan.jpg",
       "websiteUrl": "https://www.praemontan.at",
       "status": "approved",
       "adminApproval": "approved",
-      "communityVotes": { "approve": 0, "disapprove": 0 },
-      "tags": ["mountain", "top-rated", "alpine"],
-      "coordinates": { "lat": 47.0447, "lng": 10.6083 }
+      "communityVotes": {
+        "approve": 0,
+        "disapprove": 0
+      },
+      "tags": [
+        "mountain",
+        "top-rated",
+        "alpine"
+      ],
+      "coordinates": {
+        "lat": 47.0447,
+        "lng": 10.6083
+      }
     },
     {
       "id": 4,
@@ -92,13 +124,23 @@
       "shortNote": "white chocolate cheesecake",
       "year": 2025,
       "imageFile": "restaurante-222-sw.jpg",
-      "imageUrl": "https://bestcheesecakeintheworld.com/wp-content/uploads/2025/07/IMG_2382-scaled-e1751663704166.jpg",
+      "imageUrl": "https://bestcheesecakeintheworld.com/assets/images/restaurante-222-sw.jpg",
       "websiteUrl": "https://www.restaurante222sw.com/",
       "status": "approved",
       "adminApproval": "approved",
-      "communityVotes": { "approve": 0, "disapprove": 0 },
-      "tags": ["white-chocolate", "gran-canaria", "rooftop"],
-      "coordinates": { "lat": 27.7551, "lng": -15.6875 }
+      "communityVotes": {
+        "approve": 0,
+        "disapprove": 0
+      },
+      "tags": [
+        "white-chocolate",
+        "gran-canaria",
+        "rooftop"
+      ],
+      "coordinates": {
+        "lat": 27.7551,
+        "lng": -15.6875
+      }
     },
     {
       "id": 5,
@@ -115,13 +157,23 @@
       "shortNote": "best price-quality",
       "year": 2025,
       "imageFile": "cacao-prague.jpg",
-      "imageUrl": "https://bestcheesecakeintheworld.com/wp-content/uploads/2025/04/PHOTO-2025-04-09-13-31-05-e1744729549338.jpg",
+      "imageUrl": "https://bestcheesecakeintheworld.com/assets/images/cacao-prague.jpg",
       "websiteUrl": "https://cacaoprague.cz/",
       "status": "approved",
       "adminApproval": "approved",
-      "communityVotes": { "approve": 0, "disapprove": 0 },
-      "tags": ["best-value", "european", "city-centre"],
-      "coordinates": { "lat": 50.0874, "lng": 14.4271 }
+      "communityVotes": {
+        "approve": 0,
+        "disapprove": 0
+      },
+      "tags": [
+        "best-value",
+        "european",
+        "city-centre"
+      ],
+      "coordinates": {
+        "lat": 50.0874,
+        "lng": 14.4271
+      }
     },
     {
       "id": 6,
@@ -138,13 +190,22 @@
       "shortNote": "classic look",
       "year": 2024,
       "imageFile": "grandcafe-lust.jpg",
-      "imageUrl": "https://bestcheesecakeintheworld.com/wp-content/uploads/2025/04/PHOTO-2024-08-29-18-32-10-e1744729582797.jpg",
+      "imageUrl": "https://bestcheesecakeintheworld.com/assets/images/grandcafe-lust.jpg",
       "websiteUrl": "https://www.grandcafelust.nl/",
       "status": "approved",
       "adminApproval": "approved",
-      "communityVotes": { "approve": 0, "disapprove": 0 },
-      "tags": ["classic", "dutch"],
-      "coordinates": { "lat": 52.2131, "lng": 5.4923 }
+      "communityVotes": {
+        "approve": 0,
+        "disapprove": 0
+      },
+      "tags": [
+        "classic",
+        "dutch"
+      ],
+      "coordinates": {
+        "lat": 52.2131,
+        "lng": 5.4923
+      }
     },
     {
       "id": 7,
@@ -161,13 +222,23 @@
       "shortNote": "cheesecake with speculoos",
       "year": 2025,
       "imageFile": "don-juan.jpg",
-      "imageUrl": "https://bestcheesecakeintheworld.com/wp-content/uploads/2025/07/IMG_2739-scaled-e1751663642346.jpg",
+      "imageUrl": "https://bestcheesecakeintheworld.com/assets/images/don-juan.jpg",
       "websiteUrl": "https://www.instagram.com/bardonjuan",
       "status": "approved",
       "adminApproval": "approved",
-      "communityVotes": { "approve": 0, "disapprove": 0 },
-      "tags": ["speculoos", "creative", "costa-brava"],
-      "coordinates": { "lat": 41.7215, "lng": 2.9326 }
+      "communityVotes": {
+        "approve": 0,
+        "disapprove": 0
+      },
+      "tags": [
+        "speculoos",
+        "creative",
+        "costa-brava"
+      ],
+      "coordinates": {
+        "lat": 41.7215,
+        "lng": 2.9326
+      }
     },
     {
       "id": 8,
@@ -184,13 +255,22 @@
       "shortNote": "nice taste",
       "year": 2024,
       "imageFile": "xaloc-lounge.jpg",
-      "imageUrl": "https://bestcheesecakeintheworld.com/wp-content/uploads/2025/04/PHOTO-2024-11-17-17-22-51-e1744729605180.jpg",
+      "imageUrl": "https://bestcheesecakeintheworld.com/assets/images/xaloc-lounge.jpg",
       "websiteUrl": "https://www.xaloclounge.com/",
       "status": "approved",
       "adminApproval": "approved",
-      "communityVotes": { "approve": 0, "disapprove": 0 },
-      "tags": ["mediterranean", "seafront"],
-      "coordinates": { "lat": 38.4232, "lng": -0.3879 }
+      "communityVotes": {
+        "approve": 0,
+        "disapprove": 0
+      },
+      "tags": [
+        "mediterranean",
+        "seafront"
+      ],
+      "coordinates": {
+        "lat": 38.4232,
+        "lng": -0.3879
+      }
     },
     {
       "id": 9,
@@ -207,13 +287,22 @@
       "shortNote": "basic cheesecake",
       "year": 2025,
       "imageFile": "k1-food-lounge.jpg",
-      "imageUrl": "https://bestcheesecakeintheworld.com/wp-content/uploads/2025/07/IMG_2381-scaled-e1751663675929.jpg",
+      "imageUrl": "https://bestcheesecakeintheworld.com/assets/images/k1-food-lounge.jpg",
       "websiteUrl": "https://k1foodlounge.com/",
       "status": "approved",
       "adminApproval": "approved",
-      "communityVotes": { "approve": 0, "disapprove": 0 },
-      "tags": ["gran-canaria", "promenade"],
-      "coordinates": { "lat": 27.7377, "lng": -15.5768 }
+      "communityVotes": {
+        "approve": 0,
+        "disapprove": 0
+      },
+      "tags": [
+        "gran-canaria",
+        "promenade"
+      ],
+      "coordinates": {
+        "lat": 27.7377,
+        "lng": -15.5768
+      }
     },
     {
       "id": 10,
@@ -230,13 +319,23 @@
       "shortNote": "Quite cheesy; nice 'Bastogne koek'",
       "year": 2025,
       "imageFile": "de-likkepot.jpg",
-      "imageUrl": "https://bestcheesecakeintheworld.com/wp-content/uploads/2025/07/PHOTO-2025-05-16-21-33-51-1-e1751663237729.jpg",
+      "imageUrl": "https://bestcheesecakeintheworld.com/assets/images/de-likkepot.jpg",
       "websiteUrl": "https://www.likkepot.nl/",
       "status": "approved",
       "adminApproval": "approved",
-      "communityVotes": { "approve": 0, "disapprove": 0 },
-      "tags": ["dutch", "bastogne", "ny-style"],
-      "coordinates": { "lat": 51.7222, "lng": 5.3647 }
+      "communityVotes": {
+        "approve": 0,
+        "disapprove": 0
+      },
+      "tags": [
+        "dutch",
+        "bastogne",
+        "ny-style"
+      ],
+      "coordinates": {
+        "lat": 51.7222,
+        "lng": 5.3647
+      }
     },
     {
       "id": 11,
@@ -253,13 +352,21 @@
       "shortNote": "Nice texture but should be sweeter",
       "year": 2026,
       "imageFile": "t-slot.jpg",
-      "imageUrl": "https://bestcheesecakeintheworld.com/wp-content/uploads/2026/01/IMG_3630-Julian-De-Haas-scaled.jpeg",
+      "imageUrl": "https://bestcheesecakeintheworld.com/assets/images/t-slot.jpg",
       "websiteUrl": "https://tslot.nl/",
       "status": "approved",
       "adminApproval": "approved",
-      "communityVotes": { "approve": 0, "disapprove": 0 },
-      "tags": ["dutch"],
-      "coordinates": { "lat": 51.6817, "lng": 5.0722 }
+      "communityVotes": {
+        "approve": 0,
+        "disapprove": 0
+      },
+      "tags": [
+        "dutch"
+      ],
+      "coordinates": {
+        "lat": 51.6817,
+        "lng": 5.0722
+      }
     },
     {
       "id": 12,
@@ -276,13 +383,22 @@
       "shortNote": "taste exceeds look",
       "year": 2025,
       "imageFile": "cafe-hooghoudt.jpg",
-      "imageUrl": "https://bestcheesecakeintheworld.com/wp-content/uploads/2025/04/PHOTO-2025-03-19-15-55-37-1-e1744731561243.jpg",
+      "imageUrl": "https://bestcheesecakeintheworld.com/assets/images/cafe-hooghoudt.jpg",
       "websiteUrl": "https://www.cafehooghoudt.com",
       "status": "approved",
       "adminApproval": "approved",
-      "communityVotes": { "approve": 0, "disapprove": 0 },
-      "tags": ["dutch", "surprising"],
-      "coordinates": { "lat": 53.2194, "lng": 6.5665 }
+      "communityVotes": {
+        "approve": 0,
+        "disapprove": 0
+      },
+      "tags": [
+        "dutch",
+        "surprising"
+      ],
+      "coordinates": {
+        "lat": 53.2194,
+        "lng": 6.5665
+      }
     },
     {
       "id": 13,
@@ -299,13 +415,23 @@
       "shortNote": "classic Italian cheesecake",
       "year": 2025,
       "imageFile": "ristorante-gran-italia.jpg",
-      "imageUrl": "https://bestcheesecakeintheworld.com/wp-content/uploads/2025/07/PHOTO-2025-05-04-14-25-09-e1751663459159.jpg",
+      "imageUrl": "https://bestcheesecakeintheworld.com/assets/images/ristorante-gran-italia.jpg",
       "websiteUrl": "http://www.ristorantegranditalia.com/",
       "status": "approved",
       "adminApproval": "approved",
-      "communityVotes": { "approve": 0, "disapprove": 0 },
-      "tags": ["italian", "classic", "gran-canaria"],
-      "coordinates": { "lat": 27.7377, "lng": -15.5768 }
+      "communityVotes": {
+        "approve": 0,
+        "disapprove": 0
+      },
+      "tags": [
+        "italian",
+        "classic",
+        "gran-canaria"
+      ],
+      "coordinates": {
+        "lat": 27.7377,
+        "lng": -15.5768
+      }
     },
     {
       "id": 14,
@@ -322,13 +448,21 @@
       "shortNote": "Not cheesy, does not feel like a cheesecake",
       "year": 2026,
       "imageFile": "sec-oisterwijk.jpg",
-      "imageUrl": "https://bestcheesecakeintheworld.com/wp-content/uploads/2026/01/image-Julian-De-Haas-scaled.jpg",
+      "imageUrl": "https://bestcheesecakeintheworld.com/assets/images/sec-oisterwijk.jpg",
       "websiteUrl": "https://secetendrinken.nl/",
       "status": "approved",
       "adminApproval": "approved",
-      "communityVotes": { "approve": 0, "disapprove": 0 },
-      "tags": ["dutch"],
-      "coordinates": { "lat": 51.5815, "lng": 5.1977 }
+      "communityVotes": {
+        "approve": 0,
+        "disapprove": 0
+      },
+      "tags": [
+        "dutch"
+      ],
+      "coordinates": {
+        "lat": 51.5815,
+        "lng": 5.1977
+      }
     },
     {
       "id": 15,
@@ -345,13 +479,23 @@
       "shortNote": "cheesecake in the snow",
       "year": 2025,
       "imageFile": "zum-wohl.jpg",
-      "imageUrl": "https://bestcheesecakeintheworld.com/wp-content/uploads/2025/04/cropped-PHOTO-2025-01-13-22-10-37-e1744731659990.jpg",
+      "imageUrl": "https://bestcheesecakeintheworld.com/assets/images/zum-wohl.jpg",
       "websiteUrl": "https://www.zumwohltirol.at",
       "status": "approved",
       "adminApproval": "approved",
-      "communityVotes": { "approve": 0, "disapprove": 0 },
-      "tags": ["mountain", "winter", "alpine"],
-      "coordinates": { "lat": 47.0444, "lng": 10.6080 }
+      "communityVotes": {
+        "approve": 0,
+        "disapprove": 0
+      },
+      "tags": [
+        "mountain",
+        "winter",
+        "alpine"
+      ],
+      "coordinates": {
+        "lat": 47.0444,
+        "lng": 10.608
+      }
     },
     {
       "id": 16,
@@ -368,13 +512,23 @@
       "shortNote": "cheesecake with beer :-)",
       "year": 2024,
       "imageFile": "kaap-noord.jpg",
-      "imageUrl": "https://bestcheesecakeintheworld.com/wp-content/uploads/2025/04/PHOTO-2024-08-27-15-16-44-e1744731788654.jpg",
+      "imageUrl": "https://bestcheesecakeintheworld.com/assets/images/kaap-noord.jpg",
       "websiteUrl": "https://www.strandpaviljoenkaapnoord.nl/",
       "status": "approved",
       "adminApproval": "approved",
-      "communityVotes": { "approve": 0, "disapprove": 0 },
-      "tags": ["beach", "dutch", "texel"],
-      "coordinates": { "lat": 53.1507, "lng": 4.8022 }
+      "communityVotes": {
+        "approve": 0,
+        "disapprove": 0
+      },
+      "tags": [
+        "beach",
+        "dutch",
+        "texel"
+      ],
+      "coordinates": {
+        "lat": 53.1507,
+        "lng": 4.8022
+      }
     },
     {
       "id": 17,
@@ -391,13 +545,22 @@
       "shortNote": "interesting cheesecake",
       "year": 2024,
       "imageFile": "jaxx-marina.jpg",
-      "imageUrl": "https://bestcheesecakeintheworld.com/wp-content/uploads/2025/04/PHOTO-2024-08-25-20-46-27-e1744731847515.jpg",
+      "imageUrl": "https://bestcheesecakeintheworld.com/assets/images/jaxx-marina.jpg",
       "websiteUrl": "https://jaxxmarina.nl",
       "status": "approved",
       "adminApproval": "approved",
-      "communityVotes": { "approve": 0, "disapprove": 0 },
-      "tags": ["dutch", "marina"],
-      "coordinates": { "lat": 51.5587, "lng": 5.0820 }
+      "communityVotes": {
+        "approve": 0,
+        "disapprove": 0
+      },
+      "tags": [
+        "dutch",
+        "marina"
+      ],
+      "coordinates": {
+        "lat": 51.5587,
+        "lng": 5.082
+      }
     },
     {
       "id": 18,
@@ -414,13 +577,22 @@
       "shortNote": "classic cheesecake",
       "year": 2025,
       "imageFile": "de-tijd.jpg",
-      "imageUrl": "https://bestcheesecakeintheworld.com/wp-content/uploads/2025/07/PHOTO-2025-04-17-15-11-41-e1751662024690.jpg",
+      "imageUrl": "https://bestcheesecakeintheworld.com/assets/images/de-tijd.jpg",
       "websiteUrl": "https://www.detijdoisterwijk.nl",
       "status": "approved",
       "adminApproval": "approved",
-      "communityVotes": { "approve": 0, "disapprove": 0 },
-      "tags": ["dutch", "classic"],
-      "coordinates": { "lat": 51.5815, "lng": 5.1977 }
+      "communityVotes": {
+        "approve": 0,
+        "disapprove": 0
+      },
+      "tags": [
+        "dutch",
+        "classic"
+      ],
+      "coordinates": {
+        "lat": 51.5815,
+        "lng": 5.1977
+      }
     },
     {
       "id": 19,
@@ -437,13 +609,23 @@
       "shortNote": "churros cheesecake",
       "year": 2024,
       "imageFile": "wijckers.jpg",
-      "imageUrl": "https://bestcheesecakeintheworld.com/wp-content/uploads/2025/04/PHOTO-2024-08-23-16-11-12-e1744731960950.jpg",
+      "imageUrl": "https://bestcheesecakeintheworld.com/assets/images/wijckers.jpg",
       "websiteUrl": "https://www.wijckers.nl",
       "status": "approved",
       "adminApproval": "approved",
-      "communityVotes": { "approve": 0, "disapprove": 0 },
-      "tags": ["dutch", "creative", "churros"],
-      "coordinates": { "lat": 51.6817, "lng": 5.0722 }
+      "communityVotes": {
+        "approve": 0,
+        "disapprove": 0
+      },
+      "tags": [
+        "dutch",
+        "creative",
+        "churros"
+      ],
+      "coordinates": {
+        "lat": 51.6817,
+        "lng": 5.0722
+      }
     },
     {
       "id": 20,
@@ -460,13 +642,22 @@
       "shortNote": "classic cheesecake with Spanish taste",
       "year": 2024,
       "imageFile": "la-bouganvilla.jpg",
-      "imageUrl": "https://bestcheesecakeintheworld.com/wp-content/uploads/2025/04/PHOTO-2024-06-24-22-18-10-1-e1744732111239.jpg",
+      "imageUrl": "https://bestcheesecakeintheworld.com/assets/images/la-bouganvilla.jpg",
       "websiteUrl": "https://labouganvilla.com/",
       "status": "approved",
       "adminApproval": "approved",
-      "communityVotes": { "approve": 0, "disapprove": 0 },
-      "tags": ["spanish", "classic"],
-      "coordinates": { "lat": 36.7181, "lng": -4.4202 }
+      "communityVotes": {
+        "approve": 0,
+        "disapprove": 0
+      },
+      "tags": [
+        "spanish",
+        "classic"
+      ],
+      "coordinates": {
+        "lat": 36.7181,
+        "lng": -4.4202
+      }
     },
     {
       "id": 21,
@@ -483,13 +674,22 @@
       "shortNote": "Disappointing",
       "year": 2026,
       "imageFile": "atlas-oslo.jpg",
-      "imageUrl": "https://bestcheesecakeintheworld.com/wp-content/uploads/2026/01/IMG_3386-Julian-De-Haas-scaled.jpg",
+      "imageUrl": "https://bestcheesecakeintheworld.com/assets/images/atlas-oslo.jpg",
       "websiteUrl": "https://amerikalinjen.com/eat-and-drink/the-atlas-restaurant/",
       "status": "approved",
       "adminApproval": "approved",
-      "communityVotes": { "approve": 0, "disapprove": 0 },
-      "tags": ["norwegian", "city-centre"],
-      "coordinates": { "lat": 59.9109, "lng": 10.7529 }
+      "communityVotes": {
+        "approve": 0,
+        "disapprove": 0
+      },
+      "tags": [
+        "norwegian",
+        "city-centre"
+      ],
+      "coordinates": {
+        "lat": 59.9109,
+        "lng": 10.7529
+      }
     },
     {
       "id": 22,
@@ -506,13 +706,22 @@
       "shortNote": "Texture like pudding, tasted like nothing",
       "year": 2026,
       "imageFile": "seealm.jpg",
-      "imageUrl": "https://bestcheesecakeintheworld.com/wp-content/uploads/2026/01/IMG_5414-palet-plein-scaled.jpeg",
+      "imageUrl": "https://bestcheesecakeintheworld.com/assets/images/seealm.jpg",
       "websiteUrl": "https://www.serfaus-fiss-ladis.at",
       "status": "approved",
       "adminApproval": "approved",
-      "communityVotes": { "approve": 0, "disapprove": 0 },
-      "tags": ["mountain", "alpine"],
-      "coordinates": { "lat": 47.0430, "lng": 10.5960 }
+      "communityVotes": {
+        "approve": 0,
+        "disapprove": 0
+      },
+      "tags": [
+        "mountain",
+        "alpine"
+      ],
+      "coordinates": {
+        "lat": 47.043,
+        "lng": 10.596
+      }
     }
   ]
 }
