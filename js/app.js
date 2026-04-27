@@ -4,9 +4,6 @@
    Form endpoint: configure FORM_ENDPOINT below (Firebase Function or Formspree)
    ============================================================ */
 
-// Firebase Cloud Function — deployed to europe-west1, project: bestcheesecake
-const FORM_ENDPOINT = 'https://europe-west1-bestcheesecake.cloudfunctions.net/handleForm';
-
 const API_URL = 'api/cheesecakes.json';
 
 let allCheesecakes = [];
@@ -37,7 +34,6 @@ async function init() {
   renderAll();
   renderMap();
   bindEvents();
-  bindForms();
   bindMobileNav();
 }
 
@@ -342,98 +338,19 @@ function closeModal() {
   document.body.style.overflow = '';
 }
 
-// ── Forms ─────────────────────────────────────────────────────
+// ── Contact Reveal ────────────────────────────────────────────
 
-function injectBotFields(formId) {
-  const form = document.getElementById(formId);
-  if (!form) return;
-  // Honeypot — hidden, must remain empty
-  const hp = document.createElement('input');
-  hp.type = 'text'; hp.name = '_gotcha'; hp.tabIndex = -1;
-  hp.autocomplete = 'off'; hp.style.cssText = 'position:absolute;left:-9999px;opacity:0;height:0';
-  form.appendChild(hp);
-  // Timestamp — server rejects submissions under 2 s old
-  const ts = document.createElement('input');
-  ts.type = 'hidden'; ts.name = '_ts'; ts.value = Date.now();
-  form.appendChild(ts);
-}
-
-function bindForms() {
-  injectBotFields('request-form');
-  injectBotFields('contact-form');
-  injectBotFields('submit-form');
-
-  setupForm('submit-form', 'sf-submit', 'sf-success');
-  setupForm('request-form', 'rf-submit', 'rf-success');
-  setupForm('contact-form', 'cf-submit', 'cf-success');
-
-  // Rating slider live value
-  const slider = document.getElementById('sf-rating');
-  const sliderVal = el('sf-rating-val');
-  if (slider) slider.addEventListener('input', () => { sliderVal.textContent = parseFloat(slider.value).toFixed(1); });
-
-  // Note char counter
-  const note = document.getElementById('sf-note');
-  const count = el('sf-note-count');
-  if (note) note.addEventListener('input', () => { count.textContent = `${note.value.length} / 120`; });
-}
-
-function setupForm(formId, submitId, successId) {
-  const form = document.getElementById(formId);
-  if (!form) return;
-
-  form.addEventListener('submit', async e => {
-    e.preventDefault();
-    if (!validateForm(form)) return;
-
-    const btn = el(submitId);
-    const originalLabel = btn.textContent;
-    btn.disabled = true;
-    btn.textContent = 'Sending…';
-
-    const payload = Object.fromEntries(new FormData(form).entries());
-
-    let success = false;
-
-    if (FORM_ENDPOINT) {
-      try {
-        const res = await fetch(FORM_ENDPOINT, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload)
-        });
-        success = res.ok;
-      } catch { success = false; }
-    } else {
-      // No endpoint configured yet — show a clear unavailable message
-      btn.disabled = false;
-      btn.textContent = originalLabel;
-      showToast('Our inbox is being set up — please check back soon.');
-      return;
-    }
-
-    if (success) {
-      form.querySelectorAll('.form-row, .form-field, .form-footer').forEach(el => el.hidden = true);
-      el(successId).hidden = false;
-    } else {
-      btn.disabled = false;
-      btn.textContent = 'Try again';
-      showToast('Something went wrong — please try again.');
-    }
-  });
-}
-
-function validateForm(form) {
-  let valid = true;
-  form.querySelectorAll('[required]').forEach(field => {
-    field.classList.remove('error');
-    if (!field.value.trim()) {
-      field.classList.add('error');
-      valid = false;
-    }
-  });
-  if (!valid) showToast('Please fill in all required fields.');
-  return valid;
+function revealContact() {
+  const btn = el('contact-reveal-btn');
+  const details = el('contact-details');
+  if (!details || details.children.length) return;
+  const u = 'j.de.haas', d = 'digtialcc.nl';
+  details.innerHTML = `
+    <a href="https://www.linkedin.com/in/juliandehaas/" target="_blank" rel="noopener" class="contact-link contact-link--linkedin">LinkedIn &mdash; Julian de Haas &#8599;</a>
+    <a href="mailto:${u}@${d}" class="contact-link contact-link--email">${u}@${d}</a>
+  `;
+  details.hidden = false;
+  btn.hidden = true;
 }
 
 // ── Events ───────────────────────────────────────────────────
@@ -445,6 +362,7 @@ function bindEvents() {
   el('modal-close').addEventListener('click', closeModal);
   el('modal-overlay').addEventListener('click', e => { if (e.target === e.currentTarget) closeModal(); });
   document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+  el('contact-reveal-btn').addEventListener('click', revealContact);
 }
 
 function bindMobileNav() {
