@@ -344,7 +344,25 @@ function closeModal() {
 
 // ── Forms ─────────────────────────────────────────────────────
 
+function injectBotFields(formId) {
+  const form = document.getElementById(formId);
+  if (!form) return;
+  // Honeypot — hidden, must remain empty
+  const hp = document.createElement('input');
+  hp.type = 'text'; hp.name = '_gotcha'; hp.tabIndex = -1;
+  hp.autocomplete = 'off'; hp.style.cssText = 'position:absolute;left:-9999px;opacity:0;height:0';
+  form.appendChild(hp);
+  // Timestamp — server rejects submissions under 2 s old
+  const ts = document.createElement('input');
+  ts.type = 'hidden'; ts.name = '_ts'; ts.value = Date.now();
+  form.appendChild(ts);
+}
+
 function bindForms() {
+  injectBotFields('request-form');
+  injectBotFields('contact-form');
+  injectBotFields('submit-form');
+
   setupForm('submit-form', 'sf-submit', 'sf-success');
   setupForm('request-form', 'rf-submit', 'rf-success');
   setupForm('contact-form', 'cf-submit', 'cf-success');
