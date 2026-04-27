@@ -28,7 +28,6 @@
       <nav class="main-nav">
         <a href="#rankings">Rankings</a>
         <a href="#map">Map</a>
-        <a href="#submit">Submit</a>
         <a href="#about">About</a>
         <a href="#contact" class="nav-cta">Contact</a>
       </nav>
@@ -40,8 +39,6 @@
   <div class="mobile-nav" id="mobile-nav">
     <a href="#rankings" class="mobile-nav-link">Rankings</a>
     <a href="#map" class="mobile-nav-link">Map</a>
-    <a href="#submit" class="mobile-nav-link">Submit a Cheesecake</a>
-    <a href="#request" class="mobile-nav-link">Request Assessment</a>
     <a href="#about" class="mobile-nav-link">About</a>
     <a href="#contact" class="mobile-nav-link">Contact</a>
   </div>
@@ -55,7 +52,6 @@
       <p class="hero-desc">A curated ranking of the world's finest cheesecakes,<br />personally assessed by a dedicated team of connoisseurs on their travels.</p>
       <div class="hero-ctas">
         <a href="#rankings" class="hero-btn">Explore the Rankings</a>
-        <a href="#submit" class="hero-btn hero-btn--ghost">Submit a Cheesecake</a>
       </div>
     </div>
     <div class="hero-scroll-hint">
@@ -142,146 +138,6 @@
     <div id="cheesecake-map"></div>
   </section>
 
-  <!-- Submit Section -->
-  <section class="form-section" id="submit">
-    <div class="form-section-inner">
-      <div class="form-section-header">
-        <span class="section-eyebrow">Community</span>
-        <h2 class="section-title">Submit a Cheesecake</h2>
-        <p class="section-subtitle">Discovered a great cheesecake? Tell us and we will add it to our assessment list.</p>
-        <p class="section-community-note">Community submissions are part of the journey. Every tip we receive goes through the same honest assessment process — if it makes the list, it earns its place.</p>
-      </div>
-      <form class="styled-form" id="submit-form" novalidate>
-        <input type="hidden" name="form_type" value="cheesecake_submission" />
-        <div class="form-row">
-          <div class="form-field">
-            <label for="sf-venue">Venue Name <span class="req">*</span></label>
-            <input type="text" id="sf-venue" name="venue" placeholder="e.g. Restaurant La Placeta" required />
-          </div>
-          <div class="form-field">
-            <label for="sf-city">City <span class="req">*</span></label>
-            <input type="text" id="sf-city" name="city" placeholder="e.g. Tossa de Mar" required />
-          </div>
-        </div>
-        <div class="form-row">
-          <div class="form-field">
-            <label for="sf-country">Country <span class="req">*</span></label>
-            <input type="text" id="sf-country" name="country" placeholder="e.g. Spain" required />
-          </div>
-          <div class="form-field">
-            <label for="sf-website">Restaurant Website</label>
-            <input type="url" id="sf-website" name="websiteUrl" placeholder="https://…" />
-          </div>
-        </div>
-        <div class="form-row">
-          <div class="form-field">
-            <label for="sf-address">Address</label>
-            <input type="text" id="sf-address" name="address" placeholder="Street, postcode, city" />
-          </div>
-          <div class="form-field">
-            <label for="sf-year">Year Visited</label>
-            <input type="number" id="sf-year" name="year" placeholder="2026" min="2000" max="2099" />
-          </div>
-        </div>
-        <div class="form-field">
-          <label for="sf-rating">Your Rating (0–10)</label>
-          <div class="rating-slider-wrap">
-            <input type="range" id="sf-rating" name="rating" min="0" max="10" step="0.1" value="7" class="rating-slider" />
-            <span class="rating-slider-val" id="sf-rating-val">7.0</span>
-          </div>
-        </div>
-        <div class="form-field">
-          <label for="sf-note">Short Note <span class="req">*</span></label>
-          <input type="text" id="sf-note" name="shortNote" placeholder="One sentence impression, max 120 characters" maxlength="120" required />
-          <span class="char-count" id="sf-note-count">0 / 120</span>
-        </div>
-        <div class="form-field">
-          <label for="sf-desc">Description</label>
-          <textarea id="sf-desc" name="description" rows="4" placeholder="Describe the cheesecake in more detail — texture, taste, presentation, context…"></textarea>
-        </div>
-        <div class="form-field">
-          <label for="sf-photo">Photo URL</label>
-          <input type="url" id="sf-photo" name="photoUrl" placeholder="https://… (link to a photo of the cheesecake)" />
-        </div>
-        <div class="form-row">
-          <div class="form-field">
-            <label for="sf-name">Your Name <span class="req">*</span></label>
-            <input type="text" id="sf-name" name="submitterName" placeholder="Your name" required />
-          </div>
-          <div class="form-field">
-            <label for="sf-email">Your Email <span class="req">*</span></label>
-            <input type="email" id="sf-email" name="submitterEmail" placeholder="For follow-up questions" required />
-          </div>
-        </div>
-        <div class="form-footer">
-          <p class="form-note">Submissions are reviewed by our assessors before publication. We may contact you with questions.</p>
-          <button type="submit" class="form-btn" id="sf-submit">Submit for Review</button>
-        </div>
-        <div class="form-success" id="sf-success" hidden>
-          <div class="success-icon">✓</div>
-          <h3>Submission received</h3>
-          <p>Thank you! Our assessors will review your submission and reach out if they need anything.</p>
-        </div>
-      </form>
-    </div>
-  </section>
-
-  <!-- Request Assessment Section -->
-  <section class="form-section form-section--alt" id="request">
-    <div class="form-section-inner">
-      <div class="form-section-header">
-        <span class="section-eyebrow">Restaurants</span>
-        <h2 class="section-title">Request an Assessment</h2>
-        <p class="section-subtitle">Are you a restaurant serving an exceptional cheesecake? Invite us to assess it.</p>
-      </div>
-      <form class="styled-form" id="request-form" novalidate>
-        <input type="hidden" name="form_type" value="assessment_request" />
-        <div class="form-row">
-          <div class="form-field">
-            <label for="rf-venue">Restaurant Name <span class="req">*</span></label>
-            <input type="text" id="rf-venue" name="venue" placeholder="Your restaurant's name" required />
-          </div>
-          <div class="form-field">
-            <label for="rf-address">Address <span class="req">*</span></label>
-            <input type="text" id="rf-address" name="address" placeholder="Full address including city and country" required />
-          </div>
-        </div>
-        <div class="form-row">
-          <div class="form-field">
-            <label for="rf-website">Website <span class="req">*</span></label>
-            <input type="url" id="rf-website" name="websiteUrl" placeholder="https://…" required />
-          </div>
-          <div class="form-field">
-            <label for="rf-contact">Contact Person <span class="req">*</span></label>
-            <input type="text" id="rf-contact" name="contactPerson" placeholder="Name of the person we should contact" required />
-          </div>
-        </div>
-        <div class="form-row">
-          <div class="form-field">
-            <label for="rf-email">Email Address <span class="req">*</span></label>
-            <input type="email" id="rf-email" name="email" placeholder="Your business email" required />
-          </div>
-          <div class="form-field">
-            <label for="rf-phone">Phone Number</label>
-            <input type="tel" id="rf-phone" name="phone" placeholder="+31…" />
-          </div>
-        </div>
-        <div class="form-field">
-          <label for="rf-message">Tell Us About Your Cheesecake</label>
-          <textarea id="rf-message" name="message" rows="4" placeholder="What makes your cheesecake special? Any context you'd like us to know before we visit…"></textarea>
-        </div>
-        <div class="form-footer">
-          <p class="form-note">We assess cheesecakes independently and at our own discretion. Requesting an assessment does not guarantee inclusion on the list.</p>
-          <button type="submit" class="form-btn" id="rf-submit">Send Request</button>
-        </div>
-        <div class="form-success" id="rf-success" hidden>
-          <div class="success-icon">✓</div>
-          <h3>Request received</h3>
-          <p>Thank you for reaching out. We will review your request and get in touch.</p>
-        </div>
-      </form>
-    </div>
-  </section>
 
   <!-- About Section -->
   <section class="about-section" id="about">
@@ -324,35 +180,11 @@
         <h2 class="section-title">Contact</h2>
         <p class="section-subtitle">Questions, corrections, or just want to say hello?</p>
       </div>
-      <form class="styled-form" id="contact-form" novalidate>
-        <input type="hidden" name="form_type" value="contact" />
-        <div class="form-row">
-          <div class="form-field">
-            <label for="cf-name">Name <span class="req">*</span></label>
-            <input type="text" id="cf-name" name="name" placeholder="Your name" required />
-          </div>
-          <div class="form-field">
-            <label for="cf-email">Email <span class="req">*</span></label>
-            <input type="email" id="cf-email" name="email" placeholder="Your email address" required />
-          </div>
-        </div>
-        <div class="form-field">
-          <label for="cf-subject">Subject</label>
-          <input type="text" id="cf-subject" name="subject" placeholder="What is this about?" />
-        </div>
-        <div class="form-field">
-          <label for="cf-message">Message <span class="req">*</span></label>
-          <textarea id="cf-message" name="message" rows="5" placeholder="Your message…" required></textarea>
-        </div>
-        <div class="form-footer">
-          <button type="submit" class="form-btn" id="cf-submit">Send Message</button>
-        </div>
-        <div class="form-success" id="cf-success" hidden>
-          <div class="success-icon">✓</div>
-          <h3>Message sent</h3>
-          <p>Thank you for getting in touch. We will respond as soon as possible.</p>
-        </div>
-      </form>
+      <div class="contact-wall">
+        <p class="contact-wall-hint">Click below to reveal contact details.</p>
+        <button class="form-btn" id="contact-reveal-btn">Reveal Contact Details</button>
+        <div class="contact-details" id="contact-details" hidden></div>
+      </div>
     </div>
   </section>
 
@@ -369,9 +201,7 @@
         <span>·</span>
         <a href="#map">Map</a>
         <span>·</span>
-        <a href="#submit">Submit</a>
-        <span>·</span>
-        <a href="#request">Request Assessment</a>
+        <a href="#about">About</a>
         <span>·</span>
         <a href="#contact">Contact</a>
         <span>·</span>
