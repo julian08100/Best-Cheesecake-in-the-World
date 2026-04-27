@@ -327,3 +327,13 @@ button{cursor:pointer;font-family:var(--font-sans)}
 ::-webkit-scrollbar-track{background:var(--bg)}
 ::-webkit-scrollbar-thumb{background:var(--bg-card2);border-radius:3px}
 ::-webkit-scrollbar-thumb:hover{background:var(--gold-dark)}
+
+/* Contact wall */
+.contact-wall{text-align:center;padding:8px 0}
+.contact-wall-hint{color:var(--text-dim);font-size:14px;margin-bottom:24px}
+.contact-details{display:flex;flex-direction:column;gap:14px;align-items:center;margin-top:32px}
+.contact-link{display:inline-flex;align-items:center;gap:10px;padding:14px 32px;border-radius:100px;font-size:15px;font-weight:500;text-decoration:none;transition:all var(--t) var(--ease)}
+.contact-link--linkedin{background:#0A66C2;color:#fff}
+.contact-link--linkedin:hover{background:#0958a8;transform:translateY(-2px);box-shadow:0 8px 24px rgba(10,102,194,.35)}
+.contact-link--email{background:var(--bg-card2);color:var(--text);border:1px solid var(--border)}
+.contact-link--email:hover{border-color:var(--gold);color:var(--gold);transform:translateY(-2px)}
