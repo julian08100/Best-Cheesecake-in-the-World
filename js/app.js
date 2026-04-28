@@ -17,7 +17,9 @@ let theme = localStorage.getItem('bcw_theme') || detectTheme();
 
 function detectLang() {
   const nav = (navigator.language || navigator.languages?.[0] || 'en').toLowerCase();
-  return nav.startsWith('nl') ? 'nl' : 'en';
+  if (nav.startsWith('nl')) return 'nl';
+  if (nav.startsWith('de')) return 'de';
+  return 'en';
 }
 
 function detectTheme() {
@@ -146,6 +148,66 @@ const T = {
     'modal.connoisseurs': 'Onze Kenners',
     'vote.up': '▲ Stem geregistreerd — dankje!',
     'vote.down': '▼ Genoteerd — eerlijke feedback gewaardeerd',
+  },
+  de: {
+    'logo.title': 'Bester Cheesecake',
+    'logo.sub': 'der Welt',
+    'nav.rankings': 'Rangliste',
+    'nav.map': 'Karte',
+    'nav.about': 'Über uns',
+    'nav.contact': 'Kontakt',
+    'hero.eyebrow': 'Eine Obsessive Mission',
+    'hero.title': 'Bester Cheesecake',
+    'hero.title.em': 'der Welt',
+    'hero.desc': 'Wir reisen. Wir probieren. Wir bewerten.<br />Jeder Cheesecake, der uns begegnet, erhält eine ehrliche, persönliche Bewertung — und seinen verdienten Platz auf dieser Liste.',
+    'hero.btn': 'Rangliste erkunden',
+    'hero.btn2': 'Die Mission',
+    'hero.scroll': 'Scrollen',
+    'mission.text': 'Nicht alle Cheesecakes sind gleich. Manche sind herausragend; manche vergesslich; manche hätten nie Cheesecake genannt werden dürfen. Wir haben sie in Strandlokalen, Bergrestaurants und Stadtkafés quer durch Europa und darüber hinaus probiert. Das ist unser Bericht.',
+    'stat.reviewed': 'Bewertete Cheesecakes',
+    'stat.countries': 'Länder auf der Karte',
+    'stat.assessors': 'Engagierte Bewerter',
+    'stat.since': 'Beginn der Reise',
+    'section.rankings': 'Die Rangliste',
+    'section.rankings.sub': 'Von einem 9,0-Meisterwerk bis zur Enttäuschung auf Berghöhe — jeder Cheesecake erzählt seine eigene Geschichte.',
+    'filter.sort': 'Sortieren',
+    'filter.sort.rank': 'Nach Rang',
+    'filter.sort.rating-desc': 'Bewertung ↓',
+    'filter.sort.rating-asc': 'Bewertung ↑',
+    'filter.sort.year-desc': 'Neueste zuerst',
+    'filter.sort.name': 'Name A–Z',
+    'filter.country': 'Land',
+    'filter.country.all': 'Alle Länder',
+    'filter.search': 'Lokal, Stadt suchen…',
+    'section.map': 'Auf der Karte',
+    'section.map.sub': 'Jeder Cheesecake, durch Europa und darüber hinaus eingezeichnet.',
+    'about.eyebrow': 'Warum wir das tun',
+    'about.title': 'Die Mission',
+    'about.p1': "Irgendwo da draußen gibt es einen so perfekt zubereiteten Cheesecake, der definiert, was ein Cheesecake sein kann. Wir haben ihn noch nicht gefunden — aber wir suchen. Keine Kritiker, keine professionellen Foodjournalisten — einfach Menschen mit einer echten Besessenheit für einen gut gemachten Cheesecake und der Überzeugung, dass die Welt es verdient zu wissen, wo die besten zu finden sind.",
+    'about.p2': 'Jeder Eintrag auf dieser Liste wurde persönlich bewertet. Wir beurteilen Aussehen, Textur, Geschmack und das Gesamterlebnis. Unsere Bewertungen durchlaufen vor der Veröffentlichung einen Prüfprozess, um Ehrlichkeit und Konsistenz zu gewährleisten.',
+    'about.p3': 'Auf Reisen durch Europa und darüber hinaus entdecken und dokumentieren wir weiter. Die Liste wächst mit jeder Reise. Der beste Cheesecake der Welt ist noch da draußen.',
+    'about.badge': 'Rang #1',
+    'contact.eyebrow': 'Kontakt aufnehmen',
+    'contact.title': 'Der Mission beitreten',
+    'contact.sub': 'Kennen Sie einen großartigen Cheesecake? Denken Sie, wir haben einen verpasst? Sagen Sie es uns — die Suche endet nie.',
+    'contact.hint': 'Klicken Sie unten, um Kontaktdaten anzuzeigen.',
+    'contact.btn': 'Kontaktdaten anzeigen',
+    'footer.brand': 'Bester Cheesecake der Welt',
+    'footer.tagline': 'Persönlich bewertet von unserem Kenner-Team. Die Suche geht weiter.',
+    'footer.privacy': 'Datenschutz',
+    'footer.terms': 'Nutzungsbedingungen',
+    'modal.published': 'Veröffentlicht',
+    'modal.score': 'Punkte / 10',
+    'modal.community': 'Community-Reaktion',
+    'modal.agree': '▲ Stimme zu',
+    'modal.disagree': '▼ Stimme nicht zu',
+    'modal.country': 'Land',
+    'modal.year': 'Jahr des Besuchs',
+    'modal.assessors': 'Bewerter',
+    'modal.restaurant': 'Restaurant',
+    'modal.connoisseurs': 'Unsere Kenner',
+    'vote.up': '▲ Stimme erfasst — Danke!',
+    'vote.down': '▼ Notiert — ehrliches Feedback geschätzt',
   }
 };
 
@@ -155,17 +217,32 @@ function t(key) {
 
 function resultsLabel(n) {
   if (lang === 'nl') return `${n} resultaat${n !== 1 ? 'en' : ''}`;
+  if (lang === 'de') return `${n} Ergebnis${n !== 1 ? 'se' : ''}`;
   return `${n} result${n !== 1 ? 's' : ''}`;
 }
 
 function rankLabel(n) {
-  return lang === 'nl' ? `Rang #${n}` : `Rank #${n}`;
+  return (lang === 'nl' || lang === 'de') ? `Rang #${n}` : `Rank #${n}`;
+}
+
+function langNextLabel() {
+  if (lang === 'en') return 'NL';
+  if (lang === 'nl') return 'DE';
+  return 'EN';
 }
 
 // ── Language helpers for bilingual cheesecake data ────────────
 
-function note(c)   { return (lang === 'nl' && c.shortNote_nl)   ? c.shortNote_nl   : c.shortNote; }
-function desc(c)   { return (lang === 'nl' && c.description_nl) ? c.description_nl : c.description; }
+function note(c)   {
+  if (lang === 'nl' && c.shortNote_nl)   return c.shortNote_nl;
+  if (lang === 'de' && c.shortNote_de)   return c.shortNote_de;
+  return c.shortNote;
+}
+function desc(c)   {
+  if (lang === 'nl' && c.description_nl) return c.description_nl;
+  if (lang === 'de' && c.description_de) return c.description_de;
+  return c.description;
+}
 
 // ── Apply theme & language ────────────────────────────────────
 
@@ -205,7 +282,7 @@ function applyLang() {
     if (val != null) node.placeholder = val;
   });
 
-  const langLabel = lang === 'en' ? 'NL' : 'EN';
+  const langLabel = langNextLabel();
   ['lang-toggle', 'lang-toggle-mobile'].forEach(id => {
     const btn = el(id);
     if (btn) btn.textContent = langLabel;
@@ -221,7 +298,9 @@ function applyLang() {
 }
 
 function toggleLang() {
-  lang = lang === 'en' ? 'nl' : 'en';
+  if (lang === 'en')      lang = 'nl';
+  else if (lang === 'nl') lang = 'de';
+  else                    lang = 'en';
   localStorage.setItem('bcw_lang', lang);
   applyLang();
 }
@@ -303,7 +382,8 @@ function applyFilters() {
       c.city.toLowerCase().includes(query) ||
       c.country.toLowerCase().includes(query) ||
       c.description.toLowerCase().includes(query) ||
-      (c.description_nl?.toLowerCase().includes(query));
+      c.description_nl?.toLowerCase().includes(query) ||
+      c.description_de?.toLowerCase().includes(query);
     return matchCountry && matchQuery;
   });
 
