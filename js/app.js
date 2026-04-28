@@ -225,10 +225,10 @@ function rankLabel(n) {
   return (lang === 'nl' || lang === 'de') ? `Rang #${n}` : `Rank #${n}`;
 }
 
-function langNextLabel() {
-  if (lang === 'en') return 'NL';
-  if (lang === 'nl') return 'DE';
-  return 'EN';
+function updateLangPicker() {
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.lang === lang);
+  });
 }
 
 // ── Language helpers for bilingual cheesecake data ────────────
@@ -282,11 +282,7 @@ function applyLang() {
     if (val != null) node.placeholder = val;
   });
 
-  const langLabel = langNextLabel();
-  ['lang-toggle', 'lang-toggle-mobile'].forEach(id => {
-    const btn = el(id);
-    if (btn) btn.textContent = langLabel;
-  });
+  updateLangPicker();
 
   updateSelectTranslations();
   renderAll();
@@ -297,10 +293,8 @@ function applyLang() {
   if (rc) rc.textContent = resultsLabel(count);
 }
 
-function toggleLang() {
-  if (lang === 'en')      lang = 'nl';
-  else if (lang === 'nl') lang = 'de';
-  else                    lang = 'en';
+function setLang(newLang) {
+  lang = newLang;
   localStorage.setItem('bcw_lang', lang);
   applyLang();
 }
@@ -674,8 +668,8 @@ function bindEvents() {
   document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
   el('contact-reveal-btn').addEventListener('click', revealContact);
 
-  ['lang-toggle', 'lang-toggle-mobile'].forEach(id => {
-    el(id)?.addEventListener('click', toggleLang);
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.addEventListener('click', () => setLang(btn.dataset.lang));
   });
   ['theme-toggle', 'theme-toggle-mobile'].forEach(id => {
     el(id)?.addEventListener('click', toggleTheme);
