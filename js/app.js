@@ -86,6 +86,7 @@ const T = {
     'modal.assessors': 'Assessors',
     'modal.restaurant': 'Restaurant',
     'modal.connoisseurs': 'Our Connoisseurs',
+    'modal.visit': 'Visit Restaurant',
     'vote.up': '▲ Vote recorded — thank you!',
     'vote.down': '▼ Noted — honest feedback appreciated',
   },
@@ -146,6 +147,7 @@ const T = {
     'modal.assessors': 'Beoordelaars',
     'modal.restaurant': 'Restaurant',
     'modal.connoisseurs': 'Onze Kenners',
+    'modal.visit': 'Bezoek Restaurant',
     'vote.up': '▲ Stem geregistreerd — dankje!',
     'vote.down': '▼ Genoteerd — eerlijke feedback gewaardeerd',
   },
@@ -206,6 +208,7 @@ const T = {
     'modal.assessors': 'Bewerter',
     'modal.restaurant': 'Restaurant',
     'modal.connoisseurs': 'Unsere Kenner',
+    'modal.visit': 'Restaurant besuchen',
     'vote.up': '▲ Stimme erfasst — Danke!',
     'vote.down': '▼ Notiert — ehrliches Feedback geschätzt',
   }
@@ -582,6 +585,7 @@ function openModal(id) {
       <div class="modal-venue">${esc(c.venue ?? c.name)}</div>
       <div class="modal-location">${c.countryFlag} ${esc(c.city)}, ${esc(c.country)}</div>
       ${c.address && c.address !== c.country ? `<div class="modal-address">${esc(c.address)}</div>` : ''}
+      ${c.websiteUrl ? `<a class="modal-restaurant-btn" href="${c.websiteUrl}" target="_blank" rel="noopener">${t('modal.visit')} ↗</a>` : ''}
 
       <div class="modal-score-row">
         <div class="modal-score-big ${scoreClass(c.rating)}">${c.rating.toFixed(1)}</div>
@@ -737,16 +741,13 @@ function renderMap() {
       popupAnchor: [0, -18]
     });
 
-    const popup = `
-      <div class="map-popup-rank">${rankLabel(c.rank)}</div>
-      <div class="map-popup-name">${esc(c.name)}</div>
-      <div class="map-popup-location">${esc(c.city)}, ${esc(c.country)}</div>
-      <span class="map-popup-score">${c.rating.toFixed(1)}</span>
-    `;
-
     L.marker([lat, lng], { icon })
       .addTo(map)
-      .bindPopup(popup, { maxWidth: 200 });
+      .bindTooltip(
+        `<strong>${esc(c.name)}</strong><br>${esc(c.city)} &middot; ${c.rating.toFixed(1)}`,
+        { direction: 'top', offset: [0, -4] }
+      )
+      .on('click', () => openModal(c.id));
   });
 
   map.fitBounds(bounds, { padding: [40, 40] });
