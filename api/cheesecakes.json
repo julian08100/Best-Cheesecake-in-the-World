@@ -1,473 +1,519 @@
 {
-  "approvalSystem": {
-    "communityVotingEnabled": true,
-    "type": "single-admin"
-  },
-  "assessors": [
-    "Marcel",
-    "Julian"
-  ],
-  "cheesecakes": [
-    {
-      "city": "Waalwijk",
-      "coordinates": {
-        "lat": 51.6881,
-        "lng": 5.065
-      },
-      "country": "Netherlands",
-      "countryFlag": "🇳🇱",
-      "description": "The best-looking cheesecake we have encountered. Perfectly presented, stunning in every way.",
-      "id": 1,
-      "imageFile": "bij-jan.jpg",
-      "imageUrl": "https://bestcheesecakeintheworld.com/assets/images/bij-jan.jpg",
-      "name": "Bij Jan",
-      "rank": 1,
-      "rating": 9,
-      "shortNote": "best look",
-      "venue": "JAN Bistrobar",
-      "websiteUrl": "https://janwaalwijk.nl/",
-      "year": 2024
+    "approvalSystem": {
+        "communityVotingEnabled": true,
+        "type": "single-admin"
     },
-    {
-      "city": "Tossa de Mar",
-      "coordinates": {
-        "lat": 41.722,
-        "lng": 2.933
-      },
-      "country": "Spain",
-      "countryFlag": "🇪🇸",
-      "description": "A really good cheesecake. The chocolate component overshadows the cream cheese slightly — dialling that back would make it exceptional.",
-      "id": 2,
-      "imageFile": "restaurant-placeta.jpg",
-      "imageUrl": "https://bestcheesecakeintheworld.com/assets/images/restaurant-placeta.jpg",
-      "name": "Restaurant Placeta",
-      "rank": 2,
-      "rating": 8.6,
-      "shortNote": "Really good cheesecake; the chocolate should be less strong",
-      "venue": "Restaurant La Placeta",
-      "websiteUrl": "https://www.restaurantplaceta.com/",
-      "year": 2025
-    },
-    {
-      "city": "Serfaus",
-      "coordinates": {
-        "lat": 47.0447,
-        "lng": 10.6083
-      },
-      "country": "Austria",
-      "countryFlag": "🇦🇹",
-      "description": "A really good cheesecake in a spectacular mountain setting. The sorbet ice served alongside it was an unfortunate pairing rather than a complement.",
-      "id": 3,
-      "imageFile": "praemontan.jpg",
-      "imageUrl": "https://bestcheesecakeintheworld.com/assets/images/praemontan.jpg",
-      "name": "Praemontan",
-      "rank": 3,
-      "rating": 8.6,
-      "shortNote": "Really good cheesecake, sorbet ice was a negative combination",
-      "venue": "Restaurant Praemontan",
-      "websiteUrl": "https://www.praemontan.at",
-      "year": 2026
-    },
-    {
-      "city": "Arguineguín, Gran Canaria",
-      "coordinates": {
-        "lat": 27.7551,
-        "lng": -15.6875
-      },
-      "country": "Spain",
-      "countryFlag": "🇪🇸",
-      "description": "An outstanding white chocolate cheesecake on the rooftop of the Radisson Blu. Smooth, rich, and beautifully balanced with ocean views to match.",
-      "id": 4,
-      "imageFile": "restaurante-222-sw.jpg",
-      "imageUrl": "https://bestcheesecakeintheworld.com/assets/images/restaurante-222-sw.jpg",
-      "name": "Restaurante 222 SW",
-      "rank": 4,
-      "rating": 8.5,
-      "shortNote": "white chocolate cheesecake",
-      "venue": "222 SW Bar & Grill",
-      "websiteUrl": "https://www.restaurante222sw.com/",
-      "year": 2025
-    },
-    {
-      "city": "Prague",
-      "coordinates": {
-        "lat": 50.0874,
-        "lng": 14.4271
-      },
-      "country": "Czech Republic",
-      "countryFlag": "🇨🇿",
-      "description": "The best price-to-quality ratio of any cheesecake on our list. Exceptional craftsmanship near the Powder Gate in the heart of Prague.",
-      "id": 5,
-      "imageFile": "cacao-prague.jpg",
-      "imageUrl": "https://bestcheesecakeintheworld.com/assets/images/cacao-prague.jpg",
-      "name": "Cacao Prague",
-      "rank": 5,
-      "rating": 8,
-      "shortNote": "best price-quality",
-      "venue": "Cacao Prague",
-      "websiteUrl": "https://cacaoprague.cz/",
-      "year": 2025
-    },
-    {
-      "city": "Málaga",
-      "coordinates": {
-        "lat": 36.7240217,
-        "lng": -4.4199024
-      },
-      "country": "Spain",
-      "countryFlag": "🇪🇸",
-      "description": "Good texture nice topping but basic look",
-      "id": 23,
-      "imageFile": "meson-de-cervantes.jpg",
-      "imageUrl": "https://bestcheesecakeintheworld.com/assets/images/meson-de-cervantes.jpg",
-      "name": "Mesón De Cervantes",
-      "rank": 6,
-      "rating": 7.800000000000001,
-      "shortNote": "Nice topping",
-      "websiteUrl": "https://elmesondecervantes.com/",
-      "year": 2026
-    },
-    {
-      "city": "Nijkerk",
-      "coordinates": {
-        "lat": 52.2131,
-        "lng": 5.4923
-      },
-      "country": "Netherlands",
-      "countryFlag": "🇳🇱",
-      "description": "A solid, classically presented cheesecake executed with care. No frills — just reliable, well-made Dutch hospitality.",
-      "id": 6,
-      "imageFile": "grandcafe-lust.jpg",
-      "imageUrl": "https://bestcheesecakeintheworld.com/assets/images/grandcafe-lust.jpg",
-      "name": "Grandcafé Lust",
-      "rank": 7,
-      "rating": 7.8,
-      "shortNote": "classic look",
-      "venue": "Grand Café LUST",
-      "websiteUrl": "https://www.grandcafelust.nl/",
-      "year": 2024
-    },
-    {
-      "city": "Tossa de Mar",
-      "coordinates": {
-        "lat": 41.7215,
-        "lng": 2.9326
-      },
-      "country": "Spain",
-      "countryFlag": "🇪🇸",
-      "description": "A creative cheesecake made with a speculoos biscuit base — a fun and unexpected combination that works better than you might expect.",
-      "id": 7,
-      "imageFile": "don-juan.jpg",
-      "imageUrl": "https://bestcheesecakeintheworld.com/assets/images/don-juan.jpg",
-      "name": "Don Juan",
-      "rank": 8,
-      "rating": 7,
-      "shortNote": "cheesecake with speculoos",
-      "venue": "Bar Don Juan",
-      "websiteUrl": "https://www.instagram.com/bardonjuan",
-      "year": 2025
-    },
-    {
-      "city": "El Campello, Alicante",
-      "coordinates": {
-        "lat": 38.4232,
-        "lng": -0.3879
-      },
-      "country": "Spain",
-      "countryFlag": "🇪🇸",
-      "description": "A pleasant, nicely flavoured cheesecake in a stunning seafront setting on the Costa Blanca. The Mediterranean backdrop enhances the experience.",
-      "id": 8,
-      "imageFile": "xaloc-lounge.jpg",
-      "imageUrl": "https://bestcheesecakeintheworld.com/assets/images/xaloc-lounge.jpg",
-      "name": "Xaloc Lounge",
-      "rank": 9,
-      "rating": 6.8,
-      "shortNote": "nice taste",
-      "venue": "Restaurante Xaloc Lounge",
-      "websiteUrl": "https://www.xaloclounge.com/",
-      "year": 2024
-    },
-    {
-      "city": "Meloneras, Gran Canaria",
-      "coordinates": {
-        "lat": 27.7377,
-        "lng": -15.5768
-      },
-      "country": "Spain",
-      "countryFlag": "🇪🇸",
-      "description": "A competent, straightforward cheesecake on the Meloneras promenade. Gets the fundamentals right without any standout qualities.",
-      "id": 9,
-      "imageFile": "k1-food-lounge.jpg",
-      "imageUrl": "https://bestcheesecakeintheworld.com/assets/images/k1-food-lounge.jpg",
-      "name": "K1 Food Lounge",
-      "rank": 10,
-      "rating": 6.5,
-      "shortNote": "basic cheesecake",
-      "venue": "K1 Food & Lounge",
-      "websiteUrl": "https://k1foodlounge.com/",
-      "year": 2025
-    },
-    {
-      "city": "Rosmalen",
-      "coordinates": {
-        "lat": 51.7222,
-        "lng": 5.3647
-      },
-      "country": "Netherlands",
-      "countryFlag": "🇳🇱",
-      "description": "Pleasantly cheesy with a well-executed Bastogne koek base — the traditional Dutch biscuit adds character and crunch that elevates the whole thing.",
-      "id": 10,
-      "imageFile": "de-likkepot.jpg",
-      "imageUrl": "https://bestcheesecakeintheworld.com/assets/images/de-likkepot.jpg",
-      "name": "NY Cheesecake van de Likkepot",
-      "rank": 11,
-      "rating": 6.4,
-      "shortNote": "Quite cheesy; nice 'Bastogne koek'",
-      "venue": "De Likkepot",
-      "websiteUrl": "https://www.likkepot.nl/",
-      "year": 2025
-    },
-    {
-      "city": "Waalwijk",
-      "coordinates": {
-        "lat": 51.6817,
-        "lng": 5.0722
-      },
-      "country": "Netherlands",
-      "countryFlag": "🇳🇱",
-      "description": "Good texture that shows some care in preparation. A touch more sweetness in the filling would bring this to a higher level.",
-      "id": 11,
-      "imageFile": "t-slot.jpg",
-      "imageUrl": "https://bestcheesecakeintheworld.com/assets/images/t-slot.jpg",
-      "name": "'t Slot",
-      "rank": 12,
-      "rating": 6.2,
-      "shortNote": "Nice texture but should be sweeter",
-      "venue": "'t Slot",
-      "websiteUrl": "https://tslot.nl/",
-      "year": 2026
-    },
-    {
-      "city": "Groningen",
-      "coordinates": {
-        "lat": 53.2194,
-        "lng": 6.5665
-      },
-      "country": "Netherlands",
-      "countryFlag": "🇳🇱",
-      "description": "Tastes considerably better than it looks — a valuable lesson not to judge a cheesecake by its presentation alone. On the historic Grote Markt.",
-      "id": 12,
-      "imageFile": "cafe-hooghoudt.jpg",
-      "imageUrl": "https://bestcheesecakeintheworld.com/assets/images/cafe-hooghoudt.jpg",
-      "name": "Café Hooghoudt",
-      "rank": 13,
-      "rating": 6,
-      "shortNote": "taste exceeds look",
-      "venue": "Grand Café Hooghoudt",
-      "websiteUrl": "https://www.cafehooghoudt.com",
-      "year": 2025
-    },
-    {
-      "city": "Meloneras, Gran Canaria",
-      "coordinates": {
-        "lat": 27.7377,
-        "lng": -15.5768
-      },
-      "country": "Spain",
-      "countryFlag": "🇪🇸",
-      "description": "A classic cheesecake with an Italian soul, served in the sunny resort of Meloneras on Gran Canaria. Light and pleasant, though not the most memorable on the island.",
-      "id": 13,
-      "imageFile": "ristorante-gran-italia.jpg",
-      "imageUrl": "https://bestcheesecakeintheworld.com/assets/images/ristorante-gran-italia.jpg",
-      "name": "Ristorante Gran Italia",
-      "rank": 14,
-      "rating": 6,
-      "shortNote": "classic Italian cheesecake",
-      "venue": "Ristorante Gran Italia",
-      "websiteUrl": "http://www.ristorantegranditalia.com/",
-      "year": 2025
-    },
-    {
-      "city": "Oisterwijk",
-      "coordinates": {
-        "lat": 51.5815,
-        "lng": 5.1977
-      },
-      "country": "Netherlands",
-      "countryFlag": "🇳🇱",
-      "description": "Lacks the characteristic cheesiness that defines a good cheesecake. It is a pleasant dessert, but does not quite qualify as a true cheesecake.",
-      "id": 14,
-      "imageFile": "sec-oisterwijk.jpg",
-      "imageUrl": "https://bestcheesecakeintheworld.com/assets/images/sec-oisterwijk.jpg",
-      "name": "Sec",
-      "rank": 15,
-      "rating": 6,
-      "shortNote": "Not cheesy, does not feel like a cheesecake",
-      "venue": "SEC eten & drinken",
-      "websiteUrl": "https://secetendrinken.nl/",
-      "year": 2026
-    },
-    {
-      "city": "Serfaus",
-      "coordinates": {
-        "lat": 47.0444,
-        "lng": 10.608
-      },
-      "country": "Austria",
-      "countryFlag": "🇦🇹",
-      "description": "A cheesecake enjoyed in a snowy mountain environment. The setting was magical; the cheesecake itself was decent but unremarkable.",
-      "id": 15,
-      "imageFile": "zum-wohl.jpg",
-      "imageUrl": "https://bestcheesecakeintheworld.com/assets/images/zum-wohl.jpg",
-      "name": "Zum Wohl",
-      "rank": 16,
-      "rating": 5.8,
-      "shortNote": "cheesecake in the snow",
-      "venue": "Zum Wohl Tirol",
-      "websiteUrl": "https://www.zumwohltirol.at",
-      "year": 2025
-    },
-    {
-      "city": "Texel",
-      "coordinates": {
-        "lat": 53.1507,
-        "lng": 4.8022
-      },
-      "country": "Netherlands",
-      "countryFlag": "🇳🇱",
-      "description": "A beach terrace cheesecake enjoyed with a cold beer at the northern tip of Texel. The atmosphere contributes more than the cheesecake itself.",
-      "id": 16,
-      "imageFile": "kaap-noord.jpg",
-      "imageUrl": "https://bestcheesecakeintheworld.com/assets/images/kaap-noord.jpg",
-      "name": "Strandpaviljoen Kaap Noord",
-      "rank": 17,
-      "rating": 5.6,
-      "shortNote": "cheesecake with beer :-)",
-      "venue": "Strandpaviljoen Kaap Noord",
-      "websiteUrl": "https://www.strandpaviljoenkaapnoord.nl/",
-      "year": 2024
-    },
-    {
-      "city": "Tilburg",
-      "coordinates": {
-        "lat": 51.5587,
-        "lng": 5.082
-      },
-      "country": "Netherlands",
-      "countryFlag": "🇳🇱",
-      "description": "An ambitious cheesecake that attempts something different. The concept is interesting but the execution does not quite deliver on the promise.",
-      "id": 17,
-      "imageFile": "jaxx-marina.jpg",
-      "imageUrl": "https://bestcheesecakeintheworld.com/assets/images/jaxx-marina.jpg",
-      "name": "Jaxx Marina",
-      "rank": 18,
-      "rating": 5,
-      "shortNote": "interesting cheesecake",
-      "venue": "Jaxx Marina",
-      "websiteUrl": "https://jaxxmarina.nl",
-      "year": 2024
-    },
-    {
-      "city": "Oisterwijk",
-      "coordinates": {
-        "lat": 51.5815,
-        "lng": 5.1977
-      },
-      "country": "Netherlands",
-      "countryFlag": "🇳🇱",
-      "description": "A classic, by-the-book cheesecake that plays it entirely safe. It does not offend, but it does not leave a lasting impression either.",
-      "id": 18,
-      "imageFile": "de-tijd.jpg",
-      "imageUrl": "https://bestcheesecakeintheworld.com/assets/images/de-tijd.jpg",
-      "name": "De Tijd",
-      "rank": 19,
-      "rating": 4.8,
-      "shortNote": "classic cheesecake",
-      "venue": "Eetcafé De Tijd",
-      "websiteUrl": "https://www.detijdoisterwijk.nl",
-      "year": 2025
-    },
-    {
-      "city": "Waalwijk",
-      "coordinates": {
-        "lat": 51.6817,
-        "lng": 5.0722
-      },
-      "country": "Netherlands",
-      "countryFlag": "🇳🇱",
-      "description": "A churros cheesecake — a bold creative experiment that ultimately struggles to reconcile the two flavour profiles into something coherent.",
-      "id": 19,
-      "imageFile": "wijckers.jpg",
-      "imageUrl": "https://bestcheesecakeintheworld.com/assets/images/wijckers.jpg",
-      "name": "Wijckers",
-      "rank": 20,
-      "rating": 4.4,
-      "shortNote": "churros cheesecake",
-      "venue": "Restaurant Wijckers",
-      "websiteUrl": "https://www.wijckers.nl",
-      "year": 2024
-    },
-    {
-      "city": "Málaga",
-      "coordinates": {
-        "lat": 36.7181,
-        "lng": -4.4202
-      },
-      "country": "Spain",
-      "countryFlag": "🇪🇸",
-      "description": "A classic cheesecake with a gentle Spanish character. The location is charming but the cheesecake itself is a disappointment given the promising setting.",
-      "id": 20,
-      "imageFile": "la-bouganvilla.jpg",
-      "imageUrl": "https://bestcheesecakeintheworld.com/assets/images/la-bouganvilla.jpg",
-      "name": "La Bouganvilla",
-      "rank": 21,
-      "rating": 4,
-      "shortNote": "classic cheesecake with Spanish taste",
-      "venue": "Restaurante Bar La Bouganvilla",
-      "websiteUrl": "https://labouganvilla.com/",
-      "year": 2024
-    },
-    {
-      "city": "Oslo",
-      "coordinates": {
-        "lat": 59.9109,
-        "lng": 10.7529
-      },
-      "country": "Norway",
-      "countryFlag": "🇳🇴",
-      "description": "Oslo is a beautiful city. This cheesecake, unfortunately, is not a highlight. Disappointing for a restaurant of this calibre and location.",
-      "id": 21,
-      "imageFile": "atlas-oslo.jpg",
-      "imageUrl": "https://bestcheesecakeintheworld.com/assets/images/atlas-oslo.jpg",
-      "name": "Atlas",
-      "rank": 22,
-      "rating": 4,
-      "shortNote": "Disappointing",
-      "venue": "Atlas Brasserie & Café",
-      "websiteUrl": "https://amerikalinjen.com/eat-and-drink/the-atlas-restaurant/",
-      "year": 2026
-    },
-    {
-      "city": "Serfaus",
-      "coordinates": {
-        "lat": 47.043,
-        "lng": 10.596
-      },
-      "country": "Austria",
-      "countryFlag": "🇦🇹",
-      "description": "A profound disappointment at 1,820 metres altitude. The texture resembled pudding and it tasted of very little — a rare miss in an otherwise beautiful ski area.",
-      "id": 22,
-      "imageFile": "seealm.jpg",
-      "imageUrl": "https://bestcheesecakeintheworld.com/assets/images/seealm.jpg",
-      "name": "Seealm",
-      "rank": 23,
-      "rating": 2.5,
-      "shortNote": "Texture like pudding, tasted like nothing",
-      "venue": "Seealm Hög",
-      "websiteUrl": "https://www.serfaus-fiss-ladis.at",
-      "year": 2026
-    }
-  ],
-  "lastUpdated": "2026-04-27",
-  "version": "2.0"
+    "assessors": [
+        "Marcel",
+        "Julian"
+    ],
+    "cheesecakes": [
+        {
+            "city": "Waalwijk",
+            "coordinates": {
+                "lat": 51.6881,
+                "lng": 5.065
+            },
+            "country": "Netherlands",
+            "countryFlag": "🇳🇱",
+            "description": "The best-looking cheesecake we have encountered. Perfectly presented, stunning in every way.",
+            "description_nl": "De mooiste cheesecake die we ooit zijn tegengekomen. Perfect gepresenteerd, in elk opzicht indrukwekkend.",
+            "id": 1,
+            "imageFile": "bij-jan.jpg",
+            "imageUrl": "https://bestcheesecakeintheworld.com/assets/images/bij-jan.jpg",
+            "name": "Bij Jan",
+            "rank": 1,
+            "rating": 9,
+            "shortNote": "best look",
+            "shortNote_nl": "beste uitstraling",
+            "venue": "JAN Bistrobar",
+            "websiteUrl": "https://janwaalwijk.nl/",
+            "year": 2024
+        },
+        {
+            "city": "Tossa de Mar",
+            "coordinates": {
+                "lat": 41.722,
+                "lng": 2.933
+            },
+            "country": "Spain",
+            "countryFlag": "🇪🇸",
+            "description": "A really good cheesecake. The chocolate component overshadows the cream cheese slightly — dialling that back would make it exceptional.",
+            "description_nl": "Een erg goede cheesecake. De chocoladecomponent overschaduwt de roomkaas enigszins — iets minder chocolade zou hem uitzonderlijk maken.",
+            "id": 2,
+            "imageFile": "restaurant-placeta.jpg",
+            "imageUrl": "https://bestcheesecakeintheworld.com/assets/images/restaurant-placeta.jpg",
+            "name": "Restaurant Placeta",
+            "rank": 2,
+            "rating": 8.6,
+            "shortNote": "Really good cheesecake; the chocolate should be less strong",
+            "shortNote_nl": "Erg goede cheesecake; de chocolade mag minder sterk",
+            "venue": "Restaurant La Placeta",
+            "websiteUrl": "https://www.restaurantplaceta.com/",
+            "year": 2025
+        },
+        {
+            "city": "Serfaus",
+            "coordinates": {
+                "lat": 47.0447,
+                "lng": 10.6083
+            },
+            "country": "Austria",
+            "countryFlag": "🇦🇹",
+            "description": "A really good cheesecake in a spectacular mountain setting. The sorbet ice served alongside it was an unfortunate pairing rather than a complement.",
+            "description_nl": "Een erg goede cheesecake in een spectaculaire bergomgeving. Het meegeserveerde sorbet-ijs was een ongelukkige combinatie in plaats van een aanvulling.",
+            "id": 3,
+            "imageFile": "praemontan.jpg",
+            "imageUrl": "https://bestcheesecakeintheworld.com/assets/images/praemontan.jpg",
+            "name": "Praemontan",
+            "rank": 3,
+            "rating": 8.6,
+            "shortNote": "Really good cheesecake, sorbet ice was a negative combination",
+            "shortNote_nl": "Erg goede cheesecake, sorbet-ijs was een negatieve combinatie",
+            "venue": "Restaurant Praemontan",
+            "websiteUrl": "https://www.praemontan.at",
+            "year": 2026
+        },
+        {
+            "city": "Arguineguín, Gran Canaria",
+            "coordinates": {
+                "lat": 27.7551,
+                "lng": -15.6875
+            },
+            "country": "Spain",
+            "countryFlag": "🇪🇸",
+            "description": "An outstanding white chocolate cheesecake on the rooftop of the Radisson Blu. Smooth, rich, and beautifully balanced with ocean views to match.",
+            "description_nl": "Een uitstekende witte chocolade cheesecake op het dakterras van het Radisson Blu. Zacht, rijk en prachtig in balans, met uitzicht op de oceaan.",
+            "id": 4,
+            "imageFile": "restaurante-222-sw.jpg",
+            "imageUrl": "https://bestcheesecakeintheworld.com/assets/images/restaurante-222-sw.jpg",
+            "name": "Restaurante 222 SW",
+            "rank": 4,
+            "rating": 8.5,
+            "shortNote": "white chocolate cheesecake",
+            "shortNote_nl": "witte chocolade cheesecake",
+            "venue": "222 SW Bar & Grill",
+            "websiteUrl": "https://www.restaurante222sw.com/",
+            "year": 2025
+        },
+        {
+            "city": "Prague",
+            "coordinates": {
+                "lat": 50.0874,
+                "lng": 14.4271
+            },
+            "country": "Czech Republic",
+            "countryFlag": "🇨🇿",
+            "description": "The best price-to-quality ratio of any cheesecake on our list. Exceptional craftsmanship near the Powder Gate in the heart of Prague.",
+            "description_nl": "De beste prijs-kwaliteitverhouding van alle cheesecakes op onze lijst. Uitzonderlijk vakmanschap vlakbij de Kruitoren in het hart van Praag.",
+            "id": 5,
+            "imageFile": "cacao-prague.jpg",
+            "imageUrl": "https://bestcheesecakeintheworld.com/assets/images/cacao-prague.jpg",
+            "name": "Cacao Prague",
+            "rank": 5,
+            "rating": 8,
+            "shortNote": "best price-quality",
+            "shortNote_nl": "beste prijs-kwaliteit",
+            "venue": "Cacao Prague",
+            "websiteUrl": "https://cacaoprague.cz/",
+            "year": 2025
+        },
+        {
+            "city": "Málaga",
+            "coordinates": {
+                "lat": 36.7240217,
+                "lng": -4.4199024
+            },
+            "country": "Spain",
+            "countryFlag": "🇪🇸",
+            "description": "Good texture nice topping but basic look",
+            "description_nl": "Goede textuur, leuke topping maar basale uitstraling",
+            "id": 23,
+            "imageFile": "meson-de-cervantes.jpg",
+            "imageUrl": "https://bestcheesecakeintheworld.com/assets/images/meson-de-cervantes.jpg",
+            "name": "Mesón De Cervantes",
+            "rank": 6,
+            "rating": 7.800000000000001,
+            "shortNote": "Nice topping",
+            "shortNote_nl": "Leuke topping",
+            "websiteUrl": "https://elmesondecervantes.com/",
+            "year": 2026
+        },
+        {
+            "city": "Nijkerk",
+            "coordinates": {
+                "lat": 52.2131,
+                "lng": 5.4923
+            },
+            "country": "Netherlands",
+            "countryFlag": "🇳🇱",
+            "description": "A solid, classically presented cheesecake executed with care. No frills — just reliable, well-made Dutch hospitality.",
+            "description_nl": "Een solide, klassiek gepresenteerde cheesecake met zorg bereid. Zonder franje — gewoon betrouwbare, goed gemaakte Nederlandse gastvrijheid.",
+            "id": 6,
+            "imageFile": "grandcafe-lust.jpg",
+            "imageUrl": "https://bestcheesecakeintheworld.com/assets/images/grandcafe-lust.jpg",
+            "name": "Grandcafé Lust",
+            "rank": 7,
+            "rating": 7.8,
+            "shortNote": "classic look",
+            "shortNote_nl": "klassieke uitstraling",
+            "venue": "Grand Café LUST",
+            "websiteUrl": "https://www.grandcafelust.nl/",
+            "year": 2024
+        },
+        {
+            "city": "Tossa de Mar",
+            "coordinates": {
+                "lat": 41.7215,
+                "lng": 2.9326
+            },
+            "country": "Spain",
+            "countryFlag": "🇪🇸",
+            "description": "A creative cheesecake made with a speculoos biscuit base — a fun and unexpected combination that works better than you might expect.",
+            "description_nl": "Een creatieve cheesecake met een speculoosbodem — een leuke en onverwachte combinatie die beter werkt dan je zou verwachten.",
+            "id": 7,
+            "imageFile": "don-juan.jpg",
+            "imageUrl": "https://bestcheesecakeintheworld.com/assets/images/don-juan.jpg",
+            "name": "Don Juan",
+            "rank": 8,
+            "rating": 7,
+            "shortNote": "cheesecake with speculoos",
+            "shortNote_nl": "cheesecake met speculoos",
+            "venue": "Bar Don Juan",
+            "websiteUrl": "https://www.instagram.com/bardonjuan",
+            "year": 2025
+        },
+        {
+            "city": "El Campello, Alicante",
+            "coordinates": {
+                "lat": 38.4232,
+                "lng": -0.3879
+            },
+            "country": "Spain",
+            "countryFlag": "🇪🇸",
+            "description": "A pleasant, nicely flavoured cheesecake in a stunning seafront setting on the Costa Blanca. The Mediterranean backdrop enhances the experience.",
+            "description_nl": "Een aangename, smakelijke cheesecake in een prachtige omgeving aan de Costa Blanca. De Mediterrane achtergrond versterkt de beleving.",
+            "id": 8,
+            "imageFile": "xaloc-lounge.jpg",
+            "imageUrl": "https://bestcheesecakeintheworld.com/assets/images/xaloc-lounge.jpg",
+            "name": "Xaloc Lounge",
+            "rank": 9,
+            "rating": 6.8,
+            "shortNote": "nice taste",
+            "shortNote_nl": "lekker van smaak",
+            "venue": "Restaurante Xaloc Lounge",
+            "websiteUrl": "https://www.xaloclounge.com/",
+            "year": 2024
+        },
+        {
+            "city": "Meloneras, Gran Canaria",
+            "coordinates": {
+                "lat": 27.7377,
+                "lng": -15.5768
+            },
+            "country": "Spain",
+            "countryFlag": "🇪🇸",
+            "description": "A competent, straightforward cheesecake on the Meloneras promenade. Gets the fundamentals right without any standout qualities.",
+            "description_nl": "Een competente, rechttoe-rechtaan cheesecake aan de Meloneras promenade. Goed in de basis, maar zonder bijzondere kwaliteiten.",
+            "id": 9,
+            "imageFile": "k1-food-lounge.jpg",
+            "imageUrl": "https://bestcheesecakeintheworld.com/assets/images/k1-food-lounge.jpg",
+            "name": "K1 Food Lounge",
+            "rank": 10,
+            "rating": 6.5,
+            "shortNote": "basic cheesecake",
+            "shortNote_nl": "basis cheesecake",
+            "venue": "K1 Food & Lounge",
+            "websiteUrl": "https://k1foodlounge.com/",
+            "year": 2025
+        },
+        {
+            "city": "Rosmalen",
+            "coordinates": {
+                "lat": 51.7222,
+                "lng": 5.3647
+            },
+            "country": "Netherlands",
+            "countryFlag": "🇳🇱",
+            "description": "Pleasantly cheesy with a well-executed Bastogne koek base — the traditional Dutch biscuit adds character and crunch that elevates the whole thing.",
+            "description_nl": "Aangenaam kazig met een goed uitgevoerde Bastognekoekbodem — het traditionele Nederlandse koekje voegt karakter en knapperigheid toe.",
+            "id": 10,
+            "imageFile": "de-likkepot.jpg",
+            "imageUrl": "https://bestcheesecakeintheworld.com/assets/images/de-likkepot.jpg",
+            "name": "NY Cheesecake van de Likkepot",
+            "rank": 11,
+            "rating": 6.4,
+            "shortNote": "Quite cheesy; nice 'Bastogne koek'",
+            "shortNote_nl": "Lekker kazig; lekkere 'Bastogne koek'",
+            "venue": "De Likkepot",
+            "websiteUrl": "https://www.likkepot.nl/",
+            "year": 2025
+        },
+        {
+            "city": "Waalwijk",
+            "coordinates": {
+                "lat": 51.6817,
+                "lng": 5.0722
+            },
+            "country": "Netherlands",
+            "countryFlag": "🇳🇱",
+            "description": "Good texture that shows some care in preparation. A touch more sweetness in the filling would bring this to a higher level.",
+            "description_nl": "Goede textuur die enige zorg in de bereiding verraadt. Iets meer zoetheid in de vulling zou dit naar een hoger niveau tillen.",
+            "id": 11,
+            "imageFile": "t-slot.jpg",
+            "imageUrl": "https://bestcheesecakeintheworld.com/assets/images/t-slot.jpg",
+            "name": "'t Slot",
+            "rank": 12,
+            "rating": 6.2,
+            "shortNote": "Nice texture but should be sweeter",
+            "shortNote_nl": "Goede textuur maar mag zoeter",
+            "venue": "'t Slot",
+            "websiteUrl": "https://tslot.nl/",
+            "year": 2026
+        },
+        {
+            "city": "Groningen",
+            "coordinates": {
+                "lat": 53.2194,
+                "lng": 6.5665
+            },
+            "country": "Netherlands",
+            "countryFlag": "🇳🇱",
+            "description": "Tastes considerably better than it looks — a valuable lesson not to judge a cheesecake by its presentation alone. On the historic Grote Markt.",
+            "description_nl": "Smaakt aanzienlijk beter dan hij eruitziet — een waardevolle les om een cheesecake niet op zijn uiterlijk te beoordelen. Op de historische Grote Markt.",
+            "id": 12,
+            "imageFile": "cafe-hooghoudt.jpg",
+            "imageUrl": "https://bestcheesecakeintheworld.com/assets/images/cafe-hooghoudt.jpg",
+            "name": "Café Hooghoudt",
+            "rank": 13,
+            "rating": 6,
+            "shortNote": "taste exceeds look",
+            "shortNote_nl": "smaak overtreft uiterlijk",
+            "venue": "Grand Café Hooghoudt",
+            "websiteUrl": "https://www.cafehooghoudt.com",
+            "year": 2025
+        },
+        {
+            "city": "Meloneras, Gran Canaria",
+            "coordinates": {
+                "lat": 27.7377,
+                "lng": -15.5768
+            },
+            "country": "Spain",
+            "countryFlag": "🇪🇸",
+            "description": "A classic cheesecake with an Italian soul, served in the sunny resort of Meloneras on Gran Canaria. Light and pleasant, though not the most memorable on the island.",
+            "description_nl": "Een klassieke cheesecake met Italiaanse ziel, geserveerd in het zonnige Meloneras op Gran Canaria. Licht en aangenaam, maar niet de meest memorabele op het eiland.",
+            "id": 13,
+            "imageFile": "ristorante-gran-italia.jpg",
+            "imageUrl": "https://bestcheesecakeintheworld.com/assets/images/ristorante-gran-italia.jpg",
+            "name": "Ristorante Gran Italia",
+            "rank": 14,
+            "rating": 6,
+            "shortNote": "classic Italian cheesecake",
+            "shortNote_nl": "klassieke Italiaanse cheesecake",
+            "venue": "Ristorante Gran Italia",
+            "websiteUrl": "http://www.ristorantegranditalia.com/",
+            "year": 2025
+        },
+        {
+            "city": "Oisterwijk",
+            "coordinates": {
+                "lat": 51.5815,
+                "lng": 5.1977
+            },
+            "country": "Netherlands",
+            "countryFlag": "🇳🇱",
+            "description": "Lacks the characteristic cheesiness that defines a good cheesecake. It is a pleasant dessert, but does not quite qualify as a true cheesecake.",
+            "description_nl": "Mist de karakteristieke kazig smaak die een goede cheesecake definieert. Een aangenaam dessert, maar het kwalificeert niet als een echte cheesecake.",
+            "id": 14,
+            "imageFile": "sec-oisterwijk.jpg",
+            "imageUrl": "https://bestcheesecakeintheworld.com/assets/images/sec-oisterwijk.jpg",
+            "name": "Sec",
+            "rank": 15,
+            "rating": 6,
+            "shortNote": "Not cheesy, does not feel like a cheesecake",
+            "shortNote_nl": "Niet kazig, voelt niet als een cheesecake",
+            "venue": "SEC eten & drinken",
+            "websiteUrl": "https://secetendrinken.nl/",
+            "year": 2026
+        },
+        {
+            "city": "Serfaus",
+            "coordinates": {
+                "lat": 47.0444,
+                "lng": 10.608
+            },
+            "country": "Austria",
+            "countryFlag": "🇦🇹",
+            "description": "A cheesecake enjoyed in a snowy mountain environment. The setting was magical; the cheesecake itself was decent but unremarkable.",
+            "description_nl": "Een cheesecake genoten in een besneeuwde bergomgeving. De omgeving was magisch; de cheesecake zelf was aardig maar onopvallend.",
+            "id": 15,
+            "imageFile": "zum-wohl.jpg",
+            "imageUrl": "https://bestcheesecakeintheworld.com/assets/images/zum-wohl.jpg",
+            "name": "Zum Wohl",
+            "rank": 16,
+            "rating": 5.8,
+            "shortNote": "cheesecake in the snow",
+            "shortNote_nl": "cheesecake in de sneeuw",
+            "venue": "Zum Wohl Tirol",
+            "websiteUrl": "https://www.zumwohltirol.at",
+            "year": 2025
+        },
+        {
+            "city": "Texel",
+            "coordinates": {
+                "lat": 53.1507,
+                "lng": 4.8022
+            },
+            "country": "Netherlands",
+            "countryFlag": "🇳🇱",
+            "description": "A beach terrace cheesecake enjoyed with a cold beer at the northern tip of Texel. The atmosphere contributes more than the cheesecake itself.",
+            "description_nl": "Een strandterras cheesecake genoten met een koud biertje op de noordpunt van Texel. De sfeer draagt meer bij dan de cheesecake zelf.",
+            "id": 16,
+            "imageFile": "kaap-noord.jpg",
+            "imageUrl": "https://bestcheesecakeintheworld.com/assets/images/kaap-noord.jpg",
+            "name": "Strandpaviljoen Kaap Noord",
+            "rank": 17,
+            "rating": 5.6,
+            "shortNote": "cheesecake with beer :-)",
+            "shortNote_nl": "cheesecake met bier :-)",
+            "venue": "Strandpaviljoen Kaap Noord",
+            "websiteUrl": "https://www.strandpaviljoenkaapnoord.nl/",
+            "year": 2024
+        },
+        {
+            "city": "Tilburg",
+            "coordinates": {
+                "lat": 51.5587,
+                "lng": 5.082
+            },
+            "country": "Netherlands",
+            "countryFlag": "🇳🇱",
+            "description": "An ambitious cheesecake that attempts something different. The concept is interesting but the execution does not quite deliver on the promise.",
+            "description_nl": "Een ambitieuze cheesecake die iets anders probeert. Het concept is interessant maar de uitvoering maakt de belofte niet helemaal waar.",
+            "id": 17,
+            "imageFile": "jaxx-marina.jpg",
+            "imageUrl": "https://bestcheesecakeintheworld.com/assets/images/jaxx-marina.jpg",
+            "name": "Jaxx Marina",
+            "rank": 18,
+            "rating": 5,
+            "shortNote": "interesting cheesecake",
+            "shortNote_nl": "interessante cheesecake",
+            "venue": "Jaxx Marina",
+            "websiteUrl": "https://jaxxmarina.nl",
+            "year": 2024
+        },
+        {
+            "city": "Oisterwijk",
+            "coordinates": {
+                "lat": 51.5815,
+                "lng": 5.1977
+            },
+            "country": "Netherlands",
+            "countryFlag": "🇳🇱",
+            "description": "A classic, by-the-book cheesecake that plays it entirely safe. It does not offend, but it does not leave a lasting impression either.",
+            "description_nl": "Een klassieke, boekje-volgende cheesecake die het volledig veilig speelt. Hij stoort niet, maar laat ook geen blijvende indruk achter.",
+            "id": 18,
+            "imageFile": "de-tijd.jpg",
+            "imageUrl": "https://bestcheesecakeintheworld.com/assets/images/de-tijd.jpg",
+            "name": "De Tijd",
+            "rank": 19,
+            "rating": 4.8,
+            "shortNote": "classic cheesecake",
+            "shortNote_nl": "klassieke cheesecake",
+            "venue": "Eetcafé De Tijd",
+            "websiteUrl": "https://www.detijdoisterwijk.nl",
+            "year": 2025
+        },
+        {
+            "city": "Waalwijk",
+            "coordinates": {
+                "lat": 51.6817,
+                "lng": 5.0722
+            },
+            "country": "Netherlands",
+            "countryFlag": "🇳🇱",
+            "description": "A churros cheesecake — a bold creative experiment that ultimately struggles to reconcile the two flavour profiles into something coherent.",
+            "description_nl": "Een churros cheesecake — een gedurfd creatief experiment dat er uiteindelijk niet in slaagt de twee smaakprofielen samen te voegen tot iets coherents.",
+            "id": 19,
+            "imageFile": "wijckers.jpg",
+            "imageUrl": "https://bestcheesecakeintheworld.com/assets/images/wijckers.jpg",
+            "name": "Wijckers",
+            "rank": 20,
+            "rating": 4.4,
+            "shortNote": "churros cheesecake",
+            "shortNote_nl": "churros cheesecake",
+            "venue": "Restaurant Wijckers",
+            "websiteUrl": "https://www.wijckers.nl",
+            "year": 2024
+        },
+        {
+            "city": "Málaga",
+            "coordinates": {
+                "lat": 36.7181,
+                "lng": -4.4202
+            },
+            "country": "Spain",
+            "countryFlag": "🇪🇸",
+            "description": "A classic cheesecake with a gentle Spanish character. The location is charming but the cheesecake itself is a disappointment given the promising setting.",
+            "description_nl": "Een klassieke cheesecake met een licht Spaans karakter. De locatie is charmant maar de cheesecake zelf valt tegen gezien de veelbelovende omgeving.",
+            "id": 20,
+            "imageFile": "la-bouganvilla.jpg",
+            "imageUrl": "https://bestcheesecakeintheworld.com/assets/images/la-bouganvilla.jpg",
+            "name": "La Bouganvilla",
+            "rank": 21,
+            "rating": 4,
+            "shortNote": "classic cheesecake with Spanish taste",
+            "shortNote_nl": "klassieke cheesecake met Spaans accent",
+            "venue": "Restaurante Bar La Bouganvilla",
+            "websiteUrl": "https://labouganvilla.com/",
+            "year": 2024
+        },
+        {
+            "city": "Oslo",
+            "coordinates": {
+                "lat": 59.9109,
+                "lng": 10.7529
+            },
+            "country": "Norway",
+            "countryFlag": "🇳🇴",
+            "description": "Oslo is a beautiful city. This cheesecake, unfortunately, is not a highlight. Disappointing for a restaurant of this calibre and location.",
+            "description_nl": "Oslo is een prachtige stad. Deze cheesecake is helaas geen hoogtepunt. Teleurstellend voor een restaurant van dit kaliber en deze locatie.",
+            "id": 21,
+            "imageFile": "atlas-oslo.jpg",
+            "imageUrl": "https://bestcheesecakeintheworld.com/assets/images/atlas-oslo.jpg",
+            "name": "Atlas",
+            "rank": 22,
+            "rating": 4,
+            "shortNote": "Disappointing",
+            "shortNote_nl": "Teleurstellend",
+            "venue": "Atlas Brasserie & Café",
+            "websiteUrl": "https://amerikalinjen.com/eat-and-drink/the-atlas-restaurant/",
+            "year": 2026
+        },
+        {
+            "city": "Serfaus",
+            "coordinates": {
+                "lat": 47.043,
+                "lng": 10.596
+            },
+            "country": "Austria",
+            "countryFlag": "🇦🇹",
+            "description": "A profound disappointment at 1,820 metres altitude. The texture resembled pudding and it tasted of very little — a rare miss in an otherwise beautiful ski area.",
+            "description_nl": "Een grote teleurstelling op 1.820 meter hoogte. De textuur leek op pudding en het smaakte nergens naar — een zeldzame misser in een overigens prachtig skigebied.",
+            "id": 22,
+            "imageFile": "seealm.jpg",
+            "imageUrl": "https://bestcheesecakeintheworld.com/assets/images/seealm.jpg",
+            "name": "Seealm",
+            "rank": 23,
+            "rating": 2.5,
+            "shortNote": "Texture like pudding, tasted like nothing",
+            "shortNote_nl": "Textuur als pudding, smaakte naar niets",
+            "venue": "Seealm Hög",
+            "websiteUrl": "https://www.serfaus-fiss-ladis.at",
+            "year": 2026
+        }
+    ],
+    "lastUpdated": "2026-04-27",
+    "version": "2.0"
 }

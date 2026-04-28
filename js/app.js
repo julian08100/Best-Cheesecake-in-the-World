@@ -1,19 +1,252 @@
 /* ============================================================
-   BEST CHEESECAKE IN THE WORLD — App v2
-   API endpoint for iOS app: /api/cheesecakes.json
-   Form endpoint: configure FORM_ENDPOINT below (Firebase Function or Formspree)
+   BEST CHEESECAKE IN THE WORLD — App v3
+   Bilingual (EN/NL) + Dark/Light theme
    ============================================================ */
 
 const API_URL = 'api/cheesecakes.json';
 
 let allCheesecakes = [];
 let filteredCheesecakes = [];
-let votes = JSON.parse(localStorage.getItem('bcw_votes') || '{}'); // { id: 'up'|'down' }
-let communityVotes = JSON.parse(localStorage.getItem('bcw_community') || '{}'); // { id: { approve, disapprove } }
+let votes = JSON.parse(localStorage.getItem('bcw_votes') || '{}');
+let communityVotes = JSON.parse(localStorage.getItem('bcw_community') || '{}');
+
+// ── Language & Theme ─────────────────────────────────────────
+
+let lang  = localStorage.getItem('bcw_lang')  || detectLang();
+let theme = localStorage.getItem('bcw_theme') || detectTheme();
+
+function detectLang() {
+  const nav = (navigator.language || navigator.languages?.[0] || 'en').toLowerCase();
+  return nav.startsWith('nl') ? 'nl' : 'en';
+}
+
+function detectTheme() {
+  return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+}
+
+// ── i18n ─────────────────────────────────────────────────────
+
+const T = {
+  en: {
+    'logo.title': 'Best Cheesecake',
+    'logo.sub': 'in the World',
+    'nav.rankings': 'Rankings',
+    'nav.map': 'Map',
+    'nav.about': 'About',
+    'nav.contact': 'Contact',
+    'hero.eyebrow': 'An Obsessive Mission',
+    'hero.title': 'Best Cheesecake',
+    'hero.title.em': 'in the World',
+    'hero.desc': "We travel. We taste. We rank.<br />Every cheesecake that crosses our path gets an honest, personal assessment — and its rightful place on this list.",
+    'hero.btn': 'Explore the Rankings',
+    'hero.btn2': 'The Mission',
+    'hero.scroll': 'Scroll',
+    'mission.text': "Not all cheesecakes are created equal. Some are transcendent; some are forgettable; some should never have been called a cheesecake at all. We've tasted them in beach bars, mountain restaurants, and city cafés across Europe and beyond. This is our record.",
+    'stat.reviewed': 'Cheesecakes Reviewed',
+    'stat.countries': 'Countries on the Map',
+    'stat.assessors': 'Dedicated Assessors',
+    'stat.since': 'Journey Began',
+    'section.rankings': 'The Rankings',
+    'section.rankings.sub': 'From a 9.0 masterpiece to a mountain-altitude disappointment — every cheesecake tells its own story.',
+    'filter.sort': 'Sort',
+    'filter.sort.rank': 'By Rank',
+    'filter.sort.rating-desc': 'Rating ↓',
+    'filter.sort.rating-asc': 'Rating ↑',
+    'filter.sort.year-desc': 'Newest First',
+    'filter.sort.name': 'Name A–Z',
+    'filter.country': 'Country',
+    'filter.country.all': 'All Countries',
+    'filter.search': 'Search venue, city…',
+    'section.map': 'On the Map',
+    'section.map.sub': 'Every cheesecake, plotted across Europe and beyond.',
+    'about.eyebrow': 'Why We Do This',
+    'about.title': 'The Mission',
+    'about.p1': "Somewhere out there is a cheesecake so perfectly crafted that it defines what a cheesecake can be. We haven't found it yet — but we're looking. Not critics, not professional food writers — simply people with a genuine obsession for a well-made cheesecake and a belief that the world deserves to know where the best ones are.",
+    'about.p2': 'Every entry on this list has been personally assessed. We evaluate appearance, texture, flavour, and the overall experience. Our assessments go through a review process before publication to maintain honesty and consistency.',
+    'about.p3': 'Travelling across Europe and beyond, we continue to discover and document. The list grows with every trip. The best cheesecake in the world is still out there.',
+    'about.badge': 'Rank #1',
+    'contact.eyebrow': 'Get in Touch',
+    'contact.title': 'Join the Mission',
+    'contact.sub': 'Know a great cheesecake? Think we missed one? Tell us — the search never ends.',
+    'contact.hint': 'Click below to reveal contact details.',
+    'contact.btn': 'Reveal Contact Details',
+    'footer.brand': 'Best Cheesecake in the World',
+    'footer.tagline': 'Personally assessed by our team of connoisseurs. The search continues.',
+    'footer.privacy': 'Privacy',
+    'footer.terms': 'Terms',
+    'modal.published': 'Published',
+    'modal.score': 'Score / 10',
+    'modal.community': 'Community Response',
+    'modal.agree': '▲ Agree',
+    'modal.disagree': '▼ Disagree',
+    'modal.country': 'Country',
+    'modal.year': 'Year Visited',
+    'modal.assessors': 'Assessors',
+    'modal.restaurant': 'Restaurant',
+    'modal.connoisseurs': 'Our Connoisseurs',
+    'vote.up': '▲ Vote recorded — thank you!',
+    'vote.down': '▼ Noted — honest feedback appreciated',
+  },
+  nl: {
+    'logo.title': 'Beste Cheesecake',
+    'logo.sub': 'ter Wereld',
+    'nav.rankings': 'Ranglijst',
+    'nav.map': 'Kaart',
+    'nav.about': 'Over ons',
+    'nav.contact': 'Contact',
+    'hero.eyebrow': 'Een Obsessieve Missie',
+    'hero.title': 'Beste Cheesecake',
+    'hero.title.em': 'ter Wereld',
+    'hero.desc': 'Wij reizen. Wij proeven. Wij rangschikken.<br />Elke cheesecake die ons pad kruist krijgt een eerlijke, persoonlijke beoordeling — en zijn rechtmatige plek op deze lijst.',
+    'hero.btn': 'Bekijk de Ranglijst',
+    'hero.btn2': 'De Missie',
+    'hero.scroll': 'Scroll',
+    'mission.text': 'Niet alle cheesecakes zijn gelijk. Sommige zijn subliem; sommige zijn vergeetbaar; sommige hadden nooit een cheesecake mogen heten. We hebben ze geproefd in strandtenten, bergrestaurants en cafés van Nederland tot Noorwegen. Dit is ons verslag.',
+    'stat.reviewed': 'Cheesecakes Beoordeeld',
+    'stat.countries': 'Landen op de Kaart',
+    'stat.assessors': 'Toegewijde Beoordelaars',
+    'stat.since': 'Begin van de Reis',
+    'section.rankings': 'De Ranglijst',
+    'section.rankings.sub': 'Van een 9,0 meesterwerk tot een teleurstelling op berghoogte — elke cheesecake vertelt zijn eigen verhaal.',
+    'filter.sort': 'Sorteren',
+    'filter.sort.rank': 'Op Rang',
+    'filter.sort.rating-desc': 'Beoordeling ↓',
+    'filter.sort.rating-asc': 'Beoordeling ↑',
+    'filter.sort.year-desc': 'Nieuwste Eerst',
+    'filter.sort.name': 'Naam A–Z',
+    'filter.country': 'Land',
+    'filter.country.all': 'Alle Landen',
+    'filter.search': 'Zoek locatie, stad…',
+    'section.map': 'Op de Kaart',
+    'section.map.sub': 'Elke cheesecake, in kaart gebracht door Europa en verder.',
+    'about.eyebrow': 'Waarom Wij Dit Doen',
+    'about.title': 'De Missie',
+    'about.p1': 'Ergens bestaat er een cheesecake die zo perfect is bereid dat hij definieert wat een cheesecake kan zijn. We hebben hem nog niet gevonden — maar we zijn op zoek. Geen critici, geen professionele voedseljournalisten — gewoon mensen met een echte obsessie voor een goed gemaakte cheesecake en het geloof dat de wereld verdient te weten waar de beste te vinden zijn.',
+    'about.p2': 'Elke vermelding op deze lijst is persoonlijk beoordeeld. We evalueren uiterlijk, textuur, smaak en de algehele beleving. Onze beoordelingen doorlopen een reviewproces voor publicatie om eerlijkheid en consistentie te waarborgen.',
+    'about.p3': 'Reizend door Europa en verder blijven we ontdekken en documenteren. De lijst groeit met elke reis. De beste cheesecake ter wereld is er nog steeds.',
+    'about.badge': 'Rang #1',
+    'contact.eyebrow': 'Neem Contact Op',
+    'contact.title': 'Doe Mee aan de Missie',
+    'contact.sub': 'Ken jij een geweldige cheesecake? Denk je dat we er een hebben gemist? Laat het ons weten — de zoektocht eindigt nooit.',
+    'contact.hint': 'Klik hieronder om contactgegevens te tonen.',
+    'contact.btn': 'Toon Contactgegevens',
+    'footer.brand': 'Beste Cheesecake ter Wereld',
+    'footer.tagline': 'Persoonlijk beoordeeld door ons team van kenners. De zoektocht gaat door.',
+    'footer.privacy': 'Privacy',
+    'footer.terms': 'Voorwaarden',
+    'modal.published': 'Gepubliceerd',
+    'modal.score': 'Score / 10',
+    'modal.community': 'Community Reactie',
+    'modal.agree': '▲ Mee eens',
+    'modal.disagree': '▼ Niet mee eens',
+    'modal.country': 'Land',
+    'modal.year': 'Jaar Bezocht',
+    'modal.assessors': 'Beoordelaars',
+    'modal.restaurant': 'Restaurant',
+    'modal.connoisseurs': 'Onze Kenners',
+    'vote.up': '▲ Stem geregistreerd — dankje!',
+    'vote.down': '▼ Genoteerd — eerlijke feedback gewaardeerd',
+  }
+};
+
+function t(key) {
+  return T[lang]?.[key] ?? T.en[key] ?? key;
+}
+
+function resultsLabel(n) {
+  if (lang === 'nl') return `${n} resultaat${n !== 1 ? 'en' : ''}`;
+  return `${n} result${n !== 1 ? 's' : ''}`;
+}
+
+function rankLabel(n) {
+  return lang === 'nl' ? `Rang #${n}` : `Rank #${n}`;
+}
+
+// ── Language helpers for bilingual cheesecake data ────────────
+
+function note(c)   { return (lang === 'nl' && c.shortNote_nl)   ? c.shortNote_nl   : c.shortNote; }
+function desc(c)   { return (lang === 'nl' && c.description_nl) ? c.description_nl : c.description; }
+
+// ── Apply theme & language ────────────────────────────────────
+
+function applyTheme() {
+  document.documentElement.classList.toggle('light-mode', theme === 'light');
+  const icon = theme === 'dark' ? '&#9790;' : '&#9788;';
+  ['theme-toggle', 'theme-toggle-mobile'].forEach(id => {
+    const btn = el(id);
+    if (btn) btn.innerHTML = icon;
+  });
+}
+
+function toggleTheme() {
+  theme = theme === 'dark' ? 'light' : 'dark';
+  localStorage.setItem('bcw_theme', theme);
+  applyTheme();
+}
+
+function applyLang() {
+  document.documentElement.lang = lang;
+
+  document.querySelectorAll('[data-i18n]').forEach(node => {
+    const key = node.dataset.i18n;
+    const val = T[lang]?.[key] ?? T.en[key];
+    if (val != null) node.textContent = val;
+  });
+
+  document.querySelectorAll('[data-i18n-html]').forEach(node => {
+    const key = node.dataset.i18nHtml;
+    const val = T[lang]?.[key] ?? T.en[key];
+    if (val != null) node.innerHTML = val;
+  });
+
+  document.querySelectorAll('[data-i18n-placeholder]').forEach(node => {
+    const key = node.dataset.i18nPlaceholder;
+    const val = T[lang]?.[key] ?? T.en[key];
+    if (val != null) node.placeholder = val;
+  });
+
+  const langLabel = lang === 'en' ? 'NL' : 'EN';
+  ['lang-toggle', 'lang-toggle-mobile'].forEach(id => {
+    const btn = el(id);
+    if (btn) btn.textContent = langLabel;
+  });
+
+  updateSelectTranslations();
+  renderAll();
+  renderStats();
+
+  const count = filteredCheesecakes.length;
+  const rc = el('results-count');
+  if (rc) rc.textContent = resultsLabel(count);
+}
+
+function toggleLang() {
+  lang = lang === 'en' ? 'nl' : 'en';
+  localStorage.setItem('bcw_lang', lang);
+  applyLang();
+}
+
+function updateSelectTranslations() {
+  const sortSel = el('sort-select');
+  if (sortSel) {
+    sortSel.querySelectorAll('[data-i18n]').forEach(opt => {
+      const key = opt.dataset.i18n;
+      const val = T[lang]?.[key] ?? T.en[key];
+      if (val != null) opt.textContent = val;
+    });
+  }
+  const countrySel = el('country-select');
+  if (countrySel) {
+    const allOpt = countrySel.querySelector('[data-i18n="filter.country.all"]');
+    if (allOpt) allOpt.textContent = t('filter.country.all');
+  }
+}
 
 // ── Bootstrap ────────────────────────────────────────────────
 
 async function init() {
+  applyTheme();
+
   try {
     const data = await fetch(API_URL).then(r => r.json());
     allCheesecakes = data.cheesecakes;
@@ -22,7 +255,6 @@ async function init() {
     allCheesecakes = [];
   }
 
-  // Merge community votes from localStorage into data
   allCheesecakes = allCheesecakes.map(c => ({
     ...c,
     communityVotes: communityVotes[c.id] ?? c.communityVotes ?? { approve: 0, disapprove: 0 }
@@ -30,8 +262,7 @@ async function init() {
 
   filteredCheesecakes = [...allCheesecakes];
   populateCountryFilter();
-  renderStats();
-  renderAll();
+  applyLang(); // sets all static strings + re-renders
   renderMap();
   bindEvents();
   bindMobileNav();
@@ -71,7 +302,8 @@ function applyFilters() {
       c.venue?.toLowerCase().includes(query) ||
       c.city.toLowerCase().includes(query) ||
       c.country.toLowerCase().includes(query) ||
-      c.description.toLowerCase().includes(query);
+      c.description.toLowerCase().includes(query) ||
+      (c.description_nl?.toLowerCase().includes(query));
     return matchCountry && matchQuery;
   });
 
@@ -87,7 +319,7 @@ function applyFilters() {
   });
   filteredCheesecakes = sorted;
 
-  el('results-count').textContent = `${filteredCheesecakes.length} result${filteredCheesecakes.length !== 1 ? 's' : ''}`;
+  el('results-count').textContent = resultsLabel(filteredCheesecakes.length);
   renderAll();
 }
 
@@ -126,7 +358,7 @@ function renderPodium(items) {
   const grid = el('podium-grid');
   if (!items.length) { grid.innerHTML = ''; return; }
 
-  const order = items.length >= 3 ? [items[1], items[0], items[2]] : items;
+  const order   = items.length >= 3 ? [items[1], items[0], items[2]] : items;
   const rankMap = items.length >= 3 ? [2, 1, 3] : items.map((_, i) => i + 1);
 
   grid.innerHTML = order.map((c, i) => {
@@ -148,15 +380,15 @@ function renderPodium(items) {
         </div>
         <div class="podium-name">${esc(c.name)}</div>
         <div class="podium-location">${esc(c.city)}, ${esc(c.country)}</div>
-        <div class="podium-note">"${esc(c.shortNote)}"</div>
+        <div class="podium-note">"${esc(note(c))}"</div>
         ${votePills(c)}
       </div>
     </div>`;
   }).join('');
 
-  grid.querySelectorAll('.podium-card').forEach(el => {
-    el.addEventListener('click', () => openModal(+el.dataset.id));
-    el.addEventListener('keydown', e => { if (e.key === 'Enter') openModal(+el.dataset.id); });
+  grid.querySelectorAll('.podium-card').forEach(card => {
+    card.addEventListener('click', () => openModal(+card.dataset.id));
+    card.addEventListener('keydown', e => { if (e.key === 'Enter') openModal(+card.dataset.id); });
   });
 
   syncImgPlaceholders(grid);
@@ -184,12 +416,12 @@ function renderCards(items) {
         </div>
         <div class="card-location">${c.countryFlag} ${esc(c.city)}, ${esc(c.country)}</div>
         <div class="card-bar-bg"><div class="card-bar-fill" style="width:${c.rating * 10}%"></div></div>
-        <p class="card-note">"${esc(c.shortNote)}"</p>
+        <p class="card-note">"${esc(note(c))}"</p>
         <div class="card-footer">
           <span class="card-year">${c.year}</span>
           <div class="card-votes">
-            <button class="card-vote-btn card-vote-btn--up ${myVote === 'up' ? 'voted' : ''}" data-id="${c.id}" data-dir="up" title="Good cheesecake" onclick="castVote(event,${c.id},'up')">▲ ${v.approve}</button>
-            <button class="card-vote-btn card-vote-btn--down ${myVote === 'down' ? 'voted' : ''}" data-id="${c.id}" data-dir="down" title="Disagree" onclick="castVote(event,${c.id},'down')">▼ ${v.disapprove}</button>
+            <button class="card-vote-btn card-vote-btn--up ${myVote === 'up' ? 'voted' : ''}" data-id="${c.id}" data-dir="up" title="${t('modal.agree')}" onclick="castVote(event,${c.id},'up')">▲ ${v.approve}</button>
+            <button class="card-vote-btn card-vote-btn--down ${myVote === 'down' ? 'voted' : ''}" data-id="${c.id}" data-dir="down" title="${t('modal.disagree')}" onclick="castVote(event,${c.id},'down')">▼ ${v.disapprove}</button>
           </div>
         </div>
       </div>
@@ -228,11 +460,10 @@ function syncImgPlaceholders(container) {
 function castVote(event, id, direction) {
   event.stopPropagation();
   const prev = votes[id];
-  if (prev === direction) return; // already voted this way
+  if (prev === direction) return;
 
-  // Update community tallies
   const v = communityVotes[id] ?? { approve: 0, disapprove: 0 };
-  if (prev === 'up')   v.approve   = Math.max(0, v.approve - 1);
+  if (prev === 'up')   v.approve    = Math.max(0, v.approve - 1);
   if (prev === 'down') v.disapprove = Math.max(0, v.disapprove - 1);
   if (direction === 'up')   v.approve++;
   if (direction === 'down') v.disapprove++;
@@ -240,14 +471,13 @@ function castVote(event, id, direction) {
   communityVotes[id] = v;
   votes[id] = direction;
 
-  // Update the master array too
   const cake = allCheesecakes.find(c => c.id === id);
   if (cake) cake.communityVotes = { ...v };
 
   localStorage.setItem('bcw_votes', JSON.stringify(votes));
   localStorage.setItem('bcw_community', JSON.stringify(communityVotes));
 
-  showToast(direction === 'up' ? '▲ Vote recorded — thank you!' : '▼ Noted — honest feedback appreciated');
+  showToast(t(direction === 'up' ? 'vote.up' : 'vote.down'));
   applyFilters();
 }
 
@@ -271,8 +501,8 @@ function openModal(id) {
     </div>
     <div class="modal-body">
       <div class="modal-top-row">
-        <span class="modal-rank-chip">Rank #${c.rank}</span>
-        <span class="modal-status-chip"><span class="status-dot"></span>Published</span>
+        <span class="modal-rank-chip">${rankLabel(c.rank)}</span>
+        <span class="modal-status-chip"><span class="status-dot"></span>${t('modal.published')}</span>
       </div>
       <h2 class="modal-title">${esc(c.name)}</h2>
       <div class="modal-venue">${esc(c.venue ?? c.name)}</div>
@@ -282,39 +512,39 @@ function openModal(id) {
       <div class="modal-score-row">
         <div class="modal-score-big ${scoreClass(c.rating)}">${c.rating.toFixed(1)}</div>
         <div class="modal-score-meta">
-          <div class="modal-score-label">Score / 10</div>
+          <div class="modal-score-label">${t('modal.score')}</div>
           <div class="modal-score-bar-bg">
             <div class="modal-score-bar-fill" style="width:${c.rating * 10}%"></div>
           </div>
         </div>
       </div>
 
-      <p class="modal-desc">${esc(c.description)}</p>
-      <div class="modal-quote">"${esc(c.shortNote)}"</div>
+      <p class="modal-desc">${esc(desc(c))}</p>
+      <div class="modal-quote">"${esc(note(c))}"</div>
 
       <div class="modal-community">
-        <div class="modal-community-title">Community Response</div>
+        <div class="modal-community-title">${t('modal.community')}</div>
         <div class="modal-vote-row">
-          <button class="modal-vote-btn modal-vote-btn--up ${myVote === 'up' ? 'voted' : ''}" onclick="castVote(event,${c.id},'up')">▲ Agree &nbsp;<strong>${v.approve}</strong></button>
-          <button class="modal-vote-btn modal-vote-btn--down ${myVote === 'down' ? 'voted' : ''}" onclick="castVote(event,${c.id},'down')">▼ Disagree &nbsp;<strong>${v.disapprove}</strong></button>
+          <button class="modal-vote-btn modal-vote-btn--up ${myVote === 'up' ? 'voted' : ''}" onclick="castVote(event,${c.id},'up')">${t('modal.agree')} &nbsp;<strong>${v.approve}</strong></button>
+          <button class="modal-vote-btn modal-vote-btn--down ${myVote === 'down' ? 'voted' : ''}" onclick="castVote(event,${c.id},'down')">${t('modal.disagree')} &nbsp;<strong>${v.disapprove}</strong></button>
         </div>
       </div>
 
       <div class="modal-meta-grid">
         <div class="modal-meta-item">
-          <div class="modal-meta-label">Country</div>
+          <div class="modal-meta-label">${t('modal.country')}</div>
           <div class="modal-meta-value">${c.countryFlag} ${esc(c.country)}</div>
         </div>
         <div class="modal-meta-item">
-          <div class="modal-meta-label">Year Visited</div>
+          <div class="modal-meta-label">${t('modal.year')}</div>
           <div class="modal-meta-value">${c.year}</div>
         </div>
         <div class="modal-meta-item">
-          <div class="modal-meta-label">Assessors</div>
-          <div class="modal-meta-value">Our Connoisseurs</div>
+          <div class="modal-meta-label">${t('modal.assessors')}</div>
+          <div class="modal-meta-value">${t('modal.connoisseurs')}</div>
         </div>
         <div class="modal-meta-item">
-          <div class="modal-meta-label">Restaurant</div>
+          <div class="modal-meta-label">${t('modal.restaurant')}</div>
           <div class="modal-meta-value">
             ${c.websiteUrl
               ? `<a href="${c.websiteUrl}" target="_blank" rel="noopener">${esc(c.venue ?? c.name)} ↗</a>`
@@ -323,7 +553,7 @@ function openModal(id) {
         </div>
       </div>
 
-      ${c.tags?.length ? `<div class="modal-tags">${c.tags.map(t => `<span class="modal-tag">#${t}</span>`).join('')}</div>` : ''}
+      ${c.tags?.length ? `<div class="modal-tags">${c.tags.map(tag => `<span class="modal-tag">#${tag}</span>`).join('')}</div>` : ''}
     </div>`;
 
   const overlay = el('modal-overlay');
@@ -341,7 +571,7 @@ function closeModal() {
 // ── Contact Reveal ────────────────────────────────────────────
 
 function revealContact() {
-  const btn = el('contact-reveal-btn');
+  const btn     = el('contact-reveal-btn');
   const details = el('contact-details');
   if (!details || details.children.length) return;
   const u = 'j.de.haas', d = 'digtialcc.nl';
@@ -363,11 +593,18 @@ function bindEvents() {
   el('modal-overlay').addEventListener('click', e => { if (e.target === e.currentTarget) closeModal(); });
   document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
   el('contact-reveal-btn').addEventListener('click', revealContact);
+
+  ['lang-toggle', 'lang-toggle-mobile'].forEach(id => {
+    el(id)?.addEventListener('click', toggleLang);
+  });
+  ['theme-toggle', 'theme-toggle-mobile'].forEach(id => {
+    el(id)?.addEventListener('click', toggleTheme);
+  });
 }
 
 function bindMobileNav() {
-  const btn  = el('nav-menu-btn');
-  const nav  = el('mobile-nav');
+  const btn = el('nav-menu-btn');
+  const nav = el('mobile-nav');
   if (!btn || !nav) return;
   btn.addEventListener('click', () => nav.classList.toggle('open'));
   nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => nav.classList.remove('open')));
@@ -376,16 +613,16 @@ function bindMobileNav() {
 // ── Toast ────────────────────────────────────────────────────
 
 function showToast(msg) {
-  const t = el('toast');
-  t.textContent = msg;
-  t.classList.add('visible');
-  setTimeout(() => t.classList.remove('visible'), 3000);
+  const toast = el('toast');
+  toast.textContent = msg;
+  toast.classList.add('visible');
+  setTimeout(() => toast.classList.remove('visible'), 3000);
 }
 
 // ── Helpers ──────────────────────────────────────────────────
 
-function el(id) { return document.getElementById(id); }
-function esc(s) { return String(s ?? '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+function el(id)   { return document.getElementById(id); }
+function esc(s)   { return String(s ?? '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
 function debounce(fn, ms) { let t; return (...a) => { clearTimeout(t); t = setTimeout(() => fn(...a), ms); }; }
 
 // ── Map ──────────────────────────────────────────────────────
@@ -427,7 +664,7 @@ function renderMap() {
     });
 
     const popup = `
-      <div class="map-popup-rank">Rank #${c.rank}</div>
+      <div class="map-popup-rank">${rankLabel(c.rank)}</div>
       <div class="map-popup-name">${esc(c.name)}</div>
       <div class="map-popup-location">${esc(c.city)}, ${esc(c.country)}</div>
       <span class="map-popup-score">${c.rating.toFixed(1)}</span>

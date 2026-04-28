@@ -21,41 +21,50 @@
       <div class="logo">
         <img src="assets/logo.png" alt="Best Cheesecake Logo" class="logo-img" onerror="this.style.display='none'" />
         <div class="logo-text">
-          <span class="logo-title">Best Cheesecake</span>
-          <span class="logo-sub">in the World</span>
+          <span class="logo-title" data-i18n="logo.title">Best Cheesecake</span>
+          <span class="logo-sub" data-i18n="logo.sub">in the World</span>
         </div>
       </div>
       <nav class="main-nav">
-        <a href="#rankings">Rankings</a>
-        <a href="#map">Map</a>
-        <a href="#about">About</a>
-        <a href="#contact" class="nav-cta">Contact</a>
+        <a href="#rankings" data-i18n="nav.rankings">Rankings</a>
+        <a href="#map" data-i18n="nav.map">Map</a>
+        <a href="#about" data-i18n="nav.about">About</a>
+        <a href="#contact" class="nav-cta" data-i18n="nav.contact">Contact</a>
       </nav>
-      <button class="nav-menu-btn" id="nav-menu-btn" aria-label="Menu">&#9776;</button>
+      <div class="header-controls">
+        <button class="header-toggle-btn" id="lang-toggle" aria-label="Switch language">NL</button>
+        <button class="header-toggle-btn" id="theme-toggle" aria-label="Toggle theme">&#9790;</button>
+        <button class="nav-menu-btn" id="nav-menu-btn" aria-label="Menu">&#9776;</button>
+      </div>
     </div>
   </header>
 
   <!-- Mobile Nav -->
   <div class="mobile-nav" id="mobile-nav">
-    <a href="#rankings" class="mobile-nav-link">Rankings</a>
-    <a href="#map" class="mobile-nav-link">Map</a>
-    <a href="#about" class="mobile-nav-link">About</a>
-    <a href="#contact" class="mobile-nav-link">Contact</a>
+    <a href="#rankings" class="mobile-nav-link" data-i18n="nav.rankings">Rankings</a>
+    <a href="#map" class="mobile-nav-link" data-i18n="nav.map">Map</a>
+    <a href="#about" class="mobile-nav-link" data-i18n="nav.about">About</a>
+    <a href="#contact" class="mobile-nav-link" data-i18n="nav.contact">Contact</a>
+    <div class="mobile-nav-controls">
+      <button class="header-toggle-btn" id="lang-toggle-mobile" aria-label="Switch language">NL</button>
+      <button class="header-toggle-btn" id="theme-toggle-mobile" aria-label="Toggle theme">&#9790;</button>
+    </div>
   </div>
 
   <!-- Hero -->
   <section class="hero">
     <div class="hero-bg"></div>
     <div class="hero-content">
-      <p class="hero-eyebrow">The Definitive List</p>
-      <h1 class="hero-title">Best Cheesecake<br /><em>in the World</em></h1>
-      <p class="hero-desc">A curated ranking of the world's finest cheesecakes,<br />personally assessed by a dedicated team of connoisseurs on their travels.</p>
+      <p class="hero-eyebrow" data-i18n="hero.eyebrow">An Obsessive Mission</p>
+      <h1 class="hero-title"><span data-i18n="hero.title">Best Cheesecake</span><br /><em data-i18n="hero.title.em">in the World</em></h1>
+      <p class="hero-desc" data-i18n-html="hero.desc">We travel. We taste. We rank.<br />Every cheesecake that crosses our path gets an honest, personal assessment — and its rightful place on this list.</p>
       <div class="hero-ctas">
-        <a href="#rankings" class="hero-btn">Explore the Rankings</a>
+        <a href="#rankings" class="hero-btn" data-i18n="hero.btn">Explore the Rankings</a>
+        <a href="#about" class="hero-btn hero-btn--ghost" data-i18n="hero.btn2">The Mission</a>
       </div>
     </div>
     <div class="hero-scroll-hint">
-      <span>Scroll</span>
+      <span data-i18n="hero.scroll">Scroll</span>
       <div class="scroll-line"></div>
     </div>
   </section>
@@ -65,54 +74,61 @@
     <div class="stats-inner">
       <div class="stat">
         <span class="stat-number" id="stat-total">22</span>
-        <span class="stat-label">Cheesecakes Reviewed</span>
+        <span class="stat-label" data-i18n="stat.reviewed">Cheesecakes Reviewed</span>
       </div>
       <div class="stat-divider"></div>
       <div class="stat">
         <span class="stat-number" id="stat-countries">8</span>
-        <span class="stat-label">Countries on the Map</span>
+        <span class="stat-label" data-i18n="stat.countries">Countries on the Map</span>
       </div>
       <div class="stat-divider"></div>
       <div class="stat">
         <span class="stat-number">3</span>
-        <span class="stat-label">Dedicated Assessors</span>
+        <span class="stat-label" data-i18n="stat.assessors">Dedicated Assessors</span>
       </div>
       <div class="stat-divider"></div>
       <div class="stat">
         <span class="stat-number">2024</span>
-        <span class="stat-label">Journey Began</span>
+        <span class="stat-label" data-i18n="stat.since">Journey Began</span>
       </div>
+    </div>
+  </section>
+
+  <!-- Mission Band -->
+  <section class="mission-band">
+    <div class="mission-band-inner">
+      <p class="mission-statement" data-i18n="mission.text">Not all cheesecakes are created equal. Some are transcendent; some are forgettable; some should never have been called a cheesecake at all. We've tasted them in beach bars, mountain restaurants, and city cafés across Europe and beyond. This is our record.</p>
     </div>
   </section>
 
   <!-- Rankings Section -->
   <section class="rankings-section" id="rankings">
     <div class="section-header">
-      <h2 class="section-title">The Rankings</h2>
-      <p class="section-subtitle">Every cheesecake personally tasted and honestly assessed.</p>
+      <h2 class="section-title" data-i18n="section.rankings">The Rankings</h2>
+      <p class="section-subtitle" data-i18n="section.rankings.sub">From a 9.0 masterpiece to a mountain-altitude disappointment — every cheesecake tells its own story.</p>
     </div>
 
     <!-- Filters -->
     <div class="filters-bar">
       <div class="filters-inner">
         <div class="filter-group">
-          <label for="sort-select">Sort</label>
+          <label for="sort-select" data-i18n="filter.sort">Sort</label>
           <select id="sort-select" class="filter-select">
-            <option value="rank">By Rank</option>
-            <option value="rating-desc">Rating ↓</option>
-            <option value="rating-asc">Rating ↑</option>
-            <option value="year-desc">Newest First</option>
-            <option value="name">Name A–Z</option>
+            <option value="rank" data-i18n="filter.sort.rank">By Rank</option>
+            <option value="rating-desc" data-i18n="filter.sort.rating-desc">Rating ↓</option>
+            <option value="rating-asc" data-i18n="filter.sort.rating-asc">Rating ↑</option>
+            <option value="year-desc" data-i18n="filter.sort.year-desc">Newest First</option>
+            <option value="name" data-i18n="filter.sort.name">Name A–Z</option>
           </select>
         </div>
         <div class="filter-group">
-          <label for="country-select">Country</label>
+          <label for="country-select" data-i18n="filter.country">Country</label>
           <select id="country-select" class="filter-select">
-            <option value="all">All Countries</option>
+            <option value="all" data-i18n="filter.country.all">All Countries</option>
           </select>
         </div>
         <div class="filter-group search-group">
-          <input type="search" id="search-input" class="filter-search" placeholder="Search venue, city…" />
+          <input type="search" id="search-input" class="filter-search" data-i18n-placeholder="filter.search" placeholder="Search venue, city…" />
         </div>
         <span class="results-count" id="results-count">22 results</span>
       </div>
@@ -132,22 +148,21 @@
   <!-- Map Section -->
   <section class="map-section" id="map">
     <div class="section-header">
-      <h2 class="section-title">On the Map</h2>
-      <p class="section-subtitle">Every cheesecake, plotted across Europe and beyond.</p>
+      <h2 class="section-title" data-i18n="section.map">On the Map</h2>
+      <p class="section-subtitle" data-i18n="section.map.sub">Every cheesecake, plotted across Europe and beyond.</p>
     </div>
     <div id="cheesecake-map"></div>
   </section>
-
 
   <!-- About Section -->
   <section class="about-section" id="about">
     <div class="about-inner">
       <div class="about-text">
-        <span class="about-eyebrow">The Story</span>
-        <h2 class="about-title">The Connoisseurs</h2>
-        <p>A small team of passionate enthusiasts who decided to rank every cheesecake we encounter on our travels. Not critics, not professional food writers — simply people with a genuine passion for a well-made cheesecake and a belief that the world deserves to know where the best ones are.</p>
-        <p>Every entry on this list has been personally assessed. We evaluate appearance, texture, flavour, and the overall experience. Our assessments go through a review process before publication to maintain consistency and quality.</p>
-        <p>Travelling across Europe and beyond, we continue to discover and document. The list grows with every trip.</p>
+        <span class="about-eyebrow" data-i18n="about.eyebrow">Why We Do This</span>
+        <h2 class="about-title" data-i18n="about.title">The Mission</h2>
+        <p data-i18n="about.p1">Somewhere out there is a cheesecake so perfectly crafted that it defines what a cheesecake can be. We haven't found it yet — but we're looking. Not critics, not professional food writers — simply people with a genuine obsession for a well-made cheesecake and a belief that the world deserves to know where the best ones are.</p>
+        <p data-i18n="about.p2">Every entry on this list has been personally assessed. We evaluate appearance, texture, flavour, and the overall experience. Our assessments go through a review process before publication to maintain honesty and consistency.</p>
+        <p data-i18n="about.p3">Travelling across Europe and beyond, we continue to discover and document. The list grows with every trip. The best cheesecake in the world is still out there.</p>
       </div>
       <div class="about-visual">
         <div class="about-img-wrap">
@@ -165,7 +180,7 @@
           </div>
           <div class="about-badge">
             <span class="badge-score">9.0</span>
-            <span class="badge-label">Rank #1</span>
+            <span class="badge-label" data-i18n="about.badge">Rank #1</span>
           </div>
         </div>
       </div>
@@ -176,13 +191,13 @@
   <section class="form-section" id="contact">
     <div class="form-section-inner form-section-inner--narrow">
       <div class="form-section-header">
-        <span class="section-eyebrow">Get in Touch</span>
-        <h2 class="section-title">Contact</h2>
-        <p class="section-subtitle">Questions, corrections, or just want to say hello?</p>
+        <span class="section-eyebrow" data-i18n="contact.eyebrow">Get in Touch</span>
+        <h2 class="section-title" data-i18n="contact.title">Join the Mission</h2>
+        <p class="section-subtitle" data-i18n="contact.sub">Know a great cheesecake? Think we missed one? Tell us — the search never ends.</p>
       </div>
       <div class="contact-wall">
-        <p class="contact-wall-hint">Click below to reveal contact details.</p>
-        <button class="form-btn" id="contact-reveal-btn">Reveal Contact Details</button>
+        <p class="contact-wall-hint" data-i18n="contact.hint">Click below to reveal contact details.</p>
+        <button class="form-btn" id="contact-reveal-btn" data-i18n="contact.btn">Reveal Contact Details</button>
         <div class="contact-details" id="contact-details" hidden></div>
       </div>
     </div>
@@ -193,21 +208,21 @@
     <div class="footer-inner">
       <div class="footer-brand">
         <img src="assets/logo.png" alt="Logo" class="footer-logo" onerror="this.style.display='none'" />
-        <span>Best Cheesecake in the World</span>
+        <span data-i18n="footer.brand">Best Cheesecake in the World</span>
       </div>
-      <p class="footer-tagline">Personally assessed by our team of connoisseurs since 2024.</p>
+      <p class="footer-tagline" data-i18n="footer.tagline">Personally assessed by our team of connoisseurs since 2024.</p>
       <div class="footer-links">
-        <a href="#rankings">Rankings</a>
+        <a href="#rankings" data-i18n="nav.rankings">Rankings</a>
         <span>·</span>
-        <a href="#map">Map</a>
+        <a href="#map" data-i18n="nav.map">Map</a>
         <span>·</span>
-        <a href="#about">About</a>
+        <a href="#about" data-i18n="nav.about">About</a>
         <span>·</span>
-        <a href="#contact">Contact</a>
+        <a href="#contact" data-i18n="nav.contact">Contact</a>
         <span>·</span>
-        <a href="/privacy">Privacy</a>
+        <a href="/privacy" data-i18n="footer.privacy">Privacy</a>
         <span>·</span>
-        <a href="/terms">Terms</a>
+        <a href="/terms" data-i18n="footer.terms">Terms</a>
         <span>·</span>
         <a href="api/cheesecakes.json">API</a>
       </div>

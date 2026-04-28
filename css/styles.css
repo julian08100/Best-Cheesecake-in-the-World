@@ -86,6 +86,12 @@ button{cursor:pointer;font-family:var(--font-sans)}
 .stat-label{font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted)}
 .stat-divider{width:1px;height:56px;background:var(--border);flex-shrink:0}
 
+/* ── Mission Band ───────────────────────────────────────────── */
+.mission-band{background:var(--bg-card);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.mission-band-inner{max-width:860px;margin:0 auto;padding:48px 40px;text-align:center}
+.mission-statement{font-family:var(--font-serif);font-size:clamp(16px,2.2vw,22px);font-style:italic;color:var(--text-muted);line-height:1.7;border-left:none}
+@media(max-width:600px){.mission-band-inner{padding:36px 24px}}
+
 /* ── Rankings ───────────────────────────────────────────────── */
 .rankings-section{padding:100px 40px;max-width:1280px;margin:0 auto}
 .section-header{text-align:center;margin-bottom:56px}
@@ -337,3 +343,36 @@ button{cursor:pointer;font-family:var(--font-sans)}
 .contact-link--linkedin:hover{background:#0958a8;transform:translateY(-2px);box-shadow:0 8px 24px rgba(10,102,194,.35)}
 .contact-link--email{background:var(--bg-card2);color:var(--text);border:1px solid var(--border)}
 .contact-link--email:hover{border-color:var(--gold);color:var(--gold);transform:translateY(-2px)}
+
+/* ── Header controls (lang + theme toggles) ──────────────────── */
+.header-controls{display:flex;align-items:center;gap:6px}
+.header-toggle-btn{background:none;border:1px solid var(--border);color:var(--text-muted);font-family:var(--font-sans);font-size:12px;font-weight:600;letter-spacing:.04em;padding:4px 10px;border-radius:100px;cursor:pointer;transition:all var(--t) var(--ease);line-height:1.4}
+.header-toggle-btn:hover{border-color:var(--gold);color:var(--gold)}
+.mobile-nav-controls{display:flex;gap:8px;padding:12px 0 4px;border-top:1px solid var(--border)}
+
+/* ── Light mode ──────────────────────────────────────────────── */
+html.light-mode {
+  --bg:         #F8F4ED;
+  --bg-card:    #EDE7DB;
+  --bg-card2:   #E2D9CB;
+  --gold:       #8A5C1A;
+  --gold-light: #A87230;
+  --gold-dark:  #6B4515;
+  --cream:      #1A140D;
+  --text:       #2C2418;
+  --text-muted: #6B5C48;
+  --text-dim:   #9A8870;
+  --border:     rgba(100,70,30,0.15);
+  --border-md:  rgba(100,70,30,0.28);
+  --green:      #1F6B38;
+  --red:        #8B3A2A;
+  --shadow:     0 20px 60px rgba(0,0,0,0.12);
+}
+
+html.light-mode body{background:var(--bg)}
+html.light-mode .site-header{background:rgba(248,244,237,.92)}
+html.light-mode .mobile-nav{background:rgba(248,244,237,.97)}
+html.light-mode .leaflet-tile-pane{filter:brightness(1) saturate(1) hue-rotate(0deg) invert(0)}
+html.light-mode .filter-select{color:var(--text)}
+html.light-mode .filter-search{color:var(--text)}
+html.light-mode .form-field input,html.light-mode .form-field textarea,html.light-mode .form-field select{color:var(--text);background:var(--bg-card)}
