@@ -89,6 +89,11 @@ const T = {
     'modal.visit': 'Visit Restaurant',
     'vote.up': '▲ Vote recorded — thank you!',
     'vote.down': '▼ Noted — honest feedback appreciated',
+    'nav.app': 'App',
+    'app.eyebrow': 'Now on iPhone',
+    'app.title': 'Take the Rankings With You',
+    'app.desc': 'Browse every ranking, explore the map, and discover your next great cheesecake — wherever your travels take you.',
+    'app.sub': 'Free · Available on iPhone',
   },
   nl: {
     'logo.title': 'Beste Cheesecake',
@@ -150,6 +155,11 @@ const T = {
     'modal.visit': 'Bezoek Restaurant',
     'vote.up': '▲ Stem geregistreerd — dankje!',
     'vote.down': '▼ Genoteerd — eerlijke feedback gewaardeerd',
+    'nav.app': 'App',
+    'app.eyebrow': 'Nu op iPhone',
+    'app.title': 'Neem de Ranglijst Overal Mee',
+    'app.desc': 'Bekijk alle beoordelingen, verken de kaart en ontdek je volgende geweldige cheesecake — waar je ook naartoe reist.',
+    'app.sub': 'Gratis · Beschikbaar op iPhone',
   },
   de: {
     'logo.title': 'Bester Cheesecake',
@@ -211,6 +221,11 @@ const T = {
     'modal.visit': 'Restaurant besuchen',
     'vote.up': '▲ Stimme erfasst — Danke!',
     'vote.down': '▼ Notiert — ehrliches Feedback geschätzt',
+    'nav.app': 'App',
+    'app.eyebrow': 'Jetzt auf iPhone',
+    'app.title': 'Nimm die Rangliste überall mit',
+    'app.desc': 'Stöbere durch alle Bewertungen, erkunde die Karte und entdecke deinen nächsten großartigen Cheesecake — wo immer du reist.',
+    'app.sub': 'Kostenlos · Für iPhone erhältlich',
   }
 };
 

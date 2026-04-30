@@ -383,3 +383,15 @@ html.light-mode .leaflet-tile-pane{filter:brightness(1) saturate(1) hue-rotate(0
 html.light-mode .filter-select{color:var(--text)}
 html.light-mode .filter-search{color:var(--text)}
 html.light-mode .form-field input,html.light-mode .form-field textarea,html.light-mode .form-field select{color:var(--text);background:var(--bg-card)}
+
+/* ── App Promo ─────────────────────────────────────────────── */
+.app-promo{padding:100px 40px;text-align:center;border-top:1px solid var(--border);background:var(--bg-card)}
+.app-promo-inner{max-width:600px;margin:0 auto}
+.app-promo .section-title{margin-bottom:20px}
+.app-promo .section-subtitle{color:var(--text-muted);font-size:17px;line-height:1.7;margin-bottom:40px}
+.app-store-badge{display:inline-block;transition:opacity var(--t) var(--ease),transform var(--t) var(--ease);border-radius:9px;overflow:hidden}
+.app-store-badge:hover{opacity:.82;transform:translateY(-2px)}
+.app-promo-sub{margin-top:18px;font-size:13px;color:var(--text-dim);letter-spacing:.03em}
+html.light-mode .app-promo{background:var(--bg-card)}
+@media(max-width:860px){.app-promo{padding:72px 20px}}
+@media(max-width:600px){.app-promo{padding:56px 20px}}
