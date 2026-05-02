@@ -496,7 +496,6 @@ const T = {
     'app.sub': 'Gratis · Tilgjengelig på iPhone',
   }
 };
-};
 
 function t(key) {
   return T[lang]?.[key] ?? T.en[key] ?? key;
