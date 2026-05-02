@@ -33,15 +33,15 @@
         <a href="#contact" class="nav-cta" data-i18n="nav.contact">Contact</a>
       </nav>
       <div class="header-controls">
-        <div class="lang-picker" id="lang-picker">
-          <button class="lang-btn" data-lang="en">EN</button>
-          <button class="lang-btn" data-lang="nl">NL</button>
-          <button class="lang-btn" data-lang="de">DE</button>
-          <button class="lang-btn" data-lang="es">ES</button>
-          <button class="lang-btn" data-lang="fr">FR</button>
-          <button class="lang-btn" data-lang="cs">CS</button>
-          <button class="lang-btn" data-lang="nb">NO</button>
-        </div>
+        <select class="lang-select" id="lang-select" aria-label="Language">
+          <option value="en">🇬🇧 EN</option>
+          <option value="nl">🇳🇱 NL</option>
+          <option value="de">🇩🇪 DE</option>
+          <option value="es">🇪🇸 ES</option>
+          <option value="fr">🇫🇷 FR</option>
+          <option value="cs">🇨🇿 CS</option>
+          <option value="nb">🇳🇴 NO</option>
+        </select>
         <button class="header-toggle-btn" id="theme-toggle" aria-label="Toggle theme">&#9790;</button>
         <button class="nav-menu-btn" id="nav-menu-btn" aria-label="Menu">&#9776;</button>
       </div>
@@ -56,15 +56,15 @@
     <a href="#app" class="mobile-nav-link" data-i18n="nav.app">App</a>
     <a href="#contact" class="mobile-nav-link" data-i18n="nav.contact">Contact</a>
     <div class="mobile-nav-controls">
-      <div class="lang-picker" id="lang-picker-mobile">
-        <button class="lang-btn" data-lang="en">EN</button>
-        <button class="lang-btn" data-lang="nl">NL</button>
-        <button class="lang-btn" data-lang="de">DE</button>
-        <button class="lang-btn" data-lang="es">ES</button>
-        <button class="lang-btn" data-lang="fr">FR</button>
-        <button class="lang-btn" data-lang="cs">CS</button>
-        <button class="lang-btn" data-lang="nb">NO</button>
-      </div>
+      <select class="lang-select" id="lang-select-mobile" aria-label="Language">
+        <option value="en">🇬🇧 EN</option>
+        <option value="nl">🇳🇱 NL</option>
+        <option value="de">🇩🇪 DE</option>
+        <option value="es">🇪🇸 ES</option>
+        <option value="fr">🇫🇷 FR</option>
+        <option value="cs">🇨🇿 CS</option>
+        <option value="nb">🇳🇴 NO</option>
+      </select>
       <button class="header-toggle-btn" id="theme-toggle-mobile" aria-label="Toggle theme">&#9790;</button>
     </div>
   </div>
@@ -268,6 +268,7 @@
         <span>·</span>
         <a href="api/cheesecakes.json">API</a>
       </div>
+      <p class="footer-made">🇪🇺 Made in Europe</p>
       <p class="footer-copy">© 2026 BestCheesecakeInTheWorld.com</p>
     </div>
   </footer>

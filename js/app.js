@@ -307,11 +307,11 @@ const T = {
     'hero.eyebrow': 'Une Mission Obsessionnelle',
     'hero.title': 'Meilleur Cheesecake',
     'hero.title.em': 'au Monde',
-    'hero.desc': 'Nous voyageons. Nous dégustons. Nous classons.<br />Chaque cheesecake qui croise notre route reçoit une évaluation honnête et personnelle — et la place qu'il mérite sur cette liste.',
+    'hero.desc': "Nous voyageons. Nous dégustons. Nous classons.<br />Chaque cheesecake qui croise notre route reçoit une évaluation honnête et personnelle — et la place qu'il mérite sur cette liste.",
     'hero.btn': 'Explorer le Classement',
     'hero.btn2': 'La Mission',
     'hero.scroll': 'Défiler',
-    'mission.text': 'Tous les cheesecakes ne se valent pas. Certains sont sublimes ; d'autres oubliables ; certains n'auraient jamais dû être appelés cheesecake. Nous les avons goûtés dans des bars de plage, des restaurants de montagne et des cafés de ville à travers l'Europe et au-delà. Voici notre bilan.',
+    'mission.text': "Tous les cheesecakes ne se valent pas. Certains sont sublimes ; d'autres oubliables ; certains n'auraient jamais dû être appelés cheesecake. Nous les avons goûtés dans des bars de plage, des restaurants de montagne et des cafés de ville à travers l'Europe et au-delà. Voici notre bilan.",
     'stat.reviewed': 'Cheesecakes Évalués',
     'stat.countries': 'Pays sur la Carte',
     'stat.assessors': 'Évaluateurs Dévoués',
@@ -328,7 +328,7 @@ const T = {
     'filter.country.all': 'Tous les Pays',
     'filter.search': 'Rechercher lieu, ville…',
     'section.map': 'Sur la Carte',
-    'section.map.sub': 'Chaque cheesecake, cartographié à travers l'Europe et au-delà.',
+    'section.map.sub': "Chaque cheesecake, cartographié à travers l'Europe et au-delà.",
     'about.eyebrow': 'Pourquoi Nous Faisons Cela',
     'about.title': 'La Mission',
     'about.p1': "Quelque part existe un cheesecake si parfaitement élaboré qu'il définit ce que peut être un cheesecake. Nous ne l'avons pas encore trouvé — mais nous cherchons. Pas des critiques, pas des journalistes gastronomiques professionnels — simplement des personnes avec une véritable obsession pour un bon cheesecake et la conviction que le monde mérite de savoir où se trouvent les meilleurs.",
@@ -337,7 +337,7 @@ const T = {
     'about.badge': 'Rang #1',
     'contact.eyebrow': 'Nous Contacter',
     'contact.title': 'Rejoindre la Mission',
-    'contact.sub': 'Tu connais un excellent cheesecake ? Tu penses qu'on en a manqué un ? Dis-nous — la recherche ne s'arrête jamais.',
+    'contact.sub': "Tu connais un excellent cheesecake ? Tu penses qu'on en a manqué un ? Dis-nous — la recherche ne s'arrête jamais.",
     'contact.hint': 'Clique ci-dessous pour afficher les coordonnées.',
     'contact.btn': 'Afficher les Coordonnées',
     'footer.brand': 'Meilleur Cheesecake au Monde',
@@ -347,8 +347,8 @@ const T = {
     'modal.published': 'Publié',
     'modal.score': 'Score / 10',
     'modal.community': 'Réponse de la Communauté',
-    'modal.agree': '▲ D'accord',
-    'modal.disagree': '▼ Pas d'accord',
+    'modal.agree': "▲ D'accord",
+    'modal.disagree': "▼ Pas d'accord",
     'modal.country': 'Pays',
     'modal.year': 'Année Visitée',
     'modal.assessors': 'Évaluateurs',
@@ -520,8 +520,9 @@ function rankLabel(n) {
 }
 
 function updateLangPicker() {
-  document.querySelectorAll('.lang-btn').forEach(btn => {
-    btn.classList.toggle('active', btn.dataset.lang === lang);
+  ['lang-select', 'lang-select-mobile'].forEach(id => {
+    const sel = el(id);
+    if (sel) sel.value = lang;
   });
 }
 
@@ -971,8 +972,8 @@ function bindEvents() {
   document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
   el('contact-reveal-btn').addEventListener('click', revealContact);
 
-  document.querySelectorAll('.lang-btn').forEach(btn => {
-    btn.addEventListener('click', () => setLang(btn.dataset.lang));
+  ['lang-select', 'lang-select-mobile'].forEach(id => {
+    el(id)?.addEventListener('change', e => setLang(e.target.value));
   });
   ['theme-toggle', 'theme-toggle-mobile'].forEach(id => {
     el(id)?.addEventListener('click', toggleTheme);
