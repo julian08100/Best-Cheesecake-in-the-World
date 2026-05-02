@@ -19,6 +19,10 @@ function detectLang() {
   const nav = (navigator.language || navigator.languages?.[0] || 'en').toLowerCase();
   if (nav.startsWith('nl')) return 'nl';
   if (nav.startsWith('de')) return 'de';
+  if (nav.startsWith('es')) return 'es';
+  if (nav.startsWith('fr')) return 'fr';
+  if (nav.startsWith('cs')) return 'cs';
+  if (nav.startsWith('nb') || nav.startsWith('nn') || nav.startsWith('no')) return 'nb';
   return 'en';
 }
 
@@ -226,7 +230,272 @@ const T = {
     'app.title': 'Nimm die Rangliste überall mit',
     'app.desc': 'Stöbere durch alle Bewertungen, erkunde die Karte und entdecke deinen nächsten großartigen Cheesecake — wo immer du reist.',
     'app.sub': 'Kostenlos · Für iPhone erhältlich',
+  },
+  es: {
+    'logo.title': 'Mejor Cheesecake',
+    'logo.sub': 'del Mundo',
+    'nav.rankings': 'Clasificación',
+    'nav.map': 'Mapa',
+    'nav.about': 'Sobre nosotros',
+    'nav.contact': 'Contacto',
+    'hero.eyebrow': 'Una Misión Obsesiva',
+    'hero.title': 'Mejor Cheesecake',
+    'hero.title.em': 'del Mundo',
+    'hero.desc': 'Viajamos. Probamos. Clasificamos.<br />Cada cheesecake que se cruza en nuestro camino recibe una evaluación honesta y personal — y su lugar merecido en esta lista.',
+    'hero.btn': 'Explorar la Clasificación',
+    'hero.btn2': 'La Misión',
+    'hero.scroll': 'Desplazar',
+    'mission.text': 'No todos los cheesecakes son iguales. Algunos son sublimes; otros olvidables; algunos nunca deberían haberse llamado cheesecake. Los hemos probado en bares de playa, restaurantes de montaña y cafés de ciudad por Europa y más allá. Este es nuestro registro.',
+    'stat.reviewed': 'Cheesecakes Evaluados',
+    'stat.countries': 'Países en el Mapa',
+    'stat.assessors': 'Evaluadores Dedicados',
+    'stat.since': 'Inicio del Viaje',
+    'section.rankings': 'La Clasificación',
+    'section.rankings.sub': 'Desde una obra maestra de 9,0 hasta una decepción en la montaña — cada cheesecake cuenta su propia historia.',
+    'filter.sort': 'Ordenar',
+    'filter.sort.rank': 'Por Rango',
+    'filter.sort.rating-desc': 'Puntuación ↓',
+    'filter.sort.rating-asc': 'Puntuación ↑',
+    'filter.sort.year-desc': 'Más Recientes',
+    'filter.sort.name': 'Nombre A–Z',
+    'filter.country': 'País',
+    'filter.country.all': 'Todos los Países',
+    'filter.search': 'Buscar local, ciudad…',
+    'section.map': 'En el Mapa',
+    'section.map.sub': 'Cada cheesecake, trazado por Europa y más allá.',
+    'about.eyebrow': 'Por Qué Lo Hacemos',
+    'about.title': 'La Misión',
+    'about.p1': 'En algún lugar existe un cheesecake tan perfectamente elaborado que define lo que puede ser un cheesecake. Aún no lo hemos encontrado — pero lo estamos buscando. No somos críticos ni periodistas gastronómicos profesionales — simplemente personas con una obsesión genuina por un buen cheesecake y la convicción de que el mundo merece saber dónde están los mejores.',
+    'about.p2': 'Cada entrada en esta lista ha sido evaluada personalmente. Valoramos el aspecto, la textura, el sabor y la experiencia global. Nuestras evaluaciones pasan por un proceso de revisión antes de su publicación para mantener la honestidad y la coherencia.',
+    'about.p3': 'Viajando por Europa y más allá, seguimos descubriendo y documentando. La lista crece con cada viaje. El mejor cheesecake del mundo sigue ahí fuera.',
+    'about.badge': 'Rango #1',
+    'contact.eyebrow': 'Ponte en Contacto',
+    'contact.title': 'Únete a la Misión',
+    'contact.sub': '¿Conoces un gran cheesecake? ¿Crees que nos hemos perdido uno? Dínoslo — la búsqueda nunca termina.',
+    'contact.hint': 'Haz clic abajo para ver los datos de contacto.',
+    'contact.btn': 'Mostrar Datos de Contacto',
+    'footer.brand': 'Mejor Cheesecake del Mundo',
+    'footer.tagline': 'Evaluado personalmente por nuestro equipo de conocedores. La búsqueda continúa.',
+    'footer.privacy': 'Privacidad',
+    'footer.terms': 'Condiciones',
+    'modal.published': 'Publicado',
+    'modal.score': 'Puntuación / 10',
+    'modal.community': 'Respuesta de la Comunidad',
+    'modal.agree': '▲ De acuerdo',
+    'modal.disagree': '▼ En desacuerdo',
+    'modal.country': 'País',
+    'modal.year': 'Año Visitado',
+    'modal.assessors': 'Evaluadores',
+    'modal.restaurant': 'Restaurante',
+    'modal.connoisseurs': 'Nuestros Conocedores',
+    'modal.visit': 'Visitar Restaurante',
+    'vote.up': '▲ Voto registrado — ¡gracias!',
+    'vote.down': '▼ Anotado — feedback honesto apreciado',
+    'nav.app': 'App',
+    'app.eyebrow': 'Ahora en iPhone',
+    'app.title': 'Lleva la Clasificación Contigo',
+    'app.desc': 'Consulta todos los rankings, explora el mapa y descubre tu próximo gran cheesecake — dondequiera que viajes.',
+    'app.sub': 'Gratis · Disponible en iPhone',
+  },
+  fr: {
+    'logo.title': 'Meilleur Cheesecake',
+    'logo.sub': 'au Monde',
+    'nav.rankings': 'Classement',
+    'nav.map': 'Carte',
+    'nav.about': 'À propos',
+    'nav.contact': 'Contact',
+    'hero.eyebrow': 'Une Mission Obsessionnelle',
+    'hero.title': 'Meilleur Cheesecake',
+    'hero.title.em': 'au Monde',
+    'hero.desc': 'Nous voyageons. Nous dégustons. Nous classons.<br />Chaque cheesecake qui croise notre route reçoit une évaluation honnête et personnelle — et la place qu'il mérite sur cette liste.',
+    'hero.btn': 'Explorer le Classement',
+    'hero.btn2': 'La Mission',
+    'hero.scroll': 'Défiler',
+    'mission.text': 'Tous les cheesecakes ne se valent pas. Certains sont sublimes ; d'autres oubliables ; certains n'auraient jamais dû être appelés cheesecake. Nous les avons goûtés dans des bars de plage, des restaurants de montagne et des cafés de ville à travers l'Europe et au-delà. Voici notre bilan.',
+    'stat.reviewed': 'Cheesecakes Évalués',
+    'stat.countries': 'Pays sur la Carte',
+    'stat.assessors': 'Évaluateurs Dévoués',
+    'stat.since': 'Début du Voyage',
+    'section.rankings': 'Le Classement',
+    'section.rankings.sub': "D'un chef-d'œuvre à 9,0 à une déception en altitude — chaque cheesecake raconte sa propre histoire.",
+    'filter.sort': 'Trier',
+    'filter.sort.rank': 'Par Rang',
+    'filter.sort.rating-desc': 'Note ↓',
+    'filter.sort.rating-asc': 'Note ↑',
+    'filter.sort.year-desc': 'Plus Récents',
+    'filter.sort.name': 'Nom A–Z',
+    'filter.country': 'Pays',
+    'filter.country.all': 'Tous les Pays',
+    'filter.search': 'Rechercher lieu, ville…',
+    'section.map': 'Sur la Carte',
+    'section.map.sub': 'Chaque cheesecake, cartographié à travers l'Europe et au-delà.',
+    'about.eyebrow': 'Pourquoi Nous Faisons Cela',
+    'about.title': 'La Mission',
+    'about.p1': "Quelque part existe un cheesecake si parfaitement élaboré qu'il définit ce que peut être un cheesecake. Nous ne l'avons pas encore trouvé — mais nous cherchons. Pas des critiques, pas des journalistes gastronomiques professionnels — simplement des personnes avec une véritable obsession pour un bon cheesecake et la conviction que le monde mérite de savoir où se trouvent les meilleurs.",
+    'about.p2': "Chaque entrée de cette liste a été évaluée personnellement. Nous évaluons l'apparence, la texture, la saveur et l'expérience globale. Nos évaluations passent par un processus de révision avant publication pour maintenir honnêteté et cohérence.",
+    'about.p3': "En voyageant à travers l'Europe et au-delà, nous continuons à découvrir et à documenter. La liste s'enrichit à chaque voyage. Le meilleur cheesecake au monde est encore là dehors.",
+    'about.badge': 'Rang #1',
+    'contact.eyebrow': 'Nous Contacter',
+    'contact.title': 'Rejoindre la Mission',
+    'contact.sub': 'Tu connais un excellent cheesecake ? Tu penses qu'on en a manqué un ? Dis-nous — la recherche ne s'arrête jamais.',
+    'contact.hint': 'Clique ci-dessous pour afficher les coordonnées.',
+    'contact.btn': 'Afficher les Coordonnées',
+    'footer.brand': 'Meilleur Cheesecake au Monde',
+    'footer.tagline': 'Évalué personnellement par notre équipe de connaisseurs. La recherche continue.',
+    'footer.privacy': 'Confidentialité',
+    'footer.terms': 'Conditions',
+    'modal.published': 'Publié',
+    'modal.score': 'Score / 10',
+    'modal.community': 'Réponse de la Communauté',
+    'modal.agree': '▲ D'accord',
+    'modal.disagree': '▼ Pas d'accord',
+    'modal.country': 'Pays',
+    'modal.year': 'Année Visitée',
+    'modal.assessors': 'Évaluateurs',
+    'modal.restaurant': 'Restaurant',
+    'modal.connoisseurs': 'Nos Connaisseurs',
+    'modal.visit': 'Visiter le Restaurant',
+    'vote.up': '▲ Vote enregistré — merci !',
+    'vote.down': '▼ Noté — retour honnête apprécié',
+    'nav.app': 'App',
+    'app.eyebrow': 'Maintenant sur iPhone',
+    'app.title': 'Emporte le Classement Partout',
+    'app.desc': 'Consulte tous les classements, explore la carte et découvre ton prochain grand cheesecake — où que tu voyages.',
+    'app.sub': 'Gratuit · Disponible sur iPhone',
+  },
+  cs: {
+    'logo.title': 'Nejlepší Cheesecake',
+    'logo.sub': 'na Světě',
+    'nav.rankings': 'Žebříček',
+    'nav.map': 'Mapa',
+    'nav.about': 'O nás',
+    'nav.contact': 'Kontakt',
+    'hero.eyebrow': 'Obsesivní Mise',
+    'hero.title': 'Nejlepší Cheesecake',
+    'hero.title.em': 'na Světě',
+    'hero.desc': 'Cestujeme. Ochutnáváme. Hodnotíme.<br />Každý cheesecake, který nám zkříží cestu, dostane poctivé, osobní hodnocení — a své zasloužené místo na tomto seznamu.',
+    'hero.btn': 'Prozkoumat Žebříček',
+    'hero.btn2': 'Mise',
+    'hero.scroll': 'Rolovat',
+    'mission.text': 'Ne všechny cheesecaky jsou si rovny. Některé jsou skvělé; jiné zapomenutelné; některé by se nikdy neměly nazývat cheesecake. Ochutnali jsme je v plážových barech, horských restauracích a městských kavárnách po celé Evropě i jinde. Toto je náš záznam.',
+    'stat.reviewed': 'Hodnocených Cheesecaků',
+    'stat.countries': 'Zemí na Mapě',
+    'stat.assessors': 'Oddaných Hodnotitelů',
+    'stat.since': 'Začátek Cesty',
+    'section.rankings': 'Žebříček',
+    'section.rankings.sub': 'Od mistrovského díla s hodnocením 9,0 až po zklamání v horské výšce — každý cheesecake vypráví svůj vlastní příběh.',
+    'filter.sort': 'Seřadit',
+    'filter.sort.rank': 'Podle Pořadí',
+    'filter.sort.rating-desc': 'Hodnocení ↓',
+    'filter.sort.rating-asc': 'Hodnocení ↑',
+    'filter.sort.year-desc': 'Nejnovější První',
+    'filter.sort.name': 'Název A–Z',
+    'filter.country': 'Země',
+    'filter.country.all': 'Všechny Země',
+    'filter.search': 'Hledat místo, město…',
+    'section.map': 'Na Mapě',
+    'section.map.sub': 'Každý cheesecake zaznačený po Evropě i dál.',
+    'about.eyebrow': 'Proč To Děláme',
+    'about.title': 'Mise',
+    'about.p1': 'Někde tam venku je cheesecake tak dokonale připravený, že definuje, čím cheesecake může být. Ještě jsme ho nenašli — ale hledáme. Nejsme kritici ani profesionální food novináři — prostě lidé s opravdovou obsesí pro dobře připravený cheesecake a přesvědčením, že svět si zaslouží vědět, kde jsou ty nejlepší.',
+    'about.p2': 'Každý záznam v tomto seznamu byl osobně hodnocen. Hodnotíme vzhled, texturu, chuť a celkový zážitek. Naše hodnocení procházejí procesem přezkoumání před zveřejněním, aby byla zachována poctivost a konzistence.',
+    'about.p3': 'Cestujeme po Evropě i dál a stále objevujeme a dokumentujeme. Seznam roste s každou cestou. Nejlepší cheesecake na světě je stále někde tam venku.',
+    'about.badge': 'Pořadí #1',
+    'contact.eyebrow': 'Kontaktujte Nás',
+    'contact.title': 'Připojte Se k Misi',
+    'contact.sub': 'Znáte skvělý cheesecake? Myslíte, že jsme nějaký přehlédli? Řekněte nám — hledání nikdy nekončí.',
+    'contact.hint': 'Klikněte níže pro zobrazení kontaktních údajů.',
+    'contact.btn': 'Zobrazit Kontaktní Údaje',
+    'footer.brand': 'Nejlepší Cheesecake na Světě',
+    'footer.tagline': 'Osobně hodnoceno naším týmem znalců. Hledání pokračuje.',
+    'footer.privacy': 'Soukromí',
+    'footer.terms': 'Podmínky',
+    'modal.published': 'Publikováno',
+    'modal.score': 'Skóre / 10',
+    'modal.community': 'Reakce Komunity',
+    'modal.agree': '▲ Souhlasím',
+    'modal.disagree': '▼ Nesouhlasím',
+    'modal.country': 'Země',
+    'modal.year': 'Rok Návštěvy',
+    'modal.assessors': 'Hodnotitelé',
+    'modal.restaurant': 'Restaurace',
+    'modal.connoisseurs': 'Naši Znalci',
+    'modal.visit': 'Navštívit Restauraci',
+    'vote.up': '▲ Hlas zaznamenán — děkujeme!',
+    'vote.down': '▼ Zaznamenáno — poctivá zpětná vazba oceněna',
+    'nav.app': 'Aplikace',
+    'app.eyebrow': 'Nyní na iPhone',
+    'app.title': 'Vezměte Žebříček Všude s Sebou',
+    'app.desc': 'Procházejte všechna hodnocení, prozkoumejte mapu a objevte svůj příští skvělý cheesecake — kamkoli cestujete.',
+    'app.sub': 'Zdarma · Dostupné na iPhone',
+  },
+  nb: {
+    'logo.title': 'Beste Cheesecake',
+    'logo.sub': 'i Verden',
+    'nav.rankings': 'Rangering',
+    'nav.map': 'Kart',
+    'nav.about': 'Om oss',
+    'nav.contact': 'Kontakt',
+    'hero.eyebrow': 'En Obsessiv Misjon',
+    'hero.title': 'Beste Cheesecake',
+    'hero.title.em': 'i Verden',
+    'hero.desc': 'Vi reiser. Vi smaker. Vi rangerer.<br />Hver cheesecake som krysser vår vei får en ærlig, personlig vurdering — og sin rettmessige plass på denne listen.',
+    'hero.btn': 'Utforsk Rangeringen',
+    'hero.btn2': 'Misjonen',
+    'hero.scroll': 'Rull',
+    'mission.text': 'Ikke alle cheesecaker er like. Noen er transcendente; noen er glembare; noen burde aldri ha blitt kalt en cheesecake i det hele tatt. Vi har smakt dem i strandkafeer, fjellesturanter og bykafeer over hele Europa og lenger unna. Dette er vårt register.',
+    'stat.reviewed': 'Cheesecaker Vurdert',
+    'stat.countries': 'Land på Kartet',
+    'stat.assessors': 'Dedikerte Vurderere',
+    'stat.since': 'Reisen Begynte',
+    'section.rankings': 'Rangeringen',
+    'section.rankings.sub': 'Fra et 9,0-mesterverk til en skuffelse i fjellhøyde — hver cheesecake forteller sin egen historie.',
+    'filter.sort': 'Sorter',
+    'filter.sort.rank': 'Etter Rang',
+    'filter.sort.rating-desc': 'Vurdering ↓',
+    'filter.sort.rating-asc': 'Vurdering ↑',
+    'filter.sort.year-desc': 'Nyeste Først',
+    'filter.sort.name': 'Navn A–Z',
+    'filter.country': 'Land',
+    'filter.country.all': 'Alle Land',
+    'filter.search': 'Søk sted, by…',
+    'section.map': 'På Kartet',
+    'section.map.sub': 'Hver cheesecake, plottet over Europa og videre.',
+    'about.eyebrow': 'Hvorfor Vi Gjør Dette',
+    'about.title': 'Misjonen',
+    'about.p1': 'Et sted der ute finnes det en cheesecake så perfekt laget at den definerer hva en cheesecake kan være. Vi har ikke funnet den ennå — men vi leter. Ikke kritikere, ikke profesjonelle matskribenter — bare folk med en ekte besettelse for en vellagd cheesecake og en tro på at verden fortjener å vite hvor de beste er.',
+    'about.p2': 'Hver oppføring på denne listen er personlig vurdert. Vi evaluerer utseende, tekstur, smak og den helhetlige opplevelsen. Våre vurderinger gjennomgår en gjennomgangsprosess før publisering for å opprettholde ærlighet og konsistens.',
+    'about.p3': 'Vi reiser gjennom Europa og videre og fortsetter å oppdage og dokumentere. Listen vokser med hver tur. Den beste cheesecaken i verden er fremdeles der ute.',
+    'about.badge': 'Rang #1',
+    'contact.eyebrow': 'Ta Kontakt',
+    'contact.title': 'Bli Med i Misjonen',
+    'contact.sub': 'Kjenner du en flott cheesecake? Tror du vi gikk glipp av en? Fortell oss — søket slutter aldri.',
+    'contact.hint': 'Klikk nedenfor for å vise kontaktdetaljer.',
+    'contact.btn': 'Vis Kontaktdetaljer',
+    'footer.brand': 'Beste Cheesecake i Verden',
+    'footer.tagline': 'Personlig vurdert av vårt team av kjennere. Søket fortsetter.',
+    'footer.privacy': 'Personvern',
+    'footer.terms': 'Vilkår',
+    'modal.published': 'Publisert',
+    'modal.score': 'Score / 10',
+    'modal.community': 'Samfunnsrespons',
+    'modal.agree': '▲ Enig',
+    'modal.disagree': '▼ Uenig',
+    'modal.country': 'Land',
+    'modal.year': 'År Besøkt',
+    'modal.assessors': 'Vurderere',
+    'modal.restaurant': 'Restaurant',
+    'modal.connoisseurs': 'Våre Kjennere',
+    'modal.visit': 'Besøk Restaurant',
+    'vote.up': '▲ Stemme registrert — takk!',
+    'vote.down': '▼ Notert — ærlig tilbakemelding satt pris på',
+    'nav.app': 'App',
+    'app.eyebrow': 'Nå på iPhone',
+    'app.title': 'Ta Rangeringen Med Deg',
+    'app.desc': 'Bla gjennom alle rangeringer, utforsk kartet og oppdag din neste store cheesecake — uansett hvor du reiser.',
+    'app.sub': 'Gratis · Tilgjengelig på iPhone',
   }
+};
 };
 
 function t(key) {
@@ -236,11 +505,19 @@ function t(key) {
 function resultsLabel(n) {
   if (lang === 'nl') return `${n} resultaat${n !== 1 ? 'en' : ''}`;
   if (lang === 'de') return `${n} Ergebnis${n !== 1 ? 'se' : ''}`;
+  if (lang === 'es') return `${n} resultado${n !== 1 ? 's' : ''}`;
+  if (lang === 'fr') return `${n} résultat${n !== 1 ? 's' : ''}`;
+  if (lang === 'cs') return `${n} výsledek`;
+  if (lang === 'nb') return `${n} resultat${n !== 1 ? 'er' : ''}`;
   return `${n} result${n !== 1 ? 's' : ''}`;
 }
 
 function rankLabel(n) {
-  return (lang === 'nl' || lang === 'de') ? `Rang #${n}` : `Rank #${n}`;
+  if (lang === 'nl' || lang === 'de' || lang === 'fr') return `Rang #${n}`;
+  if (lang === 'nb') return `Rang #${n}`;
+  if (lang === 'cs') return `Pořadí #${n}`;
+  if (lang === 'es') return `Rango #${n}`;
+  return `Rank #${n}`;
 }
 
 function updateLangPicker() {
@@ -252,13 +529,21 @@ function updateLangPicker() {
 // ── Language helpers for bilingual cheesecake data ────────────
 
 function note(c)   {
-  if (lang === 'nl' && c.shortNote_nl)   return c.shortNote_nl;
-  if (lang === 'de' && c.shortNote_de)   return c.shortNote_de;
+  if (lang === 'nl' && c.shortNote_nl) return c.shortNote_nl;
+  if (lang === 'de' && c.shortNote_de) return c.shortNote_de;
+  if (lang === 'es' && c.shortNote_es) return c.shortNote_es;
+  if (lang === 'fr' && c.shortNote_fr) return c.shortNote_fr;
+  if (lang === 'cs' && c.shortNote_cs) return c.shortNote_cs;
+  if (lang === 'nb' && c.shortNote_nb) return c.shortNote_nb;
   return c.shortNote;
 }
 function desc(c)   {
   if (lang === 'nl' && c.description_nl) return c.description_nl;
   if (lang === 'de' && c.description_de) return c.description_de;
+  if (lang === 'es' && c.description_es) return c.description_es;
+  if (lang === 'fr' && c.description_fr) return c.description_fr;
+  if (lang === 'cs' && c.description_cs) return c.description_cs;
+  if (lang === 'nb' && c.description_nb) return c.description_nb;
   return c.description;
 }
 
