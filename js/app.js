@@ -751,9 +751,11 @@ function scoreClass(r) {
 }
 
 // Older entries ship in the repo (imageFile); newly published ones live in
-// Firebase Storage (imageUrl).
+// Firebase Storage (imageUrl). Only relative asset paths and https URLs
+// are allowed through.
 function imgSrc(c) {
-  return c.imageFile ? `assets/images/${c.imageFile}` : (c.imageUrl || '');
+  const src = c.imageFile ? `assets/images/${c.imageFile}` : (c.imageUrl || '');
+  return (src.startsWith('assets/images/') || src.startsWith('https://')) ? src : '';
 }
 
 function imgTag(c, cls = '') {
@@ -762,7 +764,7 @@ function imgTag(c, cls = '') {
     return `<img class="${cls}" style="display:none" alt="" />`;
   }
   return `<img
-    src="${src}"
+    src="${esc(src)}"
     alt="${esc(c.name)}"
     class="${cls}"
     onerror="handleImgError(this)"
@@ -918,7 +920,7 @@ function openModal(id) {
 
   el('modal-content').innerHTML = `
     <div class="modal-img-wrap">
-      <img class="modal-img" src="${modalSrc}" alt="${esc(c.name)}" onerror="this.style.display='none';document.getElementById('modal-img-ph').classList.add('visible')" />
+      <img class="modal-img" src="${esc(modalSrc)}" alt="${esc(c.name)}" onerror="this.style.display='none';document.getElementById('modal-img-ph').classList.add('visible')" />
       <div class="modal-img-placeholder" id="modal-img-ph">
         <span style="font-size:40px">🍰</span>
         <span style="font-size:13px;color:var(--text-dim)">${esc(c.name)}</span>
