@@ -1,0 +1,34 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function isSignedIn() { return request.auth != null; }
+    function isAdmin() {
+      return isSignedIn() && exists(/databases/$(database)/documents/admins/$(request.auth.uid));
+    }
+
+    // Published rankings — read by the website and the app without
+    // signing in; only admins can publish or edit.
+    match /cheesecakes/{id} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    // Admin allowlist — users may check their own entry; managed only
+    // from the Firebase console / owner tooling.
+    match /admins/{uid} {
+      allow get: if isSignedIn() && request.auth.uid == uid;
+      allow list, write: if false;
+    }
+
+    // Assessor submissions from the iOS app.
+    match /assessments/{id} {
+      allow read, write: if isSignedIn();
+    }
+
+    // Website form inboxes — written by Cloud Functions (Admin SDK
+    // bypasses rules), readable by admins in the app.
+    match /contact_messages/{id} { allow read, write: if isAdmin(); }
+    match /assessment_requests/{id} { allow read, write: if isAdmin(); }
+    match /cheesecake_submissions/{id} { allow read, write: if isAdmin(); }
+  }
+}

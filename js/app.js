@@ -3,7 +3,12 @@
    Bilingual (EN/NL) + Dark/Light theme
    ============================================================ */
 
-const API_URL = 'api/cheesecakes.json';
+/* Cheesecake data lives in Cloud Firestore (project cheesecake-d2a31).
+   The local JSON file is kept as a fallback for offline/legacy use. */
+const FIRESTORE_API =
+  'https://firestore.googleapis.com/v1/projects/cheesecake-d2a31/databases/(default)/documents/cheesecakes'
+  + '?pageSize=300&key=AIzaSyDGVK9dexd_ZN2AYUE8KHrm3Jg0nXNhZYQ';
+const FALLBACK_URL = 'api/cheesecakes.json';
 
 let allCheesecakes = [];
 let filteredCheesecakes = [];
@@ -624,11 +629,16 @@ async function init() {
   applyTheme();
 
   try {
-    const data = await fetch(API_URL).then(r => r.json());
-    allCheesecakes = data.cheesecakes;
-  } catch {
-    console.warn('API unavailable');
-    allCheesecakes = [];
+    allCheesecakes = await loadCheesecakes();
+  } catch (e) {
+    console.warn('Firestore unavailable, using local fallback', e);
+    try {
+      const data = await fetch(FALLBACK_URL).then(r => r.json());
+      allCheesecakes = data.cheesecakes;
+    } catch {
+      console.warn('API unavailable');
+      allCheesecakes = [];
+    }
   }
 
   allCheesecakes = allCheesecakes.map(c => ({
@@ -642,6 +652,35 @@ async function init() {
   renderMap();
   bindEvents();
   bindMobileNav();
+}
+
+// ── Firestore REST decoding ──────────────────────────────────
+
+function fsValue(v) {
+  if (v == null) return null;
+  if ('stringValue'  in v) return v.stringValue;
+  if ('integerValue' in v) return parseInt(v.integerValue, 10);
+  if ('doubleValue'  in v) return v.doubleValue;
+  if ('booleanValue' in v) return v.booleanValue;
+  if ('mapValue'     in v) return fsFields(v.mapValue.fields || {});
+  if ('arrayValue'   in v) return (v.arrayValue.values || []).map(fsValue);
+  return null;
+}
+
+function fsFields(fields) {
+  const out = {};
+  for (const [k, v] of Object.entries(fields)) out[k] = fsValue(v);
+  return out;
+}
+
+async function loadCheesecakes() {
+  const res = await fetch(FIRESTORE_API);
+  if (!res.ok) throw new Error(`Firestore ${res.status}`);
+  const data = await res.json();
+  const cakes = (data.documents || []).map(d => fsFields(d.fields || {}));
+  if (!cakes.length) throw new Error('Firestore returned no cheesecakes');
+  cakes.sort((a, b) => a.rank - b.rank);
+  return cakes;
 }
 
 // ── Stats ────────────────────────────────────────────────────
@@ -711,10 +750,19 @@ function scoreClass(r) {
   return r >= 7.5 ? 'score-high' : r >= 5.0 ? 'score-mid' : 'score-low';
 }
 
+// Older entries ship in the repo (imageFile); newly published ones live in
+// Firebase Storage (imageUrl).
+function imgSrc(c) {
+  return c.imageFile ? `assets/images/${c.imageFile}` : (c.imageUrl || '');
+}
+
 function imgTag(c, cls = '') {
-  const local = `assets/images/${c.imageFile}`;
+  const src = imgSrc(c);
+  if (!src) {
+    return `<img class="${cls}" style="display:none" alt="" />`;
+  }
   return `<img
-    src="${local}"
+    src="${src}"
     alt="${esc(c.name)}"
     class="${cls}"
     onerror="handleImgError(this)"
@@ -866,11 +914,11 @@ function openModal(id) {
 
   const v = communityVotes[id] ?? c.communityVotes ?? { approve: 0, disapprove: 0 };
   const myVote = votes[id];
-  const localSrc = `assets/images/${c.imageFile}`;
+  const modalSrc = imgSrc(c);
 
   el('modal-content').innerHTML = `
     <div class="modal-img-wrap">
-      <img class="modal-img" src="${localSrc}" alt="${esc(c.name)}" onerror="this.style.display='none';document.getElementById('modal-img-ph').classList.add('visible')" />
+      <img class="modal-img" src="${modalSrc}" alt="${esc(c.name)}" onerror="this.style.display='none';document.getElementById('modal-img-ph').classList.add('visible')" />
       <div class="modal-img-placeholder" id="modal-img-ph">
         <span style="font-size:40px">🍰</span>
         <span style="font-size:13px;color:var(--text-dim)">${esc(c.name)}</span>
@@ -885,7 +933,7 @@ function openModal(id) {
       <div class="modal-venue">${esc(c.venue ?? c.name)}</div>
       <div class="modal-location">${c.countryFlag} ${esc(c.city)}, ${esc(c.country)}</div>
       ${c.address && c.address !== c.country ? `<div class="modal-address">${esc(c.address)}</div>` : ''}
-      ${c.websiteUrl ? `<a class="modal-restaurant-btn" href="${c.websiteUrl}" target="_blank" rel="noopener">${t('modal.visit')} ↗</a>` : ''}
+      ${c.websiteUrl ? `<a class="modal-restaurant-btn" href="${esc(c.websiteUrl)}" target="_blank" rel="noopener">${t('modal.visit')} ↗</a>` : ''}
 
       <div class="modal-score-row">
         <div class="modal-score-big ${scoreClass(c.rating)}">${c.rating.toFixed(1)}</div>
@@ -925,7 +973,7 @@ function openModal(id) {
           <div class="modal-meta-label">${t('modal.restaurant')}</div>
           <div class="modal-meta-value">
             ${c.websiteUrl
-              ? `<a href="${c.websiteUrl}" target="_blank" rel="noopener">${esc(c.venue ?? c.name)} ↗</a>`
+              ? `<a href="${esc(c.websiteUrl)}" target="_blank" rel="noopener">${esc(c.venue ?? c.name)} ↗</a>`
               : esc(c.venue ?? c.name)}
           </div>
         </div>
