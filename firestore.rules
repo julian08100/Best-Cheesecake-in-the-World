@@ -20,9 +20,34 @@ service cloud.firestore {
       allow list, write: if false;
     }
 
-    // Assessor submissions from the iOS app.
+    // Assessor submissions from the iOS and Android apps.
     match /assessments/{id} {
-      allow read, write: if isSignedIn();
+      // Every assessor sees the pending queue.
+      allow read: if isSignedIn();
+
+      // Submit only under your own uid; only admins may submit an already-approved assessment
+      // (the admin fast path publishes immediately).
+      allow create: if isSignedIn()
+                    && request.resource.data.submittedBy == request.auth.uid
+                    && (request.resource.data.status == 'pending' || isAdmin());
+
+      // Admins manage everything (approve/status/publish). Other assessors may only add their
+      // own uid to approvals or rejections (the arrayUnion vote), nothing else.
+      allow update: if isAdmin() || (
+                      isSignedIn()
+                      && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['approvals', 'rejections'])
+                      && addsOnlyCaller(resource.data.get('approvals', []), request.resource.data.get('approvals', []))
+                      && addsOnlyCaller(resource.data.get('rejections', []), request.resource.data.get('rejections', []))
+                    );
+
+      // Admins (reject/publish) and the submitter (delete account) may remove it.
+      allow delete: if isAdmin() || (isSignedIn() && resource.data.submittedBy == request.auth.uid);
+    }
+
+    // A vote list may only grow by the caller's own uid; existing votes stay.
+    function addsOnlyCaller(before, after) {
+      return after.toSet().hasAll(before.toSet())
+          && after.toSet().difference(before.toSet()).hasOnly([request.auth.uid]);
     }
 
     // Website form inboxes — written by Cloud Functions (Admin SDK
@@ -32,3 +57,4 @@ service cloud.firestore {
     match /cheesecake_submissions/{id} { allow read, write: if isAdmin(); }
   }
 }
+
