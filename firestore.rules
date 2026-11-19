@@ -5,6 +5,21 @@ service cloud.firestore {
     function isAdmin() {
       return isSignedIn() && exists(/databases/$(database)/documents/admins/$(request.auth.uid));
     }
+    // Assessors are an explicit allowlist (assessors/{uid}), managed like admins from the
+    // Firebase console. Merely being signed in does not make someone an assessor.
+    function isAssessor() {
+      return isAdmin() || (isSignedIn() && exists(/databases/$(database)/documents/assessors/$(request.auth.uid)));
+    }
+    // Server-side mirror of the length limits the apps apply before submitting.
+    function shortText(d, field, max) {
+      return !(field in d) || d[field] == null || (d[field] is string && d[field].size() <= max);
+    }
+    function validAssessment(d) {
+      return shortText(d, 'venueName', 100) && shortText(d, 'city', 100) && shortText(d, 'country', 100)
+          && shortText(d, 'submittedByName', 50) && shortText(d, 'note', 200) && shortText(d, 'description', 1000)
+          && shortText(d, 'websiteUrl', 500)
+          && (!('rating' in d) || (d.rating is number && d.rating >= 0 && d.rating <= 10));
+    }
 
     // Published rankings — read by the website and the app without
     // signing in; only admins can publish or edit.
@@ -20,21 +35,28 @@ service cloud.firestore {
       allow list, write: if false;
     }
 
+    // Assessor allowlist — same model as admins.
+    match /assessors/{uid} {
+      allow get: if isSignedIn() && request.auth.uid == uid;
+      allow list, write: if false;
+    }
+
     // Assessor submissions from the iOS and Android apps.
     match /assessments/{id} {
       // Every assessor sees the pending queue.
-      allow read: if isSignedIn();
+      allow read: if isAssessor();
 
       // Submit only under your own uid; only admins may submit an already-approved assessment
       // (the admin fast path publishes immediately).
-      allow create: if isSignedIn()
+      allow create: if isAssessor()
                     && request.resource.data.submittedBy == request.auth.uid
+                    && validAssessment(request.resource.data)
                     && (request.resource.data.status == 'pending' || isAdmin());
 
       // Admins manage everything (approve/status/publish). Other assessors may only add their
       // own uid to approvals or rejections (the arrayUnion vote), nothing else.
       allow update: if isAdmin() || (
-                      isSignedIn()
+                      isAssessor()
                       && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['approvals', 'rejections'])
                       && addsOnlyCaller(resource.data.get('approvals', []), request.resource.data.get('approvals', []))
                       && addsOnlyCaller(resource.data.get('rejections', []), request.resource.data.get('rejections', []))

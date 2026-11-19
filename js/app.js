@@ -1002,7 +1002,7 @@ function revealContact() {
   const btn     = el('contact-reveal-btn');
   const details = el('contact-details');
   if (!details || details.children.length) return;
-  const u = 'j.de.haas', d = 'digtialcc.nl';
+  const u = 'j.de.haas', d = 'digitalcc.nl';
   details.innerHTML = `
     <a href="https://www.linkedin.com/in/juliandehaas/" target="_blank" rel="noopener" class="contact-link contact-link--linkedin">LinkedIn &mdash; Julian de Haas &#8599;</a>
     <a href="mailto:${u}@${d}" class="contact-link contact-link--email">${u}@${d}</a>
