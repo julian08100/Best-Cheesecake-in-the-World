@@ -22,6 +22,43 @@ function cors(req, res) {
   return false;
 }
 
+// ── Input helpers ─────────────────────────────────────────────
+
+// Escape user input before it goes into the HTML of an admin email.
+function esc(v) {
+  return String(v ?? "").replace(/[&<>"']/g, (c) => (
+    { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]
+  ));
+}
+
+// Only http(s) links are allowed in the email; anything else becomes "#".
+function safeUrl(v) {
+  try {
+    const u = new URL(String(v));
+    return u.protocol === "http:" || u.protocol === "https:" ? u.href : "#";
+  } catch { return "#"; }
+}
+
+// Every form field must be a plain string within its length limit.
+const FIELD_LIMITS = {
+  name: 100, email: 254, subject: 150, message: 5000,
+  venue: 150, address: 300, websiteUrl: 500, contactPerson: 100, phone: 40,
+  city: 100, country: 100, shortNote: 300, description: 3000, photoUrl: 500,
+  submitterName: 100, submitterEmail: 254, rating: 10, year: 10,
+};
+function invalidField(body) {
+  for (const [field, max] of Object.entries(FIELD_LIMITS)) {
+    const v = body[field];
+    if (v === undefined || v === null || v === "") continue;
+    if (typeof v === "number" && (field === "rating" || field === "year")) continue;
+    if (typeof v !== "string" || v.length > max) return field;
+  }
+  for (const field of ["email", "submitterEmail"]) {
+    if (body[field] && !/^[^\s@<>"]+@[^\s@<>"]+\.[^\s@<>"]+$/.test(body[field])) return field;
+  }
+  return null;
+}
+
 // ── Email helper (Resend) ─────────────────────────────────────
 
 async function sendEmail(apiKey, subject, html) {
@@ -75,6 +112,9 @@ exports.handleForm = onRequest(
     const elapsed = Date.now() - parseInt(body._ts || "0", 10);
     if (elapsed < 2000) { res.status(200).json({ ok: true }); return; }
 
+    const bad = invalidField(body);
+    if (bad) { res.status(400).json({ error: `Invalid field: ${bad}` }); return; }
+
     const formType = body.form_type;
     const receivedAt = FieldValue.serverTimestamp();
     const apiKey = RESEND_API_KEY.value();
@@ -94,11 +134,11 @@ exports.handleForm = onRequest(
         });
         await sendEmail(
           apiKey,
-          `[BCW] Message from ${body.name}${body.subject ? `: ${body.subject}` : ""}`,
-          `<p><strong>From:</strong> ${body.name} &lt;${body.email}&gt;</p>
-           ${body.subject ? `<p><strong>Subject:</strong> ${body.subject}</p>` : ""}
+          `[BCW] Message from ${body.name}${body.subject ? `: ${body.subject}` : ""}`.replace(/[\r\n]+/g, " "),
+          `<p><strong>From:</strong> ${esc(body.name)} &lt;${esc(body.email)}&gt;</p>
+           ${body.subject ? `<p><strong>Subject:</strong> ${esc(body.subject)}</p>` : ""}
            <p><strong>Message:</strong></p>
-           <p style="white-space:pre-wrap">${body.message}</p>`
+           <p style="white-space:pre-wrap">${esc(body.message)}</p>`
         );
 
       } else if (formType === "assessment_request") {
@@ -118,12 +158,12 @@ exports.handleForm = onRequest(
         });
         await sendEmail(
           apiKey,
-          `[BCW] Assessment request: ${body.venue}`,
-          `<p><strong>Venue:</strong> ${body.venue}</p>
-           <p><strong>Address:</strong> ${body.address}</p>
-           <p><strong>Website:</strong> <a href="${body.websiteUrl}">${body.websiteUrl}</a></p>
-           <p><strong>Contact:</strong> ${body.contactPerson} &lt;${body.email}&gt;${body.phone ? ` / ${body.phone}` : ""}</p>
-           ${body.message ? `<p><strong>Message:</strong><br><span style="white-space:pre-wrap">${body.message}</span></p>` : ""}`
+          `[BCW] Assessment request: ${body.venue}`.replace(/[\r\n]+/g, " "),
+          `<p><strong>Venue:</strong> ${esc(body.venue)}</p>
+           <p><strong>Address:</strong> ${esc(body.address)}</p>
+           <p><strong>Website:</strong> <a href="${esc(safeUrl(body.websiteUrl))}">${esc(body.websiteUrl)}</a></p>
+           <p><strong>Contact:</strong> ${esc(body.contactPerson)} &lt;${esc(body.email)}&gt;${body.phone ? ` / ${esc(body.phone)}` : ""}</p>
+           ${body.message ? `<p><strong>Message:</strong><br><span style="white-space:pre-wrap">${esc(body.message)}</span></p>` : ""}`
         );
 
       } else if (formType === "cheesecake_submission") {
@@ -149,7 +189,9 @@ exports.handleForm = onRequest(
         });
         await notifyAdmins(
           "Cheesecake Submission",
-          `${body.submitterName} submitted: ${body.venue}, ${body.city}`
+          // The "admins" topic can be subscribed to by any app install, so no names here.
+          "A new cheesecake was submitted. Open the app to review it."
+
         );
 
       } else {
@@ -176,7 +218,8 @@ exports.onAssessmentCreated = onDocumentCreated(
     if (!data) return;
     await notifyAdmins(
       "New Assessment to Review",
-      `${data.submittedByName || "Someone"} submitted: ${data.venueName}, ${data.city}`
+      "A new assessment is waiting for review. Open the app to see it."
+
     );
   }
 );
